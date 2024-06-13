@@ -22,10 +22,17 @@ public class Jugador {
         nombre = n;
         dinero = 1500;
         posicion = 0;
-        for (int j = 0; j < 2; j++) {
+        for (int j = 0; j < salirCarcel.length; j++) {
             salirCarcel[i] = null;
         }        
         tiempoCarcel = 0;
         enCarcel = false;
+    }
+    
+    public byte tirar(Dado[] dados){
+        byte jugada = dados[0].tirar();
+        jugada += dados[1].tirar();
+        
+        return jugada;
     }
 }

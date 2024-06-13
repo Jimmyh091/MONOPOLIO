@@ -13,11 +13,13 @@ public class Tablero {
     private Casilla[] casillas;
     private Carta[] cartas;
     private Evento[] eventos;
-    private Dado dado;
+    private Dado[] dados;
     
-    public Tablero(Jugador[] j, Casilla[] c, Carta[] ca, Evento[] e){
+    public Tablero(Jugador[] j, Casilla[] c, Carta[] ca, Evento[] e, Dado[] d){
         jugadores = j;
-        
-        dado = new Dado();
+        casillas = c;
+        cartas = ca;
+        eventos = e;
+        dados = d;
     }
 }

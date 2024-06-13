@@ -23,7 +23,7 @@ public class Jugador {
         dinero = 1500;
         posicion = 0;
         for (int j = 0; j < salirCarcel.length; j++) {
-            salirCarcel[i] = null;
+            salirCarcel[j] = null;
         }        
         tiempoCarcel = 0;
         enCarcel = false;

@@ -36,23 +36,24 @@ public class MONOPOLIO {
         byte cont1 = 0;
         byte cont2 = 0;
         
-        do {
-            cont2 = cont1;
+        System.out.println(jugadores);
+        
+        while (cont1 < numJug) {
+            cont2 = cont1++;
             
-            do{            
-                if (tiradas[cont2] < tiradas[cont2 - 1]) {
-                    
-                    byte basura = tiradas[cont2];
-                    tiradas[cont2] = tiradas[cont2 - 1];
-                    tiradas[cont2 - 1] = basura;
-                    
-                    basura = orden[cont2];
-                    orden[cont2] = orden[cont2 - 1];
-                    orden[cont2 - 1] = basura;
-                    
-                }
-            } while(cont2-- > 0);
-        } while (cont1++ < numJug);
+            while(cont2 != 0 && tiradas[cont2] > tiradas[cont2 - 1]){
+
+                byte basura = tiradas[cont2];
+                tiradas[cont2] = tiradas[cont2 - 1];
+                tiradas[cont2 - 1] = basura;
+
+                basura = orden[cont2];
+                orden[cont2] = orden[cont2 - 1];
+                orden[cont2 - 1] = basura;
+
+                cont2--;
+            }
+        }
         
         Jugador[] jugadoresOrdenados = new Jugador[numJug];
         
@@ -69,7 +70,8 @@ public class MONOPOLIO {
         do {
             System.out.println("Cuantos jugadores van a jugar?"); // no tiene mucho sentido porque supongo que hare bots pero eso ya pa el tfg
             numJug = sc.nextByte();
-
+            sc.nextLine();
+            
             jugadoresCorrectos = numJug >= 2 && numJug <= 4;
             
             if (!jugadoresCorrectos) System.out.println("Tienen que haber entre 2 y 4 jugadores");

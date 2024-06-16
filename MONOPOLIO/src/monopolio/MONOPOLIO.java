@@ -17,6 +17,12 @@ public class MONOPOLIO {
         Dado[] dados = crearDados();
         
         jugadores = asignarOrden(jugadores, dados);
+        
+        /*
+            CREACION DE CARTAS Y TODA LA PEScA QUE HAY QUE VERLO PORQUE MAE MIA
+        */
+        
+        // Tablero tablero = new Tablero(jugadores, dados);
     }
     public static void turno(Jugador jugador, Dado[] dados){
         jugador.tirar(dados);

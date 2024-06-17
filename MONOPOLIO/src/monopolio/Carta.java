@@ -10,24 +10,35 @@ package monopolio;
  */
 public class Carta {
     private byte id;
-    private Byte propietario;
+    private Jugador propietario;
     private String titulo;
     private String desc;
     private Evento evento;
     
-    public Carta(byte i, String t, String d, Evento e){
+    public Carta(byte i, byte id, String t, String d){
         id = i;
+        evento = new Evento(id);
         propietario = null;
         titulo = t;
         desc = d;
-        evento = e;
-    }
-    public Carta(byte i, byte p, String t, String d, Evento e){
-        id = i;
-        propietario = p;
-        titulo = t;
-        desc = d;
-        evento = e;
     }
     
+    public void ejecutarEvento(int valor){
+        evento.ejecutarEvento(propietario, valor);
+    }
+    
+    public void ejecutarEvento(int valor, Casilla[] casillas){
+        evento.ejecutarEvento(propietario, valor, casillas);
+    }
+    
+    public void ejecutarEvento(int valor, Jugador[] jugadores){
+        evento.ejecutarEvento(propietario, valor, jugadores);
+    }
+
+    public Jugador getPropietario() {
+        return propietario;
+    }
+    public void setPropietario(Jugador propietario) {
+        this.propietario = propietario;
+    }
 }

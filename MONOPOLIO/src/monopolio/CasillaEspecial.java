@@ -8,18 +8,12 @@ package monopolio;
  *
  * @author jaime
  */
-public class Casilla {
-    private Jugador jugador;
+public class CasillaEspecial {
+    private byte id;
+    private Evento evento;
     
-    public Casilla(){
-        jugador = null;
+    public CasillaEspecial(byte i, byte id){
+        id = i;
+        evento = new Evento(id);
     }
-    
-    public void setJugador(Jugador j){
-        jugador = j;
-    }
-    public Jugador getJugador() {
-        return jugador;
-    }
-    
 }

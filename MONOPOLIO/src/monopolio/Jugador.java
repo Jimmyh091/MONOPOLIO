@@ -35,4 +35,15 @@ public class Jugador {
         
         return jugada;
     }
+
+    public byte getId() {
+        return id;
+    }
+
+    public int getDinero() {
+        return dinero;
+    }
+    public void setDinero(int dinero) {
+        this.dinero = dinero;
+    }
 }

@@ -8,18 +8,6 @@ package monopolio;
  *
  * @author jaime
  */
-public class Casilla {
-    private Jugador jugador;
-    
-    public Casilla(){
-        jugador = null;
-    }
-    
-    public void setJugador(Jugador j){
-        jugador = j;
-    }
-    public Jugador getJugador() {
-        return jugador;
-    }
+public class Baraja {
     
 }

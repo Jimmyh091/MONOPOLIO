@@ -22,4 +22,8 @@ public class Tablero {
         eventos = e;
         dados = d;
     }
+
+    public Casilla[] getCasillas() {
+        return casillas;
+    }
 }

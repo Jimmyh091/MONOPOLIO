@@ -2,21 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package monopolio;
+package juego;
 
 /**
  *
  * @author jaime
  */
 public class Carta {
-    private byte id;
+    private int id;
     private Jugador propietario;
     private String titulo;
     private String desc;
     private Evento evento;
     
-    public Carta(byte i, byte id, String t, String d){
-        id = i;
+    public Carta(int i, int id, String t, String d){
+        this.id = i;
         evento = new Evento(id);
         propietario = null;
         titulo = t;

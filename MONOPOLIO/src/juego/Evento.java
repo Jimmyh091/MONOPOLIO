@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package monopolio;
+package juego;
 
 /**
  *
@@ -17,18 +17,14 @@ tipo 3: el jugador se teletransporta a una casilla
 tipo 4: el jugador recorre el tablero hasta una casilla
 */
 public class Evento {
-    private byte id;
+    private int id;
     
-    public Evento(byte i){
+    public Evento(int i){
         id = i;
     }
     
     public void ejecutarEvento(Jugador jugador, int valor){
-        switch(id){
-            case 0:
-                jugador.setDinero(jugador.getDinero() + valor);
-                break;
-        }
+        jugador.setDinero(jugador.getDinero() + valor);
     }
     public void ejecutarEvento(Jugador jugador, int valor, Jugador[] jugadores){
         for (int i = 0; i < jugadores.length; i++) {
@@ -43,8 +39,8 @@ public class Evento {
         jugador.setDinero(jugador.getDinero() + valor * (jugadores.length - 1));
     }
     public void ejecutarEvento(Jugador jugador, int valor, Casilla[] casillas){
-        byte numCasas = 0;
-        byte numHoteles = 0;
+        int numCasas = 0;
+        int numHoteles = 0;
         for (int i = 0; i < casillas.length; i++) {
             
             if (casillas[i] instanceof Calle) {
@@ -60,4 +56,11 @@ public class Evento {
         
         jugador.setDinero(jugador.getDinero() - resultado);
     }
+    
+    // GETTERS AND SETTERS //
+    
+    public int getTipo(){
+        return id;
+    }
+    
 }

@@ -73,7 +73,7 @@ public class GamePanel extends JPanel implements Runnable{
         dados[0] = new Dado();
         dados[1] = new Dado();
         
-        gameboard = new Tablero(jugador, casillas, barajaComunidad, barajaSuerte, dados);
+        gameboard = new Tablero(jugador);
         
         startGameThread();
     }
@@ -92,7 +92,7 @@ public class GamePanel extends JPanel implements Runnable{
                 
                 while(gameThread != null){
                     for (int i = 0; i < numPlayers; i++) {
-                        gameboard.
+                        //gameboard.
                     }
                 }
             }

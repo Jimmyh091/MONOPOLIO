@@ -25,11 +25,7 @@ public class PRUEBASSOLOPRUEBASOK {
         }
         */
         
-        String asdf = """
-                      
-                      asdfasdf
-                      
-                      """;
+        String asdf = "asdfasdf";
         
         
         System.out.println(asdf);

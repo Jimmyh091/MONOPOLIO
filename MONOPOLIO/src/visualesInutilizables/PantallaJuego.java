@@ -42,7 +42,7 @@ public class PantallaJuego extends PanelBase{
         casillas = c;
         dados = d;
         
-        tablero = new Tablero(j, c, b, ba, d);
+        tablero = new Tablero(j, c, b, ba);
         
         try {
             imagenTablero = ImageIO.read(getClass().getResourceAsStream("/elementos/imagenes/tablero.jpg"));

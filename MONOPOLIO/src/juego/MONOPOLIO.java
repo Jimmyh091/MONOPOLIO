@@ -22,6 +22,7 @@ public class MONOPOLIO {
     private static Scanner sc = new Scanner(System.in);
     
     public static void main(String[] args) {
+        /*
         Jugador[] jugadores = crearJugadores();
         Dado[] dados = crearDados();
         
@@ -68,6 +69,7 @@ public class MONOPOLIO {
         } while (!victoria);
         
         System.out.println("termino la partida");
+*/
     }
     public static boolean comprobarVictoria(Jugador[] jugadores){
         boolean unJug = false;

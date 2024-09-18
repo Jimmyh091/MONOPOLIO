@@ -4,6 +4,13 @@
  */
 package juego;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
@@ -14,20 +21,19 @@ public class Tablero {
     private Jugador[] jugadores;
     private Casilla[] casillas;
     private Baraja[] barajas;
-    private Dado dados;
+    private Dado[] dados;
     
     private Jugador activePlayer;
     
     private int advanceSquares;
     private int timesDiceRolled;
     
-    public Tablero(Jugador[] j, Casilla[] c, Baraja b, Baraja ba, Dado d){
+    public Tablero(Jugador[] j){
         jugadores = j;
-        casillas = c;
-        barajas = new Baraja[2];
-        barajas[0] = b;
-        barajas[1] = ba;
-        dados = d;
+        casillas = crearCasillas();
+        barajas = crearBarajas();
+        dados[0] = new Dado();
+        dados[1] = new Dado();
         
         advanceSquares = 0;
         timesDiceRolled = 0;
@@ -38,7 +44,7 @@ public class Tablero {
     }
     
     public void rollDice(){
-        int[] results = dados.roll();
+        int[] results = { dados[0].roll(), dados[1].roll() };
         
         advanceSquares += results[0] + results[1];
         timesDiceRolled++;
@@ -60,9 +66,39 @@ public class Tablero {
     
     public void movePlayer(int posicion){
         casillas[posicion].setJugador(activePlayer);
-        casillas.
+        //casillas.
     }
 
+    public static Casilla[] crearCasillas(){
+        String linea;
+        BufferedReader leedor;
+        Casilla[] casillas = null;
+        
+        try {
+            casillas = new Casilla[((int) Files.lines(Paths.get("src/elementos/casillas.txt")).count()) - 0];
+            
+            leedor = new BufferedReader(new FileReader("src/elementos/casillas.txt"));
+            
+            int contador = 0;
+            while((linea = leedor.readLine()) != null){
+                String[] datos = linea.split("/");
+                
+                //                                                         0, 0, mal
+                if (datos[0].equals("1")) casillas[contador++] = new Calle(0, 0, datos[1], Integer.parseInt(datos[2]), Byte.parseByte(datos[3]));
+                else casillas[contador++] = new CasillaEspecial(0, 0, datos[1], Integer.parseInt(datos[2]), Byte.parseByte(datos[3]));
+                
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(MONOPOLIO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return casillas;
+    }
+    public static Baraja[] crearBarajas(){
+        Baraja[] barajas = {new Baraja(true), new Baraja(false)};
+        return barajas;
+    }
+    
     // GETTERS AND SETTERS //
     
     public Jugador[] getJugadores(){

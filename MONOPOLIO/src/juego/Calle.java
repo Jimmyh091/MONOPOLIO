@@ -18,7 +18,7 @@ public class Calle extends Casilla{
     private int numCasas;
     private int numHoteles;
     
-    public Calle(int pX, int pY, String t, int g, int p){
+    public Calle(int pX, int pY, String t, int p, int g){
         super(pX, pY);
         titulo = t;
         propietario = null;

@@ -43,30 +43,42 @@ public class Tablero {
         activePlayer = jugadores[i];
     }
     
-    public void rollDice(){
+    public int rollDice(){
         int[] results = { dados[0].roll(), dados[1].roll() };
         
-        advanceSquares += results[0] + results[1];
+        res1 = results[0];
+        res2 = results[1];
+
+        int advanceSquares += res1 + res2;
         timesDiceRolled++;
         
         if (timesDiceRolled == 3) {
             movePlayer(18 /* el que sea la carcel*/);
+            advanceSquares = 0;
         }else{
         
-            if (results[0] == results[1]) {
-                rollDice();
+            if (res1 == res2) {
+                advanceSquares += rollDice();
             }
 
             movePlayer(advanceSquares);
-            advanceSquares = 0;
-            timesDiceRolled = 0;
         }
         
+        advanceSquares = 0;
+        timesDiceRolled = 0;
+
+        return advanceSquares;
     }
     
     public void movePlayer(int posicion){
+        int finalPosition = activePlayer.getPosicion() + posicion;
+
+        casillas[finalPosicion].setJugador(activePlayer);
+        casillas[finalPosicion].interact();
+    }
+    public void moveToPlayer(int posicion){
         casillas[posicion].setJugador(activePlayer);
-        //casillas.
+        casillas[posicion].interact();
     }
 
     public static Casilla[] crearCasillas(){
@@ -75,9 +87,9 @@ public class Tablero {
         Casilla[] casillas = null;
         
         try {
-            casillas = new Casilla[((int) Files.lines(Paths.get("src/elementos/casillas.txt")).count()) - 0];
+            casillas = new Casilla[((int) Files.lines(Paths.get("/elementos/casillas.txt")).count()) - 0];
             
-            leedor = new BufferedReader(new FileReader("src/elementos/casillas.txt"));
+            leedor = new BufferedReader(new FileReader("/elementos/casillas.txt"));
             
             int contador = 0;
             while((linea = leedor.readLine()) != null){

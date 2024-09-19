@@ -54,10 +54,10 @@ public class Tablero {
     }
 
     public static Casilla[] crearCasillas(){
-        String linea;
         BufferedReader leedor;
         Casilla[] casillas = null;
         
+        String linea;
         try {
             casillas = new Casilla[((int) Files.lines(Paths.get("/elementos/casillas.txt")).count()) - 0];
             

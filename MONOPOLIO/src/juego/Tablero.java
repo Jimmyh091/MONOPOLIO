@@ -21,64 +21,38 @@ public class Tablero {
     private Jugador[] jugadores;
     private Casilla[] casillas;
     private Baraja[] barajas;
-    private Dado[] dados;
+    private CuboDados dados;
     
     private Jugador activePlayer;
-    
-    private int advanceSquares;
-    private int timesDiceRolled;
     
     public Tablero(Jugador[] j){
         jugadores = j;
         casillas = crearCasillas();
         barajas = crearBarajas();
-        dados[0] = new Dado();
-        dados[1] = new Dado();
-        
-        advanceSquares = 0;
-        timesDiceRolled = 0;
+        dados = new CuboDados();
     }
     
     public void updateTurn(int i){
         activePlayer = jugadores[i];
     }
     
-    public int rollDice(){
-        int[] results = { dados[0].roll(), dados[1].roll() };
-        
-        res1 = results[0];
-        res2 = results[1];
-
-        int advanceSquares += res1 + res2;
-        timesDiceRolled++;
-        
-        if (timesDiceRolled == 3) {
-            movePlayer(18 /* el que sea la carcel*/);
-            advanceSquares = 0;
+    public void movePlayer(int advanceSquares){
+        if (advanceSquares == -1) {
+            
         }else{
-        
-            if (res1 == res2) {
-                advanceSquares += rollDice();
-            }
+            int finalPosition = activePlayer.getPosicion() + advanceSquares;
 
-            movePlayer(advanceSquares);
+            casillas[finalPosition].setJugador(activePlayer);
+            casillas[finalPosition].interact();            
         }
         
-        advanceSquares = 0;
-        timesDiceRolled = 0;
-
-        return advanceSquares;
     }
-    
-    public void movePlayer(int posicion){
-        int finalPosition = activePlayer.getPosicion() + posicion;
-
-        casillas[finalPosicion].setJugador(activePlayer);
-        casillas[finalPosicion].interact();
+    public void moveTo(int position){
+        casillas[position].setJugador(activePlayer);
+        casillas[position].interact();
     }
-    public void moveToPlayer(int posicion){
-        casillas[posicion].setJugador(activePlayer);
-        casillas[posicion].interact();
+    public void jumpTo(int position){
+        casillas[position].setJugador(activePlayer);
     }
 
     public static Casilla[] crearCasillas(){

@@ -38,15 +38,13 @@ public class Tablero {
     
     public void movePlayer(int advanceSquares){
         if (advanceSquares == -1) {
-            
+            // Si es -1, lo mandas a la carcel
+            jumpTo(18);
         }else{
-            int finalPosition = activePlayer.getPosicion() + advanceSquares;
-
-            casillas[finalPosition].setJugador(activePlayer);
-            casillas[finalPosition].interact();            
-        }
-        
+            moveTo(activePlayer.getPosicion() + advanceSquares);
+        }        
     }
+    
     public void moveTo(int position){
         casillas[position].setJugador(activePlayer);
         casillas[position].interact();

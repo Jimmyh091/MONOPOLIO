@@ -11,8 +11,8 @@ import java.util.Scanner;
  * @author jaime
  */
 public class Calle extends Casilla{
-    private String titulo;
     private Byte propietario;
+    private String titulo;
     private int precio;
     private int grupo;
     private int numCasas;

@@ -1,6 +1,6 @@
-1/Nombre de la calle/valor/grupo
-0/Nombre del evento/valor/evento
-
+#1/Nombre de la calle/valor/grupo
+#0/Nombre del evento/valor/evento
+#
 1/Ronda de valencia/60/1
 1/Plaza Lavapies/60/1
 1/Glorieta cuatro caminos/100/2

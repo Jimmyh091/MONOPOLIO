@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -183,11 +184,17 @@ public class GamePanel extends JPanel implements Runnable{
             while((linea = leedor.readLine()) != null){
                 String[] datos = linea.split("/");
                 
+                String clase = datos[0];
+                String titulo = datos[1];
+                int precio = Integer.parseInt(datos[2]);
+                int grupo = Integer.parseInt(datos[3]);
+                
+                System.out.println(clase);
                 int posX = contador * 10;
                 int posY = 10;
-                
-                if (datos[0].equals("1")) casillas[contador] = new Calle(posX, posY, datos[1], Integer.parseInt(datos[2]), Byte.parseByte(datos[3]));
-                else casillas[contador] = new CasillaEspecial(posX, posY, datos[1], Integer.parseInt(datos[2]), Byte.parseByte(datos[3]));
+                System.out.println(Arrays.toString(datos));
+                if (clase.equals("1")) casillas[contador] = new Calle(posX, posY, titulo, precio, grupo);
+                else casillas[contador] = new CasillaEspecial(posX, posY, titulo, precio, grupo);
                 contador++;
             }
         } catch (Exception ex) {

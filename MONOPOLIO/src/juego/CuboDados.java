@@ -16,7 +16,6 @@ public class CuboDados {
     
     public CuboDados(){
         dados[0] = new Dado();
-        System.out.println("Jaaime es mancoerna manco");
         dados[1] = new Dado();
         
         timesRolled = 0;

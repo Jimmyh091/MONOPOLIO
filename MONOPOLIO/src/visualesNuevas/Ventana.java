@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 public class Ventana extends JFrame{
     public Ventana(){
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setResizable(false);
+        this.setResizable(true);
         this.setTitle("MONOPOLIO");
         
         GamePanel gp = new GamePanel();

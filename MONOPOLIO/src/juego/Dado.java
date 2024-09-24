@@ -10,11 +10,11 @@ package juego;
  */
 public class Dado {
     
+    private int result;
+    
     public Dado(){
         result = 0;
     }
-    
-    private int result;
     
     public int roll(){
         return (int) (Math.random() * (6 - 1) + 1);

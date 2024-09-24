@@ -15,6 +15,8 @@ public class CuboDados {
     private int timesRolled;
     
     public CuboDados(){
+        dados = new Dado[2];
+        
         dados[0] = new Dado();
         dados[1] = new Dado();
         

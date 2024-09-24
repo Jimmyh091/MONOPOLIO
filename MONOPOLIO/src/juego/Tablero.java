@@ -65,12 +65,13 @@ public class Tablero {
             
             int contador = 0;
             while((linea = leedor.readLine()) != null){
-                String[] datos = linea.split("/");
-                
-                //                                                         0, 0, mal
-                if (datos[0].equals("1")) casillas[contador++] = new Calle(0, 0, datos[1], Integer.parseInt(datos[2]), Byte.parseByte(datos[3]));
-                else casillas[contador++] = new CasillaEspecial(0, 0, datos[1], Integer.parseInt(datos[2]), Byte.parseByte(datos[3]));
-                
+                if (linea.charAt(0) != '#') {
+                    String[] datos = linea.split("/");
+
+                    //                                                         0, 0, mal
+                    if (datos[0].equals("1")) casillas[contador++] = new Calle(0, 0, datos[1], Integer.parseInt(datos[2]), Byte.parseByte(datos[3]));
+                    else casillas[contador++] = new CasillaEspecial(0, 0, datos[1], Integer.parseInt(datos[2]), Byte.parseByte(datos[3]));
+                }
             }
         } catch (Exception ex) {
             Logger.getLogger(MONOPOLIO.class.getName()).log(Level.SEVERE, null, ex);

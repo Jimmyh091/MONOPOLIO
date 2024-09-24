@@ -195,10 +195,9 @@ public class GamePanel extends JPanel implements Runnable{
                     int precio = Integer.parseInt(datos[2]);
                     int grupo = Integer.parseInt(datos[3]);
 
-                    System.out.println(clase);
                     int posX = contador * 10;
                     int posY = 10;
-                    System.out.println(Arrays.toString(datos));
+                    
                     if (clase.equals("1")) casillas[contador] = new Calle(posX, posY, titulo, precio, grupo);
                     else casillas[contador] = new CasillaEspecial(posX, posY, titulo, precio, grupo);
                     contador++;                    

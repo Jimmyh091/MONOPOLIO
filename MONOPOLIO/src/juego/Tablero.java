@@ -59,9 +59,9 @@ public class Tablero {
         
         String linea;
         try {
-            casillas = new Casilla[((int) Files.lines(Paths.get("/elementos/casillas.txt")).count()) - 0];
+            casillas = new Casilla[((int) Files.lines(Paths.get("src/elementos/contenido/casillas.txt")).count()) - 0];
             
-            leedor = new BufferedReader(new FileReader("/elementos/casillas.txt"));
+            leedor = new BufferedReader(new FileReader("src/elementos/contenido/casillas.txt"));
             
             int contador = 0;
             while((linea = leedor.readLine()) != null){

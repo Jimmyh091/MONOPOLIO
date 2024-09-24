@@ -13,6 +13,6 @@ public class BarajaSuerte extends Baraja{
     
     public BarajaSuerte(String p){
         super(p);
-        
+        super.crearCartas("CAJA DE LA SUERTE");
     }
 }

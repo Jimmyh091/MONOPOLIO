@@ -32,50 +32,69 @@ public abstract class Baraja {
         
         int numCartas = contarCartas();
         cartas = new Carta[numCartas];
-        
-        crearCartas();
     }
     
-    private Carta[] crearCartas(){
+    protected Carta[] crearCartas(String titulo){
         
         Carta[] cartasAux = new Carta[cartas.length];
         
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(path));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Baraja.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         int contador = 0;
         String linea;
-        while((linea = br.readLine()) != null){
-            String[] datos = linea.split("-");
+        
+        try {
+            while((linea = br.readLine()) != null){
+                
+                if (linea.charAt(0) != '#') {
+                    String[] datos = linea.split("-");
 
-            int cantCartas = Byte.parseByte(datos[0]);
-            int evento = Byte.parseByte(datos[1]);
-            String desc1 = datos[2];
-            int valor = Integer.parseInt(datos[3]);
-            String desc2 = datos[4];
+                    int cantCartas = Byte.parseByte(datos[0]);
+                    int evento = Byte.parseByte(datos[1]);
+                    String desc1 = datos[2];
+                    int valor = Integer.parseInt(datos[3]);
+                    String desc2 = datos[4];
 
-            String desc = desc1 + valor + desc2;
+                    String desc = desc1 + valor + desc2;
 
-            for (int i = 0; i < cantCartas; i++) {
-                // no se porque no utililzo aqui la i del for
-                cartas[contador] = new Carta(contador, evento, titulo, desc);
-                contador++;
+                    for (int i = 0; i < cantCartas; i++) {
+                        // no se porque no utililzo aqui la i del for
+                        cartas[i] = new Carta(i, evento, titulo, desc);
+                    }                    
+                }
             }
+        } catch (IOException ex) {
+            Logger.getLogger(Baraja.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return cartasAux;
     }
     private int contarCartas(){
         
+        BufferedReader br = null;
         try {
-            BufferedReader brAux = new BufferedReader(new FileReader(path));
+            br = new BufferedReader(new FileReader(path));
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Baraja.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         int numCartas = 0;
+        String linea;
         
-        try{            
-            while(!br.readLine().isEmpty()) numCartas++;            
+        try{   
+            while((linea = br.readLine()) != null) {
+                if (linea.charAt(0) != '#') {
+                    numCartas++;
+                }
+            }
+
         }catch (IOException e){
-            System.out.println("a");
+            System.out.println("No se pudo contar las cartas");
         }
                 
         return numCartas;

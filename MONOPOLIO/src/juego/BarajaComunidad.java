@@ -13,6 +13,6 @@ public class BarajaComunidad extends Baraja{
     
     public BarajaComunidad(String p){
         super(p);
-        
+        super.crearCartas("CAJA DE LA COMUNIDAD");
     }
 }

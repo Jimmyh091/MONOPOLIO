@@ -69,7 +69,7 @@ public class GamePanel extends JPanel implements Runnable{
         Jugador[] jugador = crearJugadores();
         Casilla[] casillas = crearCasillas();
         
-        String path = "src/elementos/cartas";
+        String path = "src/elementos/contenido/cartas";
         
         BarajaComunidad barajaComunidad = new BarajaComunidad(path + "Comunidad.txt");
         BarajaSuerte barajaSuerte = new BarajaSuerte(path + "Comunidad.txt");

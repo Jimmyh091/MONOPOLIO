@@ -1,0 +1,7 @@
+# numero de cartas en el mazo - tipo de evento - descripcion 1 - cantidad - descripcion 2
+#
+# SUERTE
+5-0-Recibe -100-€ por los ingresos de tu seguro de vida
+5-0-Recibe -100-€ por los ingresos de tu seguro de vida
+5-0-Recibe -100-€ por los ingresos de tu seguro de vida
+5-0-Recibe -100-€ por los ingresos de tu seguro de vida

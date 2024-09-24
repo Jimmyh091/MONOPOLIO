@@ -79,7 +79,7 @@ public class Tablero {
         return casillas;
     }
     public static Baraja[] crearBarajas(){
-        Baraja[] barajas = {new Baraja(true), new Baraja(false)};
+        Baraja[] barajas = {new BarajaComunidad("src/elementos/contenido/cartasComunidad.txt"), new BarajaSuerte("src/elementos/contenido/cartasComunidad.txt")};
         return barajas;
     }
     

@@ -15,83 +15,69 @@ import java.util.logging.Logger;
  *
  * @author jaime
  */
-public class Baraja {
+public abstract class Baraja {
     private Carta[] cartas;
-    private BufferedReader leedor = null;
-    private boolean comunidad;
+    private String path;
     
-    public Baraja(boolean c){
+    public Baraja(String p){
         
-        this.comunidad = c;
+        path = p;
         
+        BufferedReader br = null;
         try {
-            leedor = new BufferedReader(new FileReader("src/elementos/contenido/cartas.txt"));
+            br = new BufferedReader(new FileReader(path));
         } catch (FileNotFoundException ex) {
-                Logger.getLogger(Baraja.class.getName()).log(Level.SEVERE, null, ex); // copiado ni idea si va
+            Logger.getLogger(Baraja.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        colocarBufferedReader();
         int numCartas = contarCartas();
-        
         cartas = new Carta[numCartas];
-        String linea;
-        int contador = 0;
         
-        try {
-            leedor = new BufferedReader(new FileReader("src/elementos/contenido/cartas.txt"));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Baraja.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        colocarBufferedReader();
-        
-        try {
-            while(!(linea = leedor.readLine()).isEmpty()){
-                String[] datos = linea.split("-");
-                
-                int cantCartas = Byte.parseByte(datos[0]);
-                int evento = Byte.parseByte(datos[1]);
-                int valor = Integer.parseInt(datos[3]);
-                String desc = datos[2] + datos[3] + datos[4];
-                
-                String titulo;
-                if (comunidad) titulo = "CAJA DE COMUNIDAD";
-                else titulo = "CAJA DE SUERTE";
-                
-                for (int i = 0; i < cantCartas; i++) {
-                    cartas[contador] = new Carta(contador, evento, titulo, desc);
-                    contador++;
-                }
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(Baraja.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        crearCartas();
     }
     
-    private void colocarBufferedReader(){
+    private Carta[] crearCartas(){
         
-        String tipo;
-        if (comunidad) tipo = "COMUNIDAD";
-        else tipo = "SUERTE";
+        Carta[] cartasAux = new Carta[cartas.length];
         
-        try {
-            do{}while(leedor.readLine().equals(tipo));
-            leedor.readLine();
-            leedor.readLine();
-        } catch (IOException ex) {
-            Logger.getLogger(Baraja.class.getName()).log(Level.SEVERE, null, ex);
+        int contador = 0;
+        String linea;
+        while((linea = br.readLine()) != null){
+            String[] datos = linea.split("-");
+
+            int cantCartas = Byte.parseByte(datos[0]);
+            int evento = Byte.parseByte(datos[1]);
+            String desc1 = datos[2];
+            int valor = Integer.parseInt(datos[3]);
+            String desc2 = datos[4];
+
+            String desc = desc1 + valor + desc2;
+
+            for (int i = 0; i < cantCartas; i++) {
+                // no se porque no utililzo aqui la i del for
+                cartas[contador] = new Carta(contador, evento, titulo, desc);
+                contador++;
+            }
         }
+        
+        return cartasAux;
     }
     private int contarCartas(){
-        String linea;
-        int numCartas = 0;
+        
         try {
-            while(!(linea = leedor.readLine()).isEmpty()){
-                numCartas += linea.charAt(0) - '0';
-            }
-        } catch (IOException ex) {
+            BufferedReader brAux = new BufferedReader(new FileReader(path));
+        } catch (FileNotFoundException ex) {
             Logger.getLogger(Baraja.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        int numCartas = 0;
+        
+        try{            
+            while(!br.readLine().isEmpty()) numCartas++;            
+        }catch (IOException e){
+            System.out.println("a");
+        }
+                
         return numCartas;
     }
     

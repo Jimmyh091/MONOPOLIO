@@ -68,8 +68,11 @@ public class GamePanel extends JPanel implements Runnable{
         // JUEGO - (Jugador[] j, Casilla[] c, Baraja b, Baraja ba, Dado[] d)
         Jugador[] jugador = crearJugadores();
         Casilla[] casillas = crearCasillas();
-        Baraja barajaComunidad = new Baraja(true);
-        Baraja barajaSuerte = new Baraja(false);
+        
+        String path = "src/elementos/cartas";
+        
+        BarajaComunidad barajaComunidad = new BarajaComunidad(path + "Comunidad.txt");
+        BarajaSuerte barajaSuerte = new BarajaSuerte(path + "Comunidad.txt");
         Dado[] dados = new Dado[2];
         dados[0] = new Dado();
         dados[1] = new Dado();
@@ -172,30 +175,34 @@ public class GamePanel extends JPanel implements Runnable{
     
     private Casilla[] crearCasillas(){
         String linea;
-        BufferedReader leedor;
+        BufferedReader br;
         Casilla[] casillas = null;
         int contador = 0;
         
         try {
             casillas = new Casilla[((int) Files.lines(Paths.get("src/elementos/contenido/casillas.txt")).count()) - 0];
             
-            leedor = new BufferedReader(new FileReader("src/elementos/contenido/casillas.txt"));
+            br = new BufferedReader(new FileReader("src/elementos/contenido/casillas.txt"));
             
-            while((linea = leedor.readLine()) != null){
-                String[] datos = linea.split("/");
+            while((linea = br.readLine()) != null){
                 
-                String clase = datos[0];
-                String titulo = datos[1];
-                int precio = Integer.parseInt(datos[2]);
-                int grupo = Integer.parseInt(datos[3]);
-                
-                System.out.println(clase);
-                int posX = contador * 10;
-                int posY = 10;
-                System.out.println(Arrays.toString(datos));
-                if (clase.equals("1")) casillas[contador] = new Calle(posX, posY, titulo, precio, grupo);
-                else casillas[contador] = new CasillaEspecial(posX, posY, titulo, precio, grupo);
-                contador++;
+                if (linea.charAt(0) != '#') {
+                    
+                    String[] datos = linea.split("/");
+
+                    String clase = datos[0];
+                    String titulo = datos[1];
+                    int precio = Integer.parseInt(datos[2]);
+                    int grupo = Integer.parseInt(datos[3]);
+
+                    System.out.println(clase);
+                    int posX = contador * 10;
+                    int posY = 10;
+                    System.out.println(Arrays.toString(datos));
+                    if (clase.equals("1")) casillas[contador] = new Calle(posX, posY, titulo, precio, grupo);
+                    else casillas[contador] = new CasillaEspecial(posX, posY, titulo, precio, grupo);
+                    contador++;                    
+                }
             }
         } catch (Exception ex) {
             Logger.getLogger(MONOPOLIO.class.getName()).log(Level.SEVERE, null, ex);

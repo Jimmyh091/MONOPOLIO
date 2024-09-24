@@ -21,8 +21,8 @@
 1/Gran via/320/6
 1/Pase de la Castellana/350/7
 1/Paseo del Prado/400/7
-
-
+#
+#
 1/Estacion de las Delicias/200/0
 1/Estacion del Mediodia/200/0
 1/Estacion del norte/200/0

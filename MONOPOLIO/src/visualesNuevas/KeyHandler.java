@@ -24,9 +24,7 @@ public class KeyHandler implements KeyListener{
     @Override
     public void keyTyped(KeyEvent e) {
         
-        int code = e.getKeyCode();
-        
-        System.out.println(code + " " + KeyEvent.VK_KP_DOWN);
+        int code = e.getKeyChar() - 32; // horrible, deberia usar e.getKeyCode pero da 0 siempre
         
         switch (code) {
             
@@ -37,8 +35,6 @@ public class KeyHandler implements KeyListener{
             case KeyEvent.VK_ENTER -> key = "enter";
             
         }
-        
-        System.out.println(key);
         
         keyPressed = true;
     }

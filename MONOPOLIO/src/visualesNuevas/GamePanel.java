@@ -127,7 +127,6 @@ public class GamePanel extends JPanel implements Runnable{
             }
             
             if (cronometer >= 1000000000) {
-                System.out.println("FPS: " + drawCount);
                 drawCount = 0;
                 cronometer = 0;
             }

@@ -13,20 +13,34 @@ import java.awt.event.KeyListener;
  */
 public class KeyHandler implements KeyListener{
 
-    private String direction;
+    protected boolean keyPressed;
+    private String key;
+    
+    public KeyHandler(){
+        keyPressed = false;
+        key = "a";
+    }
     
     @Override
     public void keyTyped(KeyEvent e) {
         
         int code = e.getKeyCode();
+        
+        System.out.println(code + " " + KeyEvent.VK_KP_DOWN);
+        
         switch (code) {
             
-            case KeyEvent.VK_KP_UP, KeyEvent.VK_W -> direction = "up";
-            case KeyEvent.VK_KP_DOWN, KeyEvent.VK_S -> direction = "down";
-            case KeyEvent.VK_KP_LEFT, KeyEvent.VK_A -> direction = "left";
-            case KeyEvent.VK_KP_RIGHT, KeyEvent.VK_D -> direction = "right";
-            default -> {}
+            case KeyEvent.VK_KP_UP, KeyEvent.VK_W -> key = "up";
+            case KeyEvent.VK_KP_DOWN, KeyEvent.VK_S -> key = "down";
+            case KeyEvent.VK_KP_LEFT, KeyEvent.VK_A -> key = "left";
+            case KeyEvent.VK_KP_RIGHT, KeyEvent.VK_D -> key = "right";
+            case KeyEvent.VK_ENTER -> key = "enter";
+            
         }
+        
+        System.out.println(key);
+        
+        keyPressed = true;
     }
 
     @Override
@@ -37,5 +51,9 @@ public class KeyHandler implements KeyListener{
     @Override
     public void keyReleased(KeyEvent e) {
         
+    }
+    
+    protected String getKey(){
+        return key;
     }
 }

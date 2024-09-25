@@ -23,17 +23,27 @@ public class Tablero {
     private Baraja[] barajas;
     private CuboDados dados;
     
+    private int turn;
+    private boolean win;
+    
     private Jugador activePlayer;
     
     public Tablero(Jugador[] j){
+        
         jugadores = j;
         casillas = crearCasillas();
         barajas = crearBarajas();
         dados = new CuboDados();
+        
+        turn = 0;
+        win = false;
     }
     
-    public void updateTurn(int i){
-        activePlayer = jugadores[i];
+    public void updateTurn(){
+        
+        if (turn == jugadores.length - 1) turn = 0;        
+        activePlayer = jugadores[turn];
+        
     }
     
     public void movePlayer(int advanceSquares){
@@ -92,5 +102,9 @@ public class Tablero {
     
     public Casilla[] getCasillas() {
         return casillas;
+    }
+    
+    public boolean getWin(){
+        return win;
     }
 }

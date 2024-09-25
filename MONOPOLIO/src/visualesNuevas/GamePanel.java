@@ -33,18 +33,20 @@ public class GamePanel extends JPanel implements Runnable{
     
     private Thread gameThread;
     private Thread roundThread;
-    private KeyHandler kh = new KeyHandler();
+    private KeyHandler kh;
     
     private GradientPaint background;
     private BufferedImage gameboardImage;
     
-    //private boolean checkKey;
-    //private String direction;
     private int selection;
+    private int maxSelection;
+    private int screenState;
     
     private Tablero gameboard;
     
     protected GamePanel(){
+        
+        kh = new KeyHandler();
         
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.red);
@@ -53,16 +55,15 @@ public class GamePanel extends JPanel implements Runnable{
         this.setFocusable(true);
         
         background = new GradientPaint(0, 0, new Color(100, 255, 100), 0, screenHeight, new Color(200, 255, 200));
-        try {
+        try { 
             gameboardImage = ImageIO.read(getClass().getResourceAsStream("/elementos/imagenes/pantallaJuego/tablero.jpg"));
         } catch (IOException ex) {
             Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        //checkKey = false;
         selection = -1;
+        maxSelection = -1;
         
-        // JUEGO - (Jugador[] j, Casilla[] c, Baraja b, Baraja ba, Dado[] d)
         Jugador[] jugador = crearJugadores();
         Casilla[] casillas = crearCasillas();
         
@@ -92,8 +93,8 @@ public class GamePanel extends JPanel implements Runnable{
                 int numPlayers = gameboard.getJugadores().length;
                 
                 while(gameThread != null){
-                    for (int i = 0; i < numPlayers; i++) {
-                        //gameboard.
+                    if (!gameboard.getWin()) {
+                        gameboard.updateTurn();
                     }
                 }
             }
@@ -133,14 +134,42 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
     public void update(){
-        /*if (checkKey) {
+        if (kh.keyPressed) {
             
-            switch(direction){
-                case
+            String key = kh.getKey();
+            
+            switch(key){
+                case "up":
+                    
+                    if(selection >= maxSelection) selection = 0;
+                    else selection++;
+                    
+                    break;
+                case "down":
+                    
+                    if (selection <= 0) selection = maxSelection;
+                    else selection++;
+                    
+                    break;
+                case "left": 
+                    
+                    System.out.println("a");
+                    
+                    break;
+                case "right": 
+                    
+                    System.out.println("a");
+                    
+                    break;
+                case "enter": 
+                    
+                    switch(selection){
+                        case 0: System.out.println("asdfasdfasdf");
+                    }
             }
             
-            checkKey = false;
-        }*/
+            kh.keyPressed = false;
+        }
     }
     @Override
     public void paintComponent(Graphics g){
@@ -160,11 +189,6 @@ public class GamePanel extends JPanel implements Runnable{
         //
         
         g2.dispose();
-    }
-    
-    protected void recieveKeyInput(String d){
-        //direction = d;
-        //checkKey = true;
     }
     
     

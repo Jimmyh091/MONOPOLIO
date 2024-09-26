@@ -5,6 +5,9 @@
  */
 package visualesNuevas;
 
+import java.awt.Color;
+import juego.Tablero;
+
 /**
  *
  * @author EAG
@@ -18,8 +21,11 @@ public class Button {
     private String text;
     private int id;
     private boolean hoverActive;
+    private Color color;
     
-    public Button(int x, int y, int w, int h, String t, int i){
+    private Tablero gameboard;
+    
+    public Button(int x, int y, int w, int h, String t, int i, Color c){
         this.x = x;
         this.y = y;
         width = w;
@@ -27,6 +33,20 @@ public class Button {
         text = t;
         id = i;
         hoverActive = false;
+        color = c;
+        gameboard = null;
+    }
+    
+    public Button(int x, int y, int w, int h, String t, int i, Color c, Tablero g){
+        this.x = x;
+        this.y = y;
+        width = w;
+        height = h;
+        text = t;
+        id = i;
+        hoverActive = false;
+        color = c;
+        gameboard = g;
     }
     
     protected void triggerHover(){

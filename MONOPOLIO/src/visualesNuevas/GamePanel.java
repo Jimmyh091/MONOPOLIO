@@ -15,6 +15,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -41,13 +42,16 @@ public class GamePanel extends JPanel implements Runnable{
     private int selection;
     private int maxSelection;
     
-    private int screenState;
+    private int screenState;    
     private Button[] titleScreenButtons;
     private Button[] gameScreenButtons;
+    private ArrayList<Button[]> screenButtons;
     
     private Tablero gameboard;
     
     protected GamePanel(){
+        
+        // AJUSTES
         
         kh = new KeyHandler();
         
@@ -57,9 +61,26 @@ public class GamePanel extends JPanel implements Runnable{
         this.addKeyListener(kh);
         this.setFocusable(true);
         
-        titleScreenButtons = new Button[1];
+        Jugador[] jugador = crearJugadores();
+        gameboard = new Tablero(jugador);
         
-        //titleScreenButtons[0] = new Button();
+        
+        // BOTONES
+        
+        titleScreenButtons = new Button[2];
+        gameScreenButtons = new Button[1];
+        screenButtons = new ArrayList<>();
+        
+        //int x, int y, int w, int h, String t, int i
+        titleScreenButtons[0] = new Button(500, 10, 100, 40, "Hola", 0, Color.WHITE);
+        titleScreenButtons[1] = new Button(100, 120, 100, 40, "Hola", 1, Color.WHITE);
+                
+        gameScreenButtons[0] = new Button(500, 10, 100, 40, "Tirar", 0, Color.WHITE);
+        screenButtons.add(titleScreenButtons);
+        screenButtons.add(gameScreenButtons);
+        
+        
+        // IMAGENES
         
         background = new GradientPaint(0, 0, new Color(100, 255, 100), 0, screenHeight, new Color(200, 255, 200));
         try {
@@ -68,21 +89,13 @@ public class GamePanel extends JPanel implements Runnable{
             Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        
+        // VARIABLES
+        
+        screenState = 0;
+        
         selection = -1;
-        maxSelection = -1;
-        
-        Jugador[] jugador = crearJugadores();
-        Casilla[] casillas = crearCasillas();
-        
-        String path = "src/elementos/contenido/cartas";
-        
-        BarajaComunidad barajaComunidad = new BarajaComunidad(path + "Comunidad.txt");
-        BarajaSuerte barajaSuerte = new BarajaSuerte(path + "Comunidad.txt");
-        Dado[] dados = new Dado[2];
-        dados[0] = new Dado();
-        dados[1] = new Dado();
-        
-        gameboard = new Tablero(jugador);
+        maxSelection = screenButtons.get(0).length;
         
         startGameThread();
     }
@@ -156,7 +169,7 @@ public class GamePanel extends JPanel implements Runnable{
                 case "down":
                     
                     if (selection <= 0) selection = maxSelection;
-                    else selection++;
+                    else selection--;
                     
                     System.out.println("down");
                     

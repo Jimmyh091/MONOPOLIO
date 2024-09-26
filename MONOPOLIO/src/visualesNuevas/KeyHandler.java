@@ -30,6 +30,8 @@ public class KeyHandler implements KeyListener{
         
         int code = e.getKeyCode();
         
+        System.out.println(code);
+        
         switch (code) {
             
             case KeyEvent.VK_KP_UP, KeyEvent.VK_W -> key = "up";

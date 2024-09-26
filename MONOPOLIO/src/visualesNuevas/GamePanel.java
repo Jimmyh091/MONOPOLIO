@@ -219,7 +219,7 @@ public class GamePanel extends JPanel implements Runnable{
     
     private void executeAction(){
         switch(selection){
-            case 0: gameboard.
+            case 0: gameboard.rollDice();
         }
     }
     

@@ -63,7 +63,11 @@ public class Tablero {
     }
 
     public void rollDice(){
-        dados.rollDice();
+        int advanceSquares = rollDiceOnly();
+    }
+    
+    public int rollDiceOnly(){
+        return dados.rollDice();
     }
     
     public static Casilla[] crearCasillas(){

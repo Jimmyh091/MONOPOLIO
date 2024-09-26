@@ -187,11 +187,9 @@ public class GamePanel extends JPanel implements Runnable{
                 case "enter": 
                     
                     switch(selection){
-                        case 0: System.out.println("asdfasdfasdf");
+                        case 0: System.out.println("enter");
                     }
             }
-            
-            System.out.println(selection);
             
             kh.keyPressed = false;
         }

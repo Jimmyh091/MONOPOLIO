@@ -53,8 +53,7 @@ public class Tablero {
         }else{
             moveTo(activePlayer.getPosicion() + advanceSquares);
         }        
-    }
-    
+    }    
     public void moveTo(int position){
         casillas[position].setJugador(activePlayer);
         casillas[position].interact();
@@ -63,6 +62,10 @@ public class Tablero {
         casillas[position].setJugador(activePlayer);
     }
 
+    public void rollDice(){
+        dados.rollDice();
+    }
+    
     public static Casilla[] crearCasillas(){
         BufferedReader leedor;
         Casilla[] casillas = null;

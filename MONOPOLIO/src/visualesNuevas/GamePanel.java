@@ -57,6 +57,10 @@ public class GamePanel extends JPanel implements Runnable{
         this.addKeyListener(kh);
         this.setFocusable(true);
         
+        titleScreenButtons = new Button[1];
+        
+        //titleScreenButtons[0] = new Button();
+        
         background = new GradientPaint(0, 0, new Color(100, 255, 100), 0, screenHeight, new Color(200, 255, 200));
         try {
             gameboardImage = ImageIO.read(getClass().getResourceAsStream("/elementos/imagenes/pantallaJuego/tablero.jpg"));

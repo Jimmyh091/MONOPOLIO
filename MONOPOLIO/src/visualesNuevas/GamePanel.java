@@ -40,7 +40,10 @@ public class GamePanel extends JPanel implements Runnable{
     
     private int selection;
     private int maxSelection;
+    
     private int screenState;
+    private Button[] titleScreenButtons;
+    private Button[] gameScreenButtons;
     
     private Tablero gameboard;
     
@@ -55,7 +58,7 @@ public class GamePanel extends JPanel implements Runnable{
         this.setFocusable(true);
         
         background = new GradientPaint(0, 0, new Color(100, 255, 100), 0, screenHeight, new Color(200, 255, 200));
-        try { 
+        try {
             gameboardImage = ImageIO.read(getClass().getResourceAsStream("/elementos/imagenes/pantallaJuego/tablero.jpg"));
         } catch (IOException ex) {
             Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -143,21 +146,25 @@ public class GamePanel extends JPanel implements Runnable{
                     if(selection >= maxSelection) selection = 0;
                     else selection++;
                     
+                    System.out.println("up");
+                    
                     break;
                 case "down":
                     
                     if (selection <= 0) selection = maxSelection;
                     else selection++;
                     
+                    System.out.println("down");
+                    
                     break;
                 case "left": 
                     
-                    System.out.println("a");
+                    System.out.println("left");
                     
                     break;
                 case "right": 
                     
-                    System.out.println("a");
+                    System.out.println("right");
                     
                     break;
                 case "enter": 
@@ -166,6 +173,8 @@ public class GamePanel extends JPanel implements Runnable{
                         case 0: System.out.println("asdfasdfasdf");
                     }
             }
+            
+            System.out.println(selection);
             
             kh.keyPressed = false;
         }

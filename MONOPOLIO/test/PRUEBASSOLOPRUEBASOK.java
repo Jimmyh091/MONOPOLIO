@@ -1,5 +1,4 @@
 
-import java.awt.event.KeyEvent;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -18,7 +17,6 @@ public class PRUEBASSOLOPRUEBASOK {
      */
     public static void main(String[] args) {
         for (int i = 0; i < 1000000; i++) {
-            KeyEvent a = new KeyEvent();
         }
     }
     

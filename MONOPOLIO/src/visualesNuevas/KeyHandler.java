@@ -23,8 +23,12 @@ public class KeyHandler implements KeyListener{
     
     @Override
     public void keyTyped(KeyEvent e) {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
         
-        int code = e.getKeyChar() - 32; // horrible, deberia usar e.getKeyCode pero da 0 siempre
+        int code = e.getKeyCode();
         
         switch (code) {
             
@@ -37,11 +41,6 @@ public class KeyHandler implements KeyListener{
         }
         
         keyPressed = true;
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        
     }
 
     @Override

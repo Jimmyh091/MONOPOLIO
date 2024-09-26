@@ -217,6 +217,12 @@ public class GamePanel extends JPanel implements Runnable{
     
     // GAME METHODS
     
+    private void executeAction(){
+        switch(selection){
+            case 0: gameboard.
+        }
+    }
+    
     private Casilla[] crearCasillas(){
         String linea;
         BufferedReader br;

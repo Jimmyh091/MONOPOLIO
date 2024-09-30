@@ -10,13 +10,10 @@
  */
 public class prueba {
     int a;
-    byte b;
-    boolean c;
     
-    public prueba(int d, byte e, boolean f){
+    
+    public prueba(int d){
         a = d;
-        b = e;
-        c = f;
     }
 
     public int getA() {
@@ -29,5 +26,16 @@ public class prueba {
     
     public void asfsd(prueba g){
         g.setA(3456);
+    }
+    
+    public int suma(int... a){
+        
+        int suma = 0;
+        
+        for (int as : a) {
+            suma += as;
+        }
+        
+        return suma;
     }
 }

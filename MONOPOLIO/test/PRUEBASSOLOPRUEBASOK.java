@@ -16,8 +16,10 @@ public class PRUEBASSOLOPRUEBASOK {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        for (int i = 0; i < 1000000; i++) {
-        }
+        
+        prueba p = new prueba(3);
+        
+        int a = p.suma(3,4,5,6,7,6,5,32,5,8,9,7,56);
+        System.out.println(a);
     }
-    
 }

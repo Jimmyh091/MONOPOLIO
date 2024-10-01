@@ -72,10 +72,31 @@ public class GamePanel extends JPanel implements Runnable{
         screenButtons = new ArrayList<>();
         
         //int x, int y, int w, int h, String t, int i
-        titleScreenButtons[0] = new Button(500, 10, 100, 40, "Hola", 0, Color.WHITE);
-        titleScreenButtons[1] = new Button(100, 120, 100, 40, "Hola", 1, Color.WHITE);
+        titleScreenButtons[0] = new Button(500, 10, 100, 40, "Hola", 0, Color.WHITE){
+            
+            @Override
+            protected void event(){
+                System.out.println("s");
+            }
+            
+        };
+        titleScreenButtons[1] = new Button(100, 120, 100, 40, "Hola", 1, Color.WHITE){
+            
+            @Override
+            protected void event(){
+                System.out.println("s");
+            }
+            
+        };
                 
-        gameScreenButtons[0] = new Button(500, 10, 100, 40, "Tirar", 0, Color.WHITE);
+        gameScreenButtons[0] = new Button(500, 10, 100, 40, "Tirar", 0, Color.WHITE){
+            
+            @Override
+            protected void event(){
+                gameboard.rollDice();
+            }
+            
+        };
         screenButtons.add(titleScreenButtons);
         screenButtons.add(gameScreenButtons);
         

@@ -32,7 +32,7 @@ public class CuboDados {
         int advanceSquares = res1 + res2;
         timesRolled++;
         
-        if (timesRolled == 3) {            
+        if (timesRolled == 3) {
             advanceSquares = -1;
         }else{        
             if (res1 == res2) {

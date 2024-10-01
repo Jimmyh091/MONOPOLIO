@@ -17,7 +17,16 @@ public class PRUEBASSOLOPRUEBASOK {
      */
     public static void main(String[] args) {
         
-        prueba p = new prueba(3);
+        prueba p = new prueba(3){
+            
+            @Override
+            public void asdf(){
+                System.out.println("hola");
+            }
+        };
+        
+        p.asdf();
+        
         
         int a = p.suma(3,4,5,6,7,6,5,32,5,8,9,7,56);
         System.out.println(a);

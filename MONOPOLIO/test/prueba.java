@@ -24,8 +24,8 @@ public class prueba {
         this.a = a;
     }
     
-    public void asfsd(prueba g){
-        g.setA(3456);
+    public void asdf(){
+        System.out.println("a");
     }
     
     public int suma(int... a){

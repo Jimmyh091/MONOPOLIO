@@ -14,6 +14,8 @@ import juego.Tablero;
  */
 public class Button {
     
+    private MouseHandler mh; // ???
+    
     private int x;
     private int y;
     private int width;
@@ -23,9 +25,8 @@ public class Button {
     private boolean hoverActive;
     private Color color;
     
-    private Tablero gameboard;
-    
     public Button(int x, int y, int w, int h, String t, int i, Color c){
+        mh = new MouseHandler();
         this.x = x;
         this.y = y;
         width = w;
@@ -34,22 +35,13 @@ public class Button {
         id = i;
         hoverActive = false;
         color = c;
-        gameboard = null;
-    }
-    
-    public Button(int x, int y, int w, int h, String t, int i, Color c, Tablero g){
-        this.x = x;
-        this.y = y;
-        width = w;
-        height = h;
-        text = t;
-        id = i;
-        hoverActive = false;
-        color = c;
-        gameboard = g;
     }
     
     protected void triggerHover(){
         hoverActive = !hoverActive;
+    }
+    
+    protected void event(){
+        // se declara cuando inicialice el objeto
     }
 }

@@ -64,6 +64,7 @@ public class Tablero {
 
     public void rollDice(){
         int advanceSquares = rollDiceOnly();
+        System.out.println(advanceSquares);
     }
     
     public int rollDiceOnly(){

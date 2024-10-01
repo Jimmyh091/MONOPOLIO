@@ -25,6 +25,10 @@ public class PRUEBASSOLOPRUEBASOK {
             }
         };
         
+        for (int i = 0; i < 10; i++) {
+            
+        }
+        
         p.asdf();
         
         

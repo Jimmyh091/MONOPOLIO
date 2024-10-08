@@ -75,6 +75,8 @@ public class Tablero {
         BufferedReader leedor;
         Casilla[] casillas = null;
         
+        Point[] puntos = asignPoints();
+
         String linea;
         try {
             casillas = new Casilla[((int) Files.lines(Paths.get("src/elementos/contenido/casillas.txt")).count()) - 0];

@@ -144,16 +144,20 @@ public class Tablero {
         int[] corners = {numSquares / 4 * 0, numSquares / 4 * 1, numSquares / 4 * 2, numSquares / 4 * 3};
                 
         for (int i = 0; i < points.length; i++) {
-            boolean isCorner = false;
+            int actualCorner = 0;
             
-            for (int j = 0; j < corners.length && i > corners[j]; j++) {
-                if (corners[j] == i) {
-                    isCorner = true;
-                    break;
+            for (int j = 0; j < corners.length; j++) {
+                if (win) {
+                    
                 }
             }
             
-            points[i] = 
+            
+            if (isCorner) {
+                points[i] = 
+            }else{
+                points[i] =                 
+            }
         }
         
         return points;

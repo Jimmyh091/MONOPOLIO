@@ -4,6 +4,7 @@
  */
 package juego;
 
+import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.nio.file.Files;
@@ -18,6 +19,18 @@ import java.util.logging.Logger;
  */
 public class Tablero {
     
+    private int x;
+    private int y;
+    private int width;
+    private int height;
+    
+    private int innerX;
+    private int innerY;
+    private int innerWidth;
+    private int innerHeight;
+    
+    private int numSquares;
+    
     private Jugador[] jugadores;
     private Casilla[] casillas;
     private Baraja[] barajas;
@@ -28,7 +41,17 @@ public class Tablero {
     
     private Jugador activePlayer;
     
-    public Tablero(Jugador[] j){
+    
+    public Tablero(Jugador[] j, int x, int y, int w, int h){
+        
+        this.x = x;
+        this.y = y;
+        this.width = w;
+        this.height = h;
+        
+        asignInnerCoords(x, w, 80);
+        
+        numSquares = 48;
         
         jugadores = j;
         casillas = crearCasillas();
@@ -102,6 +125,38 @@ public class Tablero {
     public static Baraja[] crearBarajas(){
         Baraja[] barajas = {new BarajaComunidad("src/elementos/contenido/cartasComunidad.txt"), new BarajaSuerte("src/elementos/contenido/cartasComunidad.txt")};
         return barajas;
+    }
+    
+    private void asignInnerCoords(int percentage){
+        int sideLength = width - x;
+        int innerSideLength = sideLength * (percentage / 100);
+        
+        int margin = (sideLength - innerSideLength) / 2;
+        
+        innerX = x + margin;
+        innerY = y + margin;
+        innerWidth = width - margin;
+        innerHeight = height - margin;
+    }
+    
+    private Point[] asignPoints(){
+        Point[] points = new Point[numSquares];
+        int[] corners = {numSquares / 4 * 0, numSquares / 4 * 1, numSquares / 4 * 2, numSquares / 4 * 3};
+                
+        for (int i = 0; i < points.length; i++) {
+            boolean isCorner = false;
+            
+            for (int j = 0; j < corners.length && i > corners[j]; j++) {
+                if (corners[j] == i) {
+                    isCorner = true;
+                    break;
+                }
+            }
+            
+            points[i] = 
+        }
+        
+        return points;
     }
     
     // GETTERS AND SETTERS //

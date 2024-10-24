@@ -49,7 +49,7 @@ public class Tablero {
         this.width = w;
         this.height = h;
         
-        asignInnerCoords(x, w, 80);
+        asignInnerCoords();
         
         numSquares = 48;
         
@@ -142,16 +142,15 @@ public class Tablero {
     private Point[] asignPoints(){
         Point[] points = new Point[numSquares];
         int[] corners = {numSquares / 4 * 0, numSquares / 4 * 1, numSquares / 4 * 2, numSquares / 4 * 3};
-                
-        for (int i = 0; i < points.length; i++) {
+        
+        for (int i = 0; i < numSquares; i++) {
             int actualCorner = 0;
             
             for (int j = 0; j < corners.length; j++) {
-                if (win) {
-                    
+                if (actualCorner >= corners[i]) {
+                    actualCorner = corners[i];
                 }
-            }
-            
+            }            
             
             if (isCorner) {
                 points[i] = 

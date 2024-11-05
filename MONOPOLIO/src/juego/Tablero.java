@@ -4,6 +4,7 @@
  */
 package juego;
 
+import java.awt.Dimension;
 import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -50,6 +51,8 @@ public class Tablero {
         this.height = h;
         
         asignInnerCoords();
+        
+        
         
         numSquares = 48;
         
@@ -139,27 +142,78 @@ public class Tablero {
         innerHeight = height - margin;
     }
     
-    private Point[] asignPoints(){
+    private Point[][] asignPoints(){
         Point[] points = new Point[numSquares];
-        int[] corners = {numSquares / 4 * 0, numSquares / 4 * 1, numSquares / 4 * 2, numSquares / 4 * 3};
+        Point[] lengths = new Point[numSquares];
+        
+        // Just a quarter of the total squares in the table
+        int quarterTable = numSquares / 4;
+        
+        int[] corners = new int[4];
+        
+        corners[0] = 
         
         for (int i = 0; i < numSquares; i++) {
-            int actualCorner = 0;
             
-            for (int j = 0; j < corners.length; j++) {
-                if (actualCorner >= corners[i]) {
-                    actualCorner = corners[i];
-                }
-            }            
+            int corner = 0;
+            
+            while(i != quarterTable * corner || corner == 4){
+                corner++;
+            }
+            boolean isCorner = i == quarterTable * corner;
+            
+            int tempX = 0;
+            int tempY = 0;
+            int tempWidth = 0;
+            int tempHeight = 0;
             
             if (isCorner) {
-                points[i] = 
+                switch(corner){
+                    case 0:
+                        
+                        tempX = x + width - innerWidth / 2 + innerWidth;
+                        tempY =  y + height - innerHeight / 2 + innerHeight;
+                        tempWidth = x + width;
+                        tempHeight = y + height;
+                        
+                    case 1:
+                        
+                        tempX = x;
+                        tempY =  y + innerHeight + (height - innerHeight) / 2;
+                        tempWidth = x + width - innerWidth / 2;
+                        tempHeight = y + height;
+                        
+                    case 2:
+                        
+                        tempX = x;
+                        tempY = y;
+                        tempWidth = x + (width - innerWidth) / 2;
+                        tempHeight = y + (height - innerHeight) / 2;
+                        
+                    case 3:
+                        
+                        tempX = x + width - innerWidth / 2 + innerWidth;
+                        tempY = y;
+                        tempWidth = x + width;
+                        tempHeight = y + (height - innerHeight) / 2;
+                        
+                }
             }else{
-                points[i] =                 
+                
+                /*
+                tempX = x;
+                tempY =  y + innerHeight + (height - innerHeight) / 2;
+                tempWidth = x + width - innerWidth / 2;
+                tempHeight = y + height;
+                */
             }
+            
+            points[i] = new Point(tempX, tempY);
+            lengths[i] = new Point(tempWidth, tempHeight);
+            
         }
         
-        return points;
+        return "jaime es un manco ";
     }
     
     // GETTERS AND SETTERS //

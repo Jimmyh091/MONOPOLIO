@@ -17,20 +17,20 @@ public class PRUEBASSOLOPRUEBASOK {
      */
     public static void main(String[] args) {
         
-        int x = 3;
-        boolean a = x > 1;
-        boolean b = x > 2;
-        boolean c = x > 3;
-        boolean d = x > 4;
+        int[] a = new int[]{1,2};
+        int[] b = new int[]{3,4};
+        int[][] m = new int[][]{a, b};
         
-        if (a) {
-            System.out.println("A");
-        }else if (b){
-            System.out.println("B");
-        }else if (c){
-            System.out.println("C");
-        }else if (d){
-            System.out.println("D");
+        m[0][0] = 1;
+        m[0][1] = 2;
+        m[1][0] = 3;
+        m[1][1] = 4;
+    
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                System.out.println(m[i][j]);
+            }
         }
+        
     }
 }

@@ -50,7 +50,7 @@ public class Tablero {
         this.width = w;
         this.height = h;
         
-        //asignInnerCoords();
+        asignInnerCoords();
         
         numSquares = 48;
         
@@ -111,10 +111,15 @@ public class Tablero {
             while((linea = leedor.readLine()) != null){
                 if (linea.charAt(0) != '#') {
                     String[] datos = linea.split("/");
-
-                    //                                                         0, 0, mal
-                    if (datos[0].equals("1")) casillas[contador++] = new Calle(0, 0, datos[1], Integer.parseInt(datos[2]), Byte.parseByte(datos[3]));
-                    else casillas[contador++] = new CasillaEspecial(0, 0, datos[1], Integer.parseInt(datos[2]), Byte.parseByte(datos[3]));
+                    
+                    int tempX = puntos[0][contador].x;
+                    int tempY = puntos[0][contador].y;
+                    int tempWidth = puntos[1][contador].x;
+                    int tempHeight = puntos[1][contador].y;
+                    
+                    
+                    if (datos[0].equals("1")) casillas[contador++] = new Calle(tempX, tempY, tempWidth, tempHeight, datos[1], Integer.parseInt(datos[2]), Integer.parseInt(datos[3]));
+                    else casillas[contador++] = new CasillaEspecial(tempX, tempY, tempWidth, tempHeight, datos[1], Integer.parseInt(datos[2]), Integer.parseInt(datos[3]));
                 }
             }
         } catch (Exception ex) {
@@ -128,18 +133,18 @@ public class Tablero {
         return barajas;
     }
     
-    private void asignInnerCoords(int percentage){
-        int sideLength = width - x;
-        int innerSideLength = sideLength * (percentage / 100);
+    private void asignInnerCoords(){
+        int percentage = 80;
         
-        int margin = (sideLength - innerSideLength) / 2;
+        int innerSideLength = width * (percentage / 100);
+        
+        int margin = (width - innerSideLength) / 2;
         
         innerX = x + margin;
         innerY = y + margin;
         innerWidth = width - margin;
         innerHeight = height - margin;
-    }
-    
+    }    
     private Point[][] asignPoints(){
         Point[] points = new Point[numSquares];
         Point[] lengths = new Point[numSquares];

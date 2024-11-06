@@ -17,8 +17,8 @@ public class CasillaEspecial extends Casilla{
     private Casilla[] squares;
     private int type;
     
-    public CasillaEspecial(int pX, int pY, String t, int v, int e){
-        super(pX, pY);
+    public CasillaEspecial(int x, int y, int w, int h, String t, int v, int e){
+        super(x, y, w, h);
         titulo = t;
         valor = v;
         players = null;
@@ -27,8 +27,8 @@ public class CasillaEspecial extends Casilla{
         
         type = 0;
     }
-    public CasillaEspecial(int pX, int pY, String t, int v, int e, Jugador[] j){
-        super(pX, pY);
+    public CasillaEspecial(int x, int y, int w, int h, String t, int v, int e, Jugador[] j){
+        super(x, y, w, h);
         titulo = t;
         valor = v;
         players = j;
@@ -37,8 +37,8 @@ public class CasillaEspecial extends Casilla{
         
         type = 1;
     }
-    public CasillaEspecial(int pX, int pY, String t, int v, int e, Casilla[] c){
-        super(pX, pY);
+    public CasillaEspecial(int x, int y, int w, int h, String t, int v, int e, Casilla[] c){
+        super(x, y, w, h);
         titulo = t;
         valor = v;
         players = null;

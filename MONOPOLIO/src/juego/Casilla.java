@@ -4,7 +4,6 @@
  */
 package juego;
 
-import java.awt.Point;
 
 /**
  *
@@ -12,14 +11,17 @@ import java.awt.Point;
  */
 public abstract class Casilla {
     private Jugador jugador;
-    private final int posX;
-    private final int posY;
-    private Point a;
+    private final int x;
+    private final int y;
+    private final int width;
+    private final int height;
     
-    public Casilla(int pX, int pY){
+    public Casilla(int x, int y, int w, int h){
         jugador = null;
-        posX = pX;
-        posY = pY;
+        this.x = x;
+        this.y = y;
+        width = w;
+        height = h;
     }
     
     public abstract void interact();

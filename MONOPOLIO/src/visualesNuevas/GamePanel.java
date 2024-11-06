@@ -269,8 +269,8 @@ public class GamePanel extends JPanel implements Runnable{
                     int posX = contador * 10;
                     int posY = 10;
                     
-                    if (clase.equals("1")) casillas[contador] = new Calle(posX, posY, titulo, precio, grupo);
-                    else casillas[contador] = new CasillaEspecial(posX, posY, titulo, precio, grupo);
+                    if (clase.equals("1")) casillas[contador] = new Calle(0,0,0,0, titulo, precio, grupo);
+                    else casillas[contador] = new CasillaEspecial(0,0,0,0, titulo, precio, grupo);
                     contador++;                    
                 }
             }
@@ -289,4 +289,5 @@ public class GamePanel extends JPanel implements Runnable{
         
         return j;
     } // temp
+
 }

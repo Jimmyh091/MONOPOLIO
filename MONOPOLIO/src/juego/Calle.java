@@ -18,8 +18,8 @@ public class Calle extends Casilla{
     private int numCasas;
     private int numHoteles;
     
-    public Calle(int pX, int pY, String t, int p, int g){
-        super(pX, pY);
+    public Calle(int x, int y, int w, int h, String t, int p, int g){
+        super(x, y, w, h);
         titulo = t;
         propietario = null;
         precio = p;
@@ -28,6 +28,7 @@ public class Calle extends Casilla{
         numHoteles = 0;
     }
     
+    @Override
     public void interact(){
         Scanner sc = new Scanner(System.in);
         int opc = 0;

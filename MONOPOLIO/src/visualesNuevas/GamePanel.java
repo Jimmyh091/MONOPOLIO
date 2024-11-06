@@ -62,7 +62,7 @@ public class GamePanel extends JPanel implements Runnable{
         this.setFocusable(true);
         
         Jugador[] jugador = crearJugadores();
-        gameboard = new Tablero(jugador);
+        gameboard = new Tablero(jugador, 2, 2, 2, 2);
         
         
         // BOTONES

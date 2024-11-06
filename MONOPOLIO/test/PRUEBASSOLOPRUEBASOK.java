@@ -17,22 +17,20 @@ public class PRUEBASSOLOPRUEBASOK {
      */
     public static void main(String[] args) {
         
-        prueba p = new prueba(3){
-            
-            @Override
-            public void asdf(){
-                System.out.println("hola");
-            }
-        };
+        int x = 3;
+        boolean a = x > 1;
+        boolean b = x > 2;
+        boolean c = x > 3;
+        boolean d = x > 4;
         
-        for (int i = 0; i < 10; i++) {
-            
+        if (a) {
+            System.out.println("A");
+        }else if (b){
+            System.out.println("B");
+        }else if (c){
+            System.out.println("C");
+        }else if (d){
+            System.out.println("D");
         }
-        
-        p.asdf();
-        
-        
-        int a = p.suma(3,4,5,6,7,6,5,32,5,8,9,7,56);
-        System.out.println(a);
     }
 }

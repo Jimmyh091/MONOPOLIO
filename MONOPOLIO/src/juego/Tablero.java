@@ -50,9 +50,7 @@ public class Tablero {
         this.width = w;
         this.height = h;
         
-        asignInnerCoords();
-        
-        
+        //asignInnerCoords();
         
         numSquares = 48;
         
@@ -97,11 +95,11 @@ public class Tablero {
         return dados.rollDice();
     }
     
-    public static Casilla[] crearCasillas(){
+    public Casilla[] crearCasillas(){
         BufferedReader leedor;
         Casilla[] casillas = null;
         
-        Point[] puntos = asignPoints();
+        Point[][] puntos = asignPoints();
 
         String linea;
         try {
@@ -148,16 +146,16 @@ public class Tablero {
         
         // Just a quarter of the total squares in the table
         int quarterTable = numSquares / 4;
-        
-        int[] corners = new int[4];
-        
-        corners[0] = 
-        
+                
         for (int i = 0; i < numSquares; i++) {
             
+            int numCorner = 0;
             int corner = 0;
             
-            while(i != quarterTable * corner || corner == 4){
+            while(i > quarterTable * corner || corner != 4){
+                numCorner++;
+            }
+            while(i != quarterTable * corner || corner != 4){
                 corner++;
             }
             boolean isCorner = i == quarterTable * corner;
@@ -173,39 +171,70 @@ public class Tablero {
                         
                         tempX = x + width - innerWidth / 2 + innerWidth;
                         tempY =  y + height - innerHeight / 2 + innerHeight;
-                        tempWidth = x + width;
-                        tempHeight = y + height;
+                        break;
                         
                     case 1:
                         
                         tempX = x;
                         tempY =  y + innerHeight + (height - innerHeight) / 2;
-                        tempWidth = x + width - innerWidth / 2;
-                        tempHeight = y + height;
+                        break;
                         
                     case 2:
                         
                         tempX = x;
                         tempY = y;
-                        tempWidth = x + (width - innerWidth) / 2;
-                        tempHeight = y + (height - innerHeight) / 2;
+                        break;
                         
                     case 3:
                         
                         tempX = x + width - innerWidth / 2 + innerWidth;
                         tempY = y;
-                        tempWidth = x + width;
-                        tempHeight = y + (height - innerHeight) / 2;
+                        break;
                         
+                    default:
+                        System.out.println("LOG: ERROR.Asignacion Coordenadas Esquinas");
                 }
-            }else{
                 
-                /*
-                tempX = x;
-                tempY =  y + innerHeight + (height - innerHeight) / 2;
-                tempWidth = x + width - innerWidth / 2;
-                tempHeight = y + height;
-                */
+                tempWidth = (width - innerWidth) / 2;
+                tempHeight = (height - innerHeight) / 2;
+                
+            }else{
+                switch(numCorner){
+                    case 0:
+                        
+                        tempX = x + (innerWidth + (width - innerWidth) / 2) - (innerWidth / 9 * (i + 1));
+                        tempY = 0;
+                        tempWidth = innerWidth / 9;
+                        tempHeight = innerHeight + (height - innerHeight) / 2;
+                        break;
+                        
+                    case 1:
+                        
+                        tempX = 0;
+                        tempY = 0;
+                        tempWidth = (width - innerWidth) / 2;
+                        tempHeight = innerHeight / 9;
+                        break;
+                        
+                    case 2:
+                        
+                        tempX = 0;
+                        tempY = 0;
+                        tempWidth = innerWidth / 9;
+                        tempHeight = innerHeight + (height - innerHeight) / 2;
+                        break;
+                        
+                    case 3:
+                        
+                        tempX = 0;
+                        tempY = 0;
+                        tempWidth = (width - innerWidth) / 2;
+                        tempHeight = innerHeight / 9;
+                        break;
+                        
+                    default:
+                        System.out.println("LOG: ERROR.Asignacion Coordenadas Casillas");
+                }
             }
             
             points[i] = new Point(tempX, tempY);
@@ -213,7 +242,7 @@ public class Tablero {
             
         }
         
-        return "jaime es un manco ";
+        return new Point[][]{points, lengths};
     }
     
     // GETTERS AND SETTERS //

@@ -156,7 +156,7 @@ public class Tablero {
             int numCorner = 0;
             int corner = 0;
             
-            while(i > quarterTable * numCorner && numCorner < 4){
+            while(i > (quarterTable * numCorner) && numCorner < 4){
                 numCorner++;
             }
             while(i != quarterTable * corner && corner != 4){

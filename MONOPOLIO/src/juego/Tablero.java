@@ -116,8 +116,7 @@ public class Tablero {
                     int tempY = puntos[0][contador].y;
                     int tempWidth = puntos[1][contador].x;
                     int tempHeight = puntos[1][contador].y;
-                    
-                    
+                                        
                     if (datos[0].equals("1")) casillas[contador++] = new Calle(tempX, tempY, tempWidth, tempHeight, datos[1], Integer.parseInt(datos[2]), Integer.parseInt(datos[3]));
                     else casillas[contador++] = new CasillaEspecial(tempX, tempY, tempWidth, tempHeight, datos[1], Integer.parseInt(datos[2]), Integer.parseInt(datos[3]));
                 }
@@ -157,10 +156,10 @@ public class Tablero {
             int numCorner = 0;
             int corner = 0;
             
-            while(i > quarterTable * corner || corner != 4){
+            while(i > quarterTable * numCorner && numCorner < 4){
                 numCorner++;
             }
-            while(i != quarterTable * corner || corner != 4){
+            while(i != quarterTable * corner && corner != 4){
                 corner++;
             }
             boolean isCorner = i == quarterTable * corner;

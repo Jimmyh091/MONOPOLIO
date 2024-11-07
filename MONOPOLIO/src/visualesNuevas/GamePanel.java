@@ -243,6 +243,9 @@ public class GamePanel extends JPanel implements Runnable{
             case 0: gameboard.rollDice();
         }
     }
+    protected void keyPressed(String key){
+        
+    }
     
     private Casilla[] crearCasillas(){
         String linea;

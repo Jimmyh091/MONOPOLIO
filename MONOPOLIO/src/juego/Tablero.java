@@ -133,7 +133,7 @@ public class Tablero {
     }
     
     private void asignInnerCoords(){
-        int percentage = 80;
+        int percentage = 75;
         
         int innerSideLength = width * (percentage / 100);
         
@@ -141,8 +141,8 @@ public class Tablero {
         
         innerX = x + margin;
         innerY = y + margin;
-        innerWidth = width - margin;
-        innerHeight = height - margin;
+        innerWidth = innerSideLength;
+        innerHeight = innerSideLength;
     }    
     private Point[][] asignPoints(){
         Point[] points = new Point[numSquares];

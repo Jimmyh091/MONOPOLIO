@@ -11,8 +11,8 @@ package juego;
  */
 public class BarajaComunidad extends Baraja{
     
-    public BarajaComunidad(String p){
-        super(p);
+    public BarajaComunidad(String p, Tablero t){
+        super(p, t);
         super.crearCartas("CAJA DE LA COMUNIDAD");
     }
 }

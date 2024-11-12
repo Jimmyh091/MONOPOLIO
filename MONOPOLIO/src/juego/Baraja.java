@@ -19,12 +19,12 @@ public abstract class Baraja {
     private Carta[] cartas;
     private String path;
     
-    Tablero tablero;
+    Tablero gameboard;
     
     public Baraja(String p, Tablero t){
         
         path = p;
-        tablero = t;
+        gameboard = t;
         
         BufferedReader br = null;
         try {
@@ -71,9 +71,12 @@ public abstract class Baraja {
                         Event event = null;
                         
                         switch(evento){
-                            case 0:
-                                
-                                break;
+                            case 0 -> event = () -> gameboard.manipulateMoney(valor);
+                            case 1 -> event = () -> gameboard.withdrawPlayersMoney(valor);
+                            case 2 -> event = () -> gameboard.discountMoneyHouses();
+                            case 3 -> event = () -> gameboard.moveTo(valor);
+                            case 4 -> event = () -> gameboard.jumpTo(valor);
+                            default -> System.out.println("LOG: error.Baraja.crearCartas().switch");
                         }
                         cartas[i] = new Carta(i, titulo, desc, event);
                     }                    

@@ -22,6 +22,9 @@ public class Jugador {
     private int tiempoCarcel;
     private boolean bancarrota;
     
+    private int numHouse;
+    private int numHotel;
+        
     public Jugador(int i, String n){
         id = i;
         x = 0; 
@@ -99,4 +102,20 @@ public class Jugador {
     public void setPosicion(int p){
         posicion = p;
     }
+
+    public int getNumHouse() {
+        return numHouse;
+    }
+    public void setNumHouse(int numHouse) {
+        this.numHouse = numHouse;
+    }
+
+    public int getNumHotel() {
+        return numHotel;
+    }
+    public void setNumHotel(int numHotel) {
+        this.numHotel = numHotel;
+    }
+    
+    
 }

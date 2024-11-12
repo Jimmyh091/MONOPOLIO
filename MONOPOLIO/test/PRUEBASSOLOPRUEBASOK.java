@@ -17,6 +17,9 @@ public class PRUEBASSOLOPRUEBASOK {
      */
     public static void main(String[] args) {
         
+        System.out.println( 4 + (-1));
+        
+        /*
         int[] a = new int[]{1,2};
         int[] b = new int[]{3,4};
         int[][] m = new int[][]{a, b};
@@ -40,6 +43,6 @@ public class PRUEBASSOLOPRUEBASOK {
                 System.out.println(m[i][j]);
             }
         }
-        
+        */
     }
 }

@@ -11,8 +11,8 @@ package juego;
  */
 public class BarajaSuerte extends Baraja{
     
-    public BarajaSuerte(String p){
-        super(p);
+    public BarajaSuerte(String p, Tablero t){
+        super(p, t);
         super.crearCartas("CAJA DE LA SUERTE");
     }
 }

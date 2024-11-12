@@ -40,7 +40,7 @@ public class Tablero {
     private int turn;
     private boolean win;
     
-    private Jugador activePlayer;
+    private int activePlayer;
     
     
     public Tablero(Jugador[] j, int x, int y, int w, int h){
@@ -66,7 +66,7 @@ public class Tablero {
     public void updateTurn(){
         
         if (turn == jugadores.length - 1) turn = 0;        
-        activePlayer = jugadores[turn];
+        activePlayer = turn;
         
     }
         
@@ -75,7 +75,7 @@ public class Tablero {
             // Si es -1, lo mandas a la carcel
             jumpTo(18);
         }else{
-            moveTo(activePlayer.getPosicion() + advanceSquares);
+            moveTo(jugadores[activePlayer].getPosicion() + advanceSquares);
         }        
     }
     
@@ -120,8 +120,8 @@ public class Tablero {
         
         return casillas;
     }
-    public static Baraja[] crearBarajas(){
-        Baraja[] barajas = {new BarajaComunidad("src/elementos/contenido/cartasComunidad.txt"), new BarajaSuerte("src/elementos/contenido/cartasComunidad.txt")};
+    public static Baraja[] crearBarajas(Tablero t){
+        Baraja[] barajas = {new BarajaComunidad("src/elementos/contenido/cartasComunidad.txt", t), new BarajaSuerte("src/elementos/contenido/cartasComunidad.txt", t)};
         return barajas;
     }
     
@@ -244,22 +244,8 @@ public class Tablero {
     
     // GAME FUNCTIONS //
     
-    public void addMoney(int money){
-        activePlayer.setDinero(activePlayer.getDinero() + money);
-    }    
-    public void addMoney(int money, Jugador player){
-        player.setDinero(player.getDinero() + money);
-    }
-    
-    public void withdrawMoney(int money){
-        activePlayer.setDinero(activePlayer.getDinero() - money);
-    }
-    public void withdrawMoney(int money, Jugador player){
-        player.setDinero(player.getDinero() - money);
-    }
-      
     public void moveTo(int position){
-        casillas[position].setJugador(activePlayer);
+        casillas[position].setJugador(jugadores[activePlayer]);
         casillas[position].interact();
     }
     public void moveTo(int position, Jugador player){
@@ -268,10 +254,39 @@ public class Tablero {
     }
     
     public void jumpTo(int position){
-        casillas[position].setJugador(activePlayer);
+        casillas[position].setJugador(jugadores[activePlayer]);
     }
     public void jumpTo(int position, Jugador player){
         casillas[position].setJugador(player);
+    }
+    
+    public void manipulateMoney(int money){
+        jugadores[activePlayer].setDinero(jugadores[activePlayer].getDinero() + money);
+    }    
+    public void manipulateMoney(int money, Jugador player){
+        player.setDinero(player.getDinero() + money);
+    }
+    
+    public void withdrawPlayersMoney(int money){
+        int playerMoney = money / 4;
+        
+        for (int i = 0; i < jugadores.length; i++) {
+            if (i != activePlayer) {
+                manipulateMoney(playerMoney, jugadores[i]);
+            }else{
+                manipulateMoney(money);
+            }
+        }
+    }
+    
+    public void discountMoneyHouses(){
+        int discountHousesPrice = 15;
+        int discountHotelPrice = 45;
+        
+        discountHousesPrice *= jugadores[activePlayer].getNumHouse();
+        discountHotelPrice *= jugadores[activePlayer].getNumHotel();
+        
+        manipulateMoney(-(discountHousesPrice + discountHotelPrice));
     }
     
     // GETTERS AND SETTERS //
@@ -280,6 +295,9 @@ public class Tablero {
         return jugadores;
     }
     
+    public void passGameboard(Tablero t){
+        
+    }
     public Casilla[] getCasillas() {
         return casillas;
     }

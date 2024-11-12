@@ -69,7 +69,7 @@ public class Tablero {
         activePlayer = jugadores[turn];
         
     }
-    
+        
     public void movePlayer(int advanceSquares){
         if (advanceSquares == -1) {
             // Si es -1, lo mandas a la carcel
@@ -77,15 +77,8 @@ public class Tablero {
         }else{
             moveTo(activePlayer.getPosicion() + advanceSquares);
         }        
-    }    
-    public void moveTo(int position){
-        casillas[position].setJugador(activePlayer);
-        casillas[position].interact();
     }
-    public void jumpTo(int position){
-        casillas[position].setJugador(activePlayer);
-    }
-
+    
     public void rollDice(){
         int advanceSquares = rollDiceOnly();
         System.out.println(advanceSquares);
@@ -247,6 +240,38 @@ public class Tablero {
         }
         
         return new Point[][]{points, lengths};
+    }
+    
+    // GAME FUNCTIONS //
+    
+    public void addMoney(int money){
+        activePlayer.setDinero(activePlayer.getDinero() + money);
+    }    
+    public void addMoney(int money, Jugador player){
+        player.setDinero(player.getDinero() + money);
+    }
+    
+    public void withdrawMoney(int money){
+        activePlayer.setDinero(activePlayer.getDinero() - money);
+    }
+    public void withdrawMoney(int money, Jugador player){
+        player.setDinero(player.getDinero() - money);
+    }
+      
+    public void moveTo(int position){
+        casillas[position].setJugador(activePlayer);
+        casillas[position].interact();
+    }
+    public void moveTo(int position, Jugador player){
+        casillas[position].setJugador(player);
+        casillas[position].interact();
+    }
+    
+    public void jumpTo(int position){
+        casillas[position].setJugador(activePlayer);
+    }
+    public void jumpTo(int position, Jugador player){
+        casillas[position].setJugador(player);
     }
     
     // GETTERS AND SETTERS //

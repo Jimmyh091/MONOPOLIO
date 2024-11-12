@@ -11,11 +11,17 @@
 public class prueba {
     int a;
     
+    Event asd;
     
-    public prueba(int d){
+    public prueba(int d, Event as){
         a = d;
+        asd = as;
     }
 
+    public void AAA(){
+        asd.event();
+    }
+    
     public int getA() {
         return a;
     }

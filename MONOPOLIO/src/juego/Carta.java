@@ -13,26 +13,18 @@ public class Carta {
     private Jugador propietario;
     private String titulo;
     private String desc;
-    private Evento evento;
+    private Event event;
     
-    public Carta(int i, int id, String t, String d){
-        this.id = i;
-        evento = new Evento(id);
+    public Carta(int i, String t, String d, Event e){
+        id = i;
         propietario = null;
         titulo = t;
         desc = d;
+        event = e;
     }
     
-    public void ejecutarEvento(int valor){
-        evento.ejecutarEvento(propietario, valor);
-    }
-    
-    public void ejecutarEvento(int valor, Casilla[] casillas){
-        evento.ejecutarEvento(propietario, valor, casillas);
-    }
-    
-    public void ejecutarEvento(int valor, Jugador[] jugadores){
-        evento.ejecutarEvento(propietario, valor, jugadores);
+    public void executeEvent(){
+        event.executeEvent();
     }
 
     public Jugador getPropietario() {

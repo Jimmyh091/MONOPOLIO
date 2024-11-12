@@ -19,9 +19,12 @@ public abstract class Baraja {
     private Carta[] cartas;
     private String path;
     
-    public Baraja(String p){
+    Tablero tablero;
+    
+    public Baraja(String p, Tablero t){
         
         path = p;
+        tablero = t;
         
         BufferedReader br = null;
         try {
@@ -64,7 +67,15 @@ public abstract class Baraja {
 
                     for (int i = 0; i < cantCartas; i++) {
                         // no se porque no utililzo aqui la i del for
-                        cartas[i] = new Carta(i, evento, titulo, desc);
+                        
+                        Event event = null;
+                        
+                        switch(evento){
+                            case 0:
+                                
+                                break;
+                        }
+                        cartas[i] = new Carta(i, titulo, desc, event);
                     }                    
                 }
             }

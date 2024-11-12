@@ -21,6 +21,15 @@ public class PRUEBASSOLOPRUEBASOK {
         int[] b = new int[]{3,4};
         int[][] m = new int[][]{a, b};
         
+        prueba prueba = new prueba(2, new Event() {
+            @Override
+            public void event() {
+                System.out.println("a");
+            }
+        });
+        
+        prueba.AAA();
+        
         m[0][0] = 1;
         m[0][1] = 2;
         m[1][0] = 3;

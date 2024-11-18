@@ -273,7 +273,7 @@ public class GamePanel extends JPanel implements Runnable{
                     int posY = 10;
                     
                     if (clase.equals("1")) casillas[contador] = new Calle(0,0,0,0, titulo, precio, grupo);
-                    else casillas[contador] = new CasillaEspecial(0,0,0,0, titulo, precio, grupo);
+                    else casillas[contador] = new CasillaEspecial(0,0,0,0, titulo, precio, () -> System.out.println("Evento no implementado"));
                     contador++;                    
                 }
             }

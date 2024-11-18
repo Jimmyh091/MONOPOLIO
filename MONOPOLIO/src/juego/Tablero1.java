@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author jaime
  */
-public class Tablero {
+public class Tablero1 {
     
     private int x;
     private int y;
@@ -43,7 +43,7 @@ public class Tablero {
     private int activePlayer;
     
     
-    public Tablero(int x, int y, int w, int h){
+    public Tablero1(int x, int y, int w, int h){
         
         this.x = x;
         this.y = y;
@@ -120,7 +120,7 @@ public class Tablero {
         
         return casillas;
     }
-    public static Baraja[] crearBarajas(Tablero t){
+    public static Baraja[] crearBarajas(Tablero1 t){
         Baraja[] barajas = {new BarajaComunidad("src/elementos/contenido/cartasComunidad.txt", t), new BarajaSuerte("src/elementos/contenido/cartasComunidad.txt", t)};
         return barajas;
     }

@@ -8,40 +8,30 @@
  *
  * @author jaime
  */
-public class prueba {
-    int a;
+public class Prueba {
     
-    Event asd;
+    Prueba2 prueba2;
     
-    public prueba(int d, Event as){
-        a = d;
-        asd = as;
+    int asdf = 3;
+    
+    public Prueba(){
+        
     }
 
-    public void AAA(){
-        asd.event();
+    public void setPrueba(Prueba2 p){
+        
+        prueba2 = p;
     }
     
-    public int getA() {
-        return a;
+    public void a(){
+        prueba2.a();
     }
 
-    public void setA(int a) {
-        this.a = a;
+    public int getAsdf() {
+        return asdf;
     }
-    
-    public void asdf(){
-        System.out.println("a");
-    }
-    
-    public int suma(int... a){
-        
-        int suma = 0;
-        
-        for (int as : a) {
-            suma += as;
-        }
-        
-        return suma;
+
+    public void setAsdf(int asdf) {
+        this.asdf = asdf;
     }
 }

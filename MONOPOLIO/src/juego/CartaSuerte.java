@@ -9,8 +9,8 @@ package juego;
  * @author jaime
  */
 public class CartaSuerte extends Carta{    
-    public CartaSuerte(int i, int id, String t, String d) {
-        super(i, id, t, d);
+    public CartaSuerte(int i, String t, String d, Event e) {
+        super(i, t, d, e);
     }
     
 }

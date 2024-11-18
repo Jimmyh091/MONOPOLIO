@@ -12,55 +12,26 @@ public class CasillaEspecial extends Casilla{
     
     private String titulo;
     private int valor;
-    private Evento evento;
-    private Jugador[] players;
-    private Casilla[] squares;
+    private Event evento;
     private int type;
     
-    public CasillaEspecial(int x, int y, int w, int h, String t, int v, int e){
+    public CasillaEspecial(int x, int y, int w, int h, String t, int v, Event e){
         super(x, y, w, h);
         titulo = t;
         valor = v;
-        players = null;
-        squares = null;
-        evento = new Evento(e);
+        evento = e;
         
         type = 0;
-    }
-    public CasillaEspecial(int x, int y, int w, int h, String t, int v, int e, Jugador[] j){
-        super(x, y, w, h);
-        titulo = t;
-        valor = v;
-        players = j;
-        squares = null;
-        evento = new Evento(e);
-        
-        type = 1;
-    }
-    public CasillaEspecial(int x, int y, int w, int h, String t, int v, int e, Casilla[] c){
-        super(x, y, w, h);
-        titulo = t;
-        valor = v;
-        players = null;
-        squares = c;
-        evento = new Evento(e);
-        
-        type = 2;
     }
     
     @Override
     public void interact(){
-        
-        switch(type){
-            case 0 -> evento.ejecutarEvento(super.getJugador(), valor);
-            case 1 -> evento.ejecutarEvento(super.getJugador(), valor, squares);
-            case 2 -> evento.ejecutarEvento(super.getJugador(), valor, players);
-        }
+        evento.executeEvent();
     }
     
     // GETTERS AND SETTERS //
 
-    public Evento getEvento() {
+    public Event getEvento() {
         return evento;
     }
 }

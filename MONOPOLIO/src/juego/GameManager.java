@@ -15,8 +15,10 @@ public class GameManager {
     
     private Jugador[] players;
     private Casilla[] squares;
-    private Baraja[] cardDeck;
+    private BarajaComunidad comunityCardDeck;
+    private BarajaSuerte luckyCardDeck;
     private CuboDados diceCube;
+    private Gameboard gameboard;    
     
     private int numSquares;
     
@@ -31,8 +33,10 @@ public class GameManager {
         
         players = null;
         squares = null;
-        cardDeck = null;
+        comunityCardDeck = new BarajaComunidad();
+        luckyCardDeck = new BarajaSuerte();
         diceCube = null;
+        gameboard = new Gameboard(0, 0, 0, 0);
         
         turn = 0;
         win = false;
@@ -47,8 +51,32 @@ public class GameManager {
         return diceCube.rollDice();
     }
     
-    public static Baraja[] crearBarajas(Tablero1 t){
-        Baraja[] barajas = {new BarajaComunidad("src/elementos/contenido/cartasComunidad.txt", t), new BarajaSuerte("src/elementos/contenido/cartasComunidad.txt", t)};
-        return barajas;
+    public void manipulateMoney(int money){
+        players[activePlayer].setDinero(players[activePlayer].getDinero() + money);
+    }    
+    public void manipulateMoney(int money, Jugador player){
+        player.setDinero(player.getDinero() + money);
+    }
+    
+    public void withdrawPlayersMoney(int money){
+        int playerMoney = money / 4;
+        
+        for (int i = 0; i < players.length; i++) {
+            if (i != activePlayer) {
+                manipulateMoney(playerMoney, players[i]);
+            }else{
+                manipulateMoney(money);
+            }
+        }
+    }
+    
+    public void discountMoneyHouses(){
+        int discountHousesPrice = 15;
+        int discountHotelPrice = 45;
+        
+        discountHousesPrice *= players[activePlayer].getNumHouse();
+        discountHotelPrice *= players[activePlayer].getNumHotel();
+        
+        manipulateMoney(-(discountHousesPrice + discountHotelPrice));
     }
 }

@@ -229,22 +229,6 @@ public class Tablero1 {
     
     // GAME FUNCTIONS //
     
-    public void moveTo(int position){
-        casillas[position].setJugador(jugadores[activePlayer]);
-        casillas[position].interact();
-    }
-    public void moveTo(int position, Jugador player){
-        casillas[position].setJugador(player);
-        casillas[position].interact();
-    }
-    
-    public void jumpTo(int position){
-        casillas[position].setJugador(jugadores[activePlayer]);
-    }
-    public void jumpTo(int position, Jugador player){
-        casillas[position].setJugador(player);
-    }
-    
     public void manipulateMoney(int money){
         jugadores[activePlayer].setDinero(jugadores[activePlayer].getDinero() + money);
     }    

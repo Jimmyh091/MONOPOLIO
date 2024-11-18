@@ -20,16 +20,6 @@ import java.util.logging.Logger;
  */
 public class Tablero1 {
     
-    private int x;
-    private int y;
-    private int width;
-    private int height;
-    
-    private int innerX;
-    private int innerY;
-    private int innerWidth;
-    private int innerHeight;
-    
     private int numSquares;
     
     private Jugador[] jugadores;
@@ -43,12 +33,7 @@ public class Tablero1 {
     private int activePlayer;
     
     
-    public Tablero1(int x, int y, int w, int h){
-        
-        this.x = x;
-        this.y = y;
-        this.width = w;
-        this.height = h;
+    public Tablero1(){
         
         asignInnerCoords();
         
@@ -80,11 +65,11 @@ public class Tablero1 {
     }
     
     public void rollDice(){
-        int advanceSquares = rollDiceOnly();
+        int advanceSquares = rollDdice();
         System.out.println(advanceSquares);
     }
     
-    public int rollDiceOnly(){
+    public int rollDdice(){
         return dados.rollDice();
     }
     

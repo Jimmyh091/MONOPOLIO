@@ -47,7 +47,7 @@ public class GamePanel extends JPanel implements Runnable{
     private Button[] gameScreenButtons;
     private ArrayList<Button[]> screenButtons;
     
-    private Tablero gameboard;
+    private Gameboard gameboard;
     
     protected GamePanel(){
         
@@ -62,7 +62,7 @@ public class GamePanel extends JPanel implements Runnable{
         this.setFocusable(true);
         
         Jugador[] jugador = crearJugadores();
-        gameboard = new Tablero(jugador, 2, 2, 2, 2);
+        gameboard = new Gameboard(2, 2, 2, 2);
         
         
         // BOTONES
@@ -93,7 +93,7 @@ public class GamePanel extends JPanel implements Runnable{
             
             @Override
             protected void event(){
-                gameboard.rollDice();
+                //gameboard.rollDice();
             }
             
         };
@@ -131,12 +131,12 @@ public class GamePanel extends JPanel implements Runnable{
             @Override
             public void run(){
                 
-                int numPlayers = gameboard.getJugadores().length;
+                //int numPlayers = gameboard.getJugadores().length;
                 
                 while(gameThread != null){
-                    if (!gameboard.getWin()) {
-                        gameboard.updateTurn();
-                    }
+               //     if (!gameboard.getWin()) {
+               //         gameboard.updateTurn();
+                //    }
                 }
             }
         };
@@ -240,7 +240,7 @@ public class GamePanel extends JPanel implements Runnable{
     
     private void executeAction(){
         switch(selection){
-            case 0: gameboard.rollDice();
+            //case 0: gameboard.rollDice();
         }
     }
     protected void keyPressed(String key){
@@ -254,7 +254,7 @@ public class GamePanel extends JPanel implements Runnable{
         int contador = 0;
         
         try {
-            casillas = new Casilla[((int) Files.lines(Paths.get("src/elementos/contenido/casillas.txt")).count()) - 0];
+            casillas = new Casilla[((int) Files.lines(Paths.get("src/elementos/contenido/casillas.txt")).count()) - 0]; // paths mal
             
             br = new BufferedReader(new FileReader("src/elementos/contenido/casillas.txt"));
             
@@ -273,7 +273,7 @@ public class GamePanel extends JPanel implements Runnable{
                     int posY = 10;
                     
                     if (clase.equals("1")) casillas[contador] = new Calle(0,0,0,0, titulo, precio, grupo);
-                    else casillas[contador] = new CasillaEspecial(0,0,0,0, titulo, precio, () -> System.out.println("Evento no implementado"));
+                    else casillas[contador] = new CasillaEspecial(0,0,0,0, titulo, precio, null); // pasando null
                     contador++;                    
                 }
             }

@@ -6,7 +6,6 @@
 package visualesNuevas;
 
 import java.awt.Color;
-import juego.Tablero;
 
 /**
  *

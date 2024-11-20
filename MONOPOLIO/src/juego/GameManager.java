@@ -10,6 +10,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,8 +42,8 @@ public class GameManager {
         
         players = null;
         squares = null;
-        comunityCardDeck = new Baraja();
-        luckyCardDeck = new Baraja();
+        comunityCardDeck = new Baraja("", gameboard);
+        luckyCardDeck = new Baraja("", gameboard);
         diceCube = null;
         gameboard = new Gameboard(0, 0, 0, 0);
         
@@ -82,27 +85,120 @@ public class GameManager {
         manipulateMoney(-(discountHousesPrice + discountHotelPrice));
     }
     
+    private int countFileLines(String path, char commentCharacter){
+        
+        int contador = 0;
+        
+        try {
+            List lineas = Files.readAllLines(Paths.get(path));
+            contador = (int) lineas.stream()
+                .filter(a -> ((String)a).charAt(0) != commentCharacter)
+                .count();
+
+            System.out.println("Número de líneas: " + contador);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return contador;
+    }
+    
+    private Event createEvent(int event, int valor){
+        switch(event){
+            case 0 -> {
+                return new Event(){
+                    
+                    @Override
+                    public void executeEvent() {
+                        manipulateMoney(valor);
+                    }
+                    
+                    @Override
+                    public void executeEvent(Jugador j) {
+                        
+                    }};
+            }
+
+            case 1 -> {
+                return new Event(){
+                    
+                    @Override
+                    public void executeEvent() {
+                        withdrawPlayersMoney(valor);
+                    }
+                    
+                    @Override
+                    public void executeEvent(Jugador j) {
+                        
+                    }};
+            }
+
+            case 2 -> { 
+                return new Event(){
+                    
+                    @Override
+                    public void executeEvent() {
+                        discountMoneyHouses();
+                    }
+                    
+                    @Override
+                    public void executeEvent(Jugador j) {
+                        
+                    }};
+            }
+
+            case 3 -> { 
+                return new Event(){
+                    
+                    @Override
+                    public void executeEvent() {
+                        
+                    }
+                    
+                    @Override
+                    public void executeEvent(Jugador j) {
+                        gameboard.moveTo(valor, j);
+                    }};
+            }
+
+            case 4 -> { 
+                return new Event(){
+                    
+                    @Override
+                    public void executeEvent() {
+                        
+                    }
+                    
+                    @Override
+                    public void executeEvent(Jugador j) {
+                        gameboard.jumpTo(valor, j);
+                    }};
+            }
+
+            default -> System.out.println("LOG: ERROR.GameManager.createCardDeck().switch");
+
+        }
+        
+        return null; // no deberia llegar nunca
+    }
     
     protected Carta[] createCardDeck(boolean comunidad){
         
-        Carta[] cartasAux = new Carta[cartas.length];
         
         String path = "/src/elementos/contenido/cartas"; // no se si va no lo probe
         if (comunidad) path += "Comunidad";
         else path += "Suerte";
+        
+        Carta[] cards = new Carta[countFileLines(path, '#')];
         
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader(path));
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Baraja.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }        
         
-        File f = new File(path);
-        f.
-        
-        String linea;
-        
+        String linea;        
         try {
             while((linea = br.readLine()) != null){
                 
@@ -110,27 +206,23 @@ public class GameManager {
                     String[] datos = linea.split("-");
 
                     int cantCartas = Byte.parseByte(datos[0]);
-                    int evento = Byte.parseByte(datos[1]);
+                    int event = Byte.parseByte(datos[1]);
+                    
                     String desc1 = datos[2];
-                    int valor = Integer.parseInt(datos[3]);
                     String desc2 = datos[4];
-
+                    int valor = Integer.parseInt(datos[3]);
+                    
                     String desc = desc1 + valor + desc2;
+                    
+                    String titulo = (comunidad) ? "COMUNIDAD" : "SUERTE";    
+                    
 
-                    for (int i = 0; i < cantCartas; i++) {
-                        // no se porque no utililzo aqui la i del for
+                    for (int i = 0; i < cantCartas; i++) {                        
                         
-                        Event event = null;
+                        Event eventAux = createEvent(event, valor);
                         
-                        switch(evento){
-                            case 0 -> event = () -> gameboard.manipulateMoney(valor);
-                            case 1 -> event = () -> gameboard.withdrawPlayersMoney(valor);
-                            case 2 -> event = () -> gameboard.discountMoneyHouses();
-                            case 3 -> event = () -> gameboard.moveTo(valor);
-                            case 4 -> event = () -> gameboard.jumpTo(valor);
-                            default -> System.out.println("LOG: error.Baraja.crearCartas().switch");
-                        }
-                        cartas[i] = new Carta(i, titulo, desc, event);
+                        cards[i] = new Carta(i, titulo, desc, eventAux);
+                        
                     }                    
                 }
             }
@@ -138,6 +230,6 @@ public class GameManager {
             Logger.getLogger(Baraja.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return cartasAux;
+        return cards;
     }
 }

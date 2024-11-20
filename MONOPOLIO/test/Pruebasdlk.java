@@ -16,17 +16,17 @@ import java.util.List;
 public class Pruebasdlk {
     public static void main(String[] args) {
         String rutaArchivo = "src/elementos/contenido/cartasComunidad.txt";
-           char caracterEspecifico = '#'; // Cambia esto al carácter que desees
+        char caracterEspecifico = '#';
 
-           try {
-               List lineas = Files.readAllLines(Paths.get(rutaArchivo));
-               long contador = lineas.stream()
-                   .filter(a -> ((String)a).charAt(0) != caracterEspecifico)
-                   .count();
+        try {
+            List lineas = Files.readAllLines(Paths.get(rutaArchivo));
+            long contador = lineas.stream()
+                .filter(a -> ((String)a).charAt(0) == caracterEspecifico)
+                .count();
 
-               System.out.println("Número de líneas: " + contador);
-           } catch (Exception e) {
-               e.printStackTrace();
-           }
+            System.out.println("Número de líneas: " + contador);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

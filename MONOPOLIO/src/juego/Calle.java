@@ -11,7 +11,7 @@ package juego;
 public class Calle extends Casilla{
     private Integer propietario;
     private String titulo;
-    private int precio;
+    private int price1, price2, price3, priceH;    
     private int grupo;
     private int numCasas;
     private int numHoteles;
@@ -20,7 +20,10 @@ public class Calle extends Casilla{
         super(x, y, w, h);
         titulo = t;
         propietario = null;
-        precio = p;
+        price1 = p;
+        price2 = (int) (price1 + price1 * 0.2); //?
+        price3 = (int) (price1 + price1 * 0.4);
+        priceH = (int) (price1 + price1 * 0.6);
         grupo = g;
         numCasas = 0;
         numHoteles = 0;

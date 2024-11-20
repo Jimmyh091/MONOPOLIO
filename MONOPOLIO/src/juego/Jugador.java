@@ -40,7 +40,7 @@ public class Jugador {
         bancarrota = false;
     }
     
-    public void tirar(Dado[] dados, int veces, int tirada){
+    public void tirar(CuboDados dados, int veces, int tirada){
         /*if (veces == 3) {
             System.out.println("pa la carsel");
             posicion = 20; // no es esta creo supongo

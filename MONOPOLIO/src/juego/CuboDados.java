@@ -21,7 +21,7 @@ public class CuboDados {
     
     public int[] rollDice(){
         return new int[]{
-            (int)(Math.random() * 6 + 1), 
-            (int)(Math.random() * 6 + 1)};
+            (int)(Math.random() * faces + 1), 
+            (int)(Math.random() * faces + 1)};
     }
 }

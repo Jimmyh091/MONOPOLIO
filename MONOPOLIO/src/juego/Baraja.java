@@ -16,69 +16,31 @@ import java.util.logging.Logger;
  * @author jaime
  */
 public class Baraja {
-    private Carta[] cartas;
-    private String path;
+    private Carta[] cards;
     
-    Gameboard gameboard;
-    
-    public Baraja(String p, Gameboard t){
-        
-        path = p;
-        gameboard = t;
-        
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new FileReader(path));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Baraja.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        int numCartas = contarCartas();
-        cartas = new Carta[numCartas];
+    public Baraja(Carta[] c){
+        cards = c;
     }
-    
-    private int contarCartas(){
         
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new FileReader(path));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Baraja.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        int numCartas = 0;
-        String linea;
-        
-        try{   
-            while((linea = br.readLine()) != null) {
-                if (linea.charAt(0) != '#') {
-                    numCartas++;
-                }
-            }
-
-        }catch (IOException e){
-            System.out.println("No se pudo contar las cartas");
-        }
-                
-        return numCartas;
-    }
-    
-    public void barajar(){
-        for (int i = 0; i < cartas.length; i++) {
-            int numAleatorio = (int) (Math.random() * (cartas.length - 1)); // a ver si funciona
-            Carta basura = cartas[i];
-            cartas[i] = cartas[numAleatorio];
-            cartas[numAleatorio] = basura;
+    public void shuffle(int times){
+        for (int h = 0; h < times; h++) {
+            for (int i = 0; i < cards.length; i++) {
+                int numAleatorio = (int) (Math.random() * (cards.length - 1)); // a ver si funciona
+                Carta basura = cards[i];
+                cards[i] = cards[numAleatorio];
+                cards[numAleatorio] = basura;
+            }            
         }
     }
     
-    public Carta sacarCarta(){
-        Carta carta = cartas[cartas.length - 1];
+    public Carta drawCard(){
+        Carta carta = cards[cards.length - 1];
         
-        for (int i = cartas.length - 2; i > 0; i--)
-            cartas[i + 1] = cartas[i];
+        for (int i = cards.length - 2; i > 0; i--){
+            cards[i + 1] = cards[i];
+        }
         
-        cartas[0] = carta;
+        cards[0] = carta;
         
         return carta;
     }

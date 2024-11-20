@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  * @author jaime y su soledad
  */
 public class MONOPOLIO {
-
+/*
     private static Scanner sc = new Scanner(System.in);
     
     public static void main(String[] args) {
@@ -67,7 +67,7 @@ public class MONOPOLIO {
         
         System.out.println("termino la partida");
 */
-    }
+    }/*
     public static boolean comprobarVictoria(Jugador[] jugadores){
         boolean unJug = false;
         boolean dosJug = false;
@@ -210,5 +210,5 @@ public class MONOPOLIO {
         dados[1] = new CuboDados(0,0);
         
         return dados;
-    }
-}
+    }*/
+       

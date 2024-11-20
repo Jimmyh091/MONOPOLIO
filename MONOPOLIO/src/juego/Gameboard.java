@@ -90,7 +90,7 @@ public class Gameboard {
                     int tempHeight = puntos[1][contador].y;
                                         
                     if (datos[0].equals("1")) casillas[contador++] = new Calle(tempX, tempY, tempWidth, tempHeight, datos[1], Integer.parseInt(datos[2]), Integer.parseInt(datos[3]));
-//                    else casillas[contador++] = new CasillaEspecial(tempX, tempY, tempWidth, tempHeight, datos[1], Integer.parseInt(datos[2]), Integer.parseInt(datos[3]));
+                    else casillas[contador++] = new CasillaEspecial(tempX, tempY, tempWidth, tempHeight, datos[1], Integer.parseInt(datos[2]), null);
                 }
             }
         } catch (Exception ex) {

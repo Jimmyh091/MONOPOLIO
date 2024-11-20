@@ -42,9 +42,9 @@ public class GameManager {
         
         players = null;
         squares = null;
-        comunityCardDeck = new Baraja("", gameboard);
-        luckyCardDeck = new Baraja("", gameboard);
-        diceCube = null;
+        comunityCardDeck = new Baraja(createCardDeck(true));
+        luckyCardDeck = new Baraja(createCardDeck(false));
+        diceCube = new CuboDados(6, 2);
         gameboard = new Gameboard(0, 0, 0, 0);
         
         turn = 0;
@@ -54,6 +54,33 @@ public class GameManager {
     public void updateTurn(){        
         if (turn == players.length - 1) turn = 0;        
         activePlayer = turn;        
+    }
+        
+    public void tirar(CuboDados dados, int veces, int tirada){
+        /*if (veces == 3) {
+            System.out.println("pa la carsel");
+            posicion = 20; // no es esta creo supongo
+        }else{
+            System.out.println("Pulsa enter para tirar");
+
+            int jugada1 = dados[0].tirar();
+            int jugada2 = dados[1].tirar();
+            System.out.println(jugada1 + " y " + jugada2);
+
+            int jugada = (int) (jugada1 + jugada2);
+
+            if (jugada1 == jugada2) {
+                System.out.println("Parejas!");
+                tirar(dados, ++veces, (tirada += jugada1 + jugada2));
+            }
+            
+            posicion += tirada;
+            if (posicion > 48 ultima casilla){
+                posicion -= 48;
+                pasarPorSalida();
+            }
+        }*/
+
     }
     
     public void manipulateMoney(int money){
@@ -221,7 +248,7 @@ public class GameManager {
                         
                         Event eventAux = createEvent(event, valor);
                         
-                        cards[i] = new Carta(i, titulo, desc, eventAux);
+                        cards[i] = new Carta(titulo, desc, eventAux);
                         
                     }                    
                 }

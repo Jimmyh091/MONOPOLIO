@@ -11,36 +11,17 @@ package juego;
  */
 public class CuboDados {
     
-    private Dado[] dados;
-    private int timesRolled;
+    private int faces;
+    private int numDice;
     
-    public CuboDados(){
-        dados = new Dado[2];
-        
-        dados[0] = new Dado();
-        dados[1] = new Dado();
-        
-        timesRolled = 0;
+    public CuboDados(int f, int n){
+        faces = f;
+        numDice = n;
     }
     
-    public int rollDice(){
-        int[] results = {dados[0].roll(), dados[1].roll()};
-        
-        int res1 = results[0];
-        int res2 = results[1];
-
-        int advanceSquares = res1 + res2;
-        timesRolled++;
-        
-        if (timesRolled == 3) {
-            advanceSquares = -1;
-        }else{        
-            if (res1 == res2) {
-                advanceSquares += rollDice();
-            }
-        }
-        
-        timesRolled = 0;
-        return advanceSquares;
+    public int[] rollDice(){
+        return new int[]{
+            (int)(Math.random() * 6 + 1), 
+            (int)(Math.random() * 6 + 1)};
     }
 }

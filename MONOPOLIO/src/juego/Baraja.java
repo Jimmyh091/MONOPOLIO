@@ -19,9 +19,9 @@ public abstract class Baraja {
     private Carta[] cartas;
     private String path;
     
-    Tablero gameboard;
+    Gameboard gameboard;
     
-    public Baraja(String p, Tablero t){
+    public Baraja(String p, Gameboard t){
         
         path = p;
         gameboard = t;

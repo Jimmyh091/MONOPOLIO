@@ -5,20 +5,35 @@
  */
 package visualesNuevas;
 
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 /**
  *
  * @author EAG
  */
-public class MouseHandler implements MouseListener{
+public class MouseHandler implements MouseListener, MouseMotionListener{
 
+    private boolean mouseClicked;
+    
+    private Point clickPosition;
+    private Point mousePosition;
+    
+    
     @Override
     public void mouseClicked(MouseEvent e) {
-        
+        clickPosition = e.getLocationOnScreen();
+        mouseClicked = true;
     }
 
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        mousePosition = e.getLocationOnScreen();
+    }
+
+    // --- //
     @Override
     public void mousePressed(MouseEvent e) {
         
@@ -38,5 +53,9 @@ public class MouseHandler implements MouseListener{
     public void mouseExited(MouseEvent e) {
         
     }
-    
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        
+    }
 }

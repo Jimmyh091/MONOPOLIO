@@ -173,43 +173,28 @@ public class GamePanel extends JPanel implements Runnable{
             }
         }
     }
+    
     public void update(){
         if (kh.keyPressed) {
             
             String key = kh.getKey();
             
             switch(key){
-                case "up":
-                    
+                case "up" -> {
                     if(selection >= maxSelection) selection = 0;
                     else selection++;
-                    
-                    System.out.println("up");
-                    
-                    break;
-                case "down":
-                    
+                }
+                case "down" -> {
                     if (selection <= 0) selection = maxSelection;
                     else selection--;
-                    
-                    System.out.println("down");
-                    
-                    break;
-                case "left": 
-                    
-                    System.out.println("left");
-                    
-                    break;
-                case "right": 
-                    
-                    System.out.println("right");
-                    
-                    break;
-                case "enter": 
-                    
+                }
+                case "left" -> System.out.println("left");
+                case "right" -> System.out.println("right");
+                case "enter" -> {
                     switch(selection){
-                        case 0: System.out.println("enter");
+                        case 0 -> System.out.println("enter");
                     }
+                }
             }
             
             kh.keyPressed = false;

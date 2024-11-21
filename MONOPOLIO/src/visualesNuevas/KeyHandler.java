@@ -16,7 +16,7 @@ public class KeyHandler implements KeyListener{
     protected boolean keyPressed;
     private String key;
     
-    public KeyHandler(GamePanel g){
+    public KeyHandler(){
         keyPressed = false;
         key = "";
     }

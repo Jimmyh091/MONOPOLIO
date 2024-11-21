@@ -14,9 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import juego.Baraja;
 import juego.Casilla;
-import juego.Dado;
 import juego.Jugador;
-import juego.Tablero;
+import juego.CuboDados;
 
 /**
  *
@@ -30,19 +29,15 @@ public class PantallaJuego extends PanelBase{
     
     private Jugador[] jugadores;
     private Casilla[] casillas;
-    private Dado[] dados;
-    private Tablero tablero;
     
     protected PantallaJuego(JFrame v, AdministradorPaneles a){
         super(v, a);
     }
     
-    protected void recibirDatos(Jugador[] j, Casilla[] c, Baraja b, Baraja ba, Dado[] d){
+    protected void recibirDatos(Jugador[] j, Casilla[] c, Baraja b, Baraja ba, CuboDados d){
         jugadores = j;
         casillas = c;
-        dados = d;
         
-        tablero = new Tablero(j, 2, 2, 2, 2);
         
         try {
             imagenTablero = ImageIO.read(getClass().getResourceAsStream("/elementos/imagenes/tablero.jpg"));

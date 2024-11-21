@@ -8,7 +8,6 @@ package juego;
 import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.lang.System.Logger;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -47,12 +46,12 @@ public class Gameboard {
     }
     
     public void moveTo(int position, Jugador player){
-        casillas[position].setJugador(player);
-        casillas[position].interact();
+        squares[position].setJugador(player);
+        squares[position].interact();
     }
     
     public void jumpTo(int position, Jugador player){
-        casillas[position].setJugador(player);
+        squares[position].setJugador(player);
     }
     
     private void asignInnerCoords(){
@@ -91,11 +90,11 @@ public class Gameboard {
                     int tempHeight = puntos[1][contador].y;
                                         
                     if (datos[0].equals("1")) casillas[contador++] = new Calle(tempX, tempY, tempWidth, tempHeight, datos[1], Integer.parseInt(datos[2]), Integer.parseInt(datos[3]));
-//                    else casillas[contador++] = new CasillaEspecial(tempX, tempY, tempWidth, tempHeight, datos[1], Integer.parseInt(datos[2]), Integer.parseInt(datos[3]));
+                    else casillas[contador++] = new CasillaEspecial(tempX, tempY, tempWidth, tempHeight, datos[1], Integer.parseInt(datos[2]), null);
                 }
             }
         } catch (Exception ex) {
-            Logger.getLogger(MONOPOLIO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("hola");
         }
         
         return casillas;

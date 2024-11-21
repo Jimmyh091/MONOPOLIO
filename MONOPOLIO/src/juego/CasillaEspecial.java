@@ -23,8 +23,7 @@ public class CasillaEspecial extends Casilla{
         
         type = 0;
     }
-    
-    @Override
+        
     public void interact(){
         evento.executeEvent();
     }

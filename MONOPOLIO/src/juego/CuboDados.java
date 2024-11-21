@@ -11,8 +11,8 @@ package juego;
  */
 public class CuboDados {
     
-    private int faces;
-    private int numDice;
+    private final int faces;
+    private final int numDice;
     
     public CuboDados(int f, int n){
         faces = f;
@@ -20,8 +20,13 @@ public class CuboDados {
     }
     
     public int[] rollDice(){
-        return new int[]{
-            (int)(Math.random() * 6 + 1), 
-            (int)(Math.random() * 6 + 1)};
+        
+        int[] result = new int[numDice];
+        
+        for (int i = 0; i < numDice; i++) {
+            result[i] = (int)(Math.random() * faces + 1);
+        }
+        
+        return result;
     }
 }

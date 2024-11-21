@@ -18,4 +18,5 @@ tipo 4: el jugador recorre el tablero hasta una casilla
 */
 public interface Event {
     public void executeEvent();
+    public void executeEvent(Jugador j);
 }

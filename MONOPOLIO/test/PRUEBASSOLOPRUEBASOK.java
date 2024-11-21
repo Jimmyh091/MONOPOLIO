@@ -1,4 +1,5 @@
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 
@@ -15,10 +16,16 @@ import java.util.ArrayList;
  */
 public class PRUEBASSOLOPRUEBASOK {
 
-    /**
-     * @param args the command line arguments
-     */
+    public PRUEBASSOLOPRUEBASOK(){
+        InputStream is = getClass().getResourceAsStream("/contenido/cartasComunidad.txt");
+        if (is == null) {
+            System.out.println("Recurso no encontrado");
+        } else {
+            System.out.println("Recurso cargado con éxito");
+        }
+    }
     public static void main(String[] args) {
+        PRUEBASSOLOPRUEBASOK p = new PRUEBASSOLOPRUEBASOK();
         
     }
 }

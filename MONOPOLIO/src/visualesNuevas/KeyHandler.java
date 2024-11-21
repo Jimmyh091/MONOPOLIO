@@ -16,12 +16,9 @@ public class KeyHandler implements KeyListener{
     protected boolean keyPressed;
     private String key;
     
-    private GamePanel gp;
-    
-    public KeyHandler(GamePanel g){
+    public KeyHandler(){
         keyPressed = false;
-        key = "a";
-        gp = g;
+        key = "";
     }
     
     @Override
@@ -40,6 +37,7 @@ public class KeyHandler implements KeyListener{
             case KeyEvent.VK_LEFT, KeyEvent.VK_A -> key = "left";
             case KeyEvent.VK_RIGHT, KeyEvent.VK_D -> key = "right";
             
+            /*
             case KeyEvent.VK_B -> key = "b";
             case KeyEvent.VK_C -> key = "c";
             case KeyEvent.VK_E -> key = "e";
@@ -72,13 +70,14 @@ public class KeyHandler implements KeyListener{
             case KeyEvent.VK_7 -> key = "7";
             case KeyEvent.VK_8 -> key = "8";
             case KeyEvent.VK_9 -> key = "9";
+            */
             
             case KeyEvent.VK_ESCAPE -> key = "escape";
             case KeyEvent.VK_SPACE -> key = "space";
             case KeyEvent.VK_ENTER -> key = "enter";
         }
         
-        gp.keyPressed(key);
+        keyPressed = true;
     }
 
     @Override

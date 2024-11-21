@@ -15,13 +15,13 @@ import java.util.logging.Logger;
  * @author jaime y su soledad
  */
 public class MONOPOLIO {
-
+/*
     private static Scanner sc = new Scanner(System.in);
     
     public static void main(String[] args) {
         /*
         Jugador[] jugadores = crearJugadores();
-        Dado[] dados = crearDados();
+        CuboDados[] dados = crearCuboDadoss();
         
         jugadores = asignarOrden(jugadores, dados);
         
@@ -67,7 +67,7 @@ public class MONOPOLIO {
         
         System.out.println("termino la partida");
 */
-    }
+    }/*
     public static boolean comprobarVictoria(Jugador[] jugadores){
         boolean unJug = false;
         boolean dosJug = false;
@@ -110,18 +110,18 @@ public class MONOPOLIO {
         return casillas;
     }
     
-    public static void turno(Jugador jugador, Dado[] dados){
-        jugador.tirar(dados, 0, 0);
+    public static void turno(Jugador jugador, CuboDados[] dados){
+        jugador.tirar(dados[0], 0, 0);
     }
     
-    public static Jugador[] asignarOrden(Jugador[] jugadores, Dado[] dados){
+    public static Jugador[] asignarOrden(Jugador[] jugadores, CuboDados[] dados){
         int numJug = jugadores.length;
         int[] orden = new int[numJug];
         
         int[] tiradas = new int[numJug];
         
         for (int i = 0; i < numJug; i++) {
-            jugadores[i].tirar(dados, 0, 0);
+            jugadores[i].tirar(dados[0], 0, 0);
             tiradas[i] = jugadores[i].getPosicion();
             orden[i] = i;
             jugadores[i].setPosicion(0);
@@ -203,12 +203,12 @@ public class MONOPOLIO {
         
         return new Jugador(i, nombre);
     }
-    public static Dado[] crearDados(){
-        Dado[] dados = new Dado[2];
+    public static CuboDados[] crearss(){
+        CuboDados[] dados = new CuboDados[2];
         
-        dados[0] = new Dado();
-        dados[1] = new Dado();
+        dados[0] = new CuboDados(0,0);
+        dados[1] = new CuboDados(0,0);
         
         return dados;
-    }
-}
+    }*/
+       

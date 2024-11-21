@@ -4,6 +4,7 @@
  */
 package visualesNuevas;
 
+import elementosVisuales.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GradientPaint;
@@ -42,12 +43,10 @@ public class GamePanel extends JPanel implements Runnable{
     private int selection;
     private int maxSelection;
     
-    private int screenState;    
+    private int screenState;
     private Button[] titleScreenButtons;
     private Button[] gameScreenButtons;
     private ArrayList<Button[]> screenButtons;
-    
-    private Tablero gameboard;
     
     protected GamePanel(){
         
@@ -61,42 +60,17 @@ public class GamePanel extends JPanel implements Runnable{
         this.addKeyListener(kh);
         this.setFocusable(true);
         
-        Jugador[] jugador = crearJugadores();
-        gameboard = new Tablero(jugador, 2, 2, 2, 2);
-        
         
         // BOTONES
-        
         titleScreenButtons = new Button[2];
         gameScreenButtons = new Button[1];
         screenButtons = new ArrayList<>();
-        
-        //int x, int y, int w, int h, String t, int i
-        titleScreenButtons[0] = new Button(500, 10, 100, 40, "Hola", 0, Color.WHITE){
-            
-            @Override
-            protected void event(){
-                System.out.println("s");
-            }
-            
-        };
-        titleScreenButtons[1] = new Button(100, 120, 100, 40, "Hola", 1, Color.WHITE){
-            
-            @Override
-            protected void event(){
-                System.out.println("s");
-            }
-            
-        };
                 
-        gameScreenButtons[0] = new Button(500, 10, 100, 40, "Tirar", 0, Color.WHITE){
-            
-            @Override
-            protected void event(){
-                gameboard.rollDice();
-            }
-            
-        };
+        titleScreenButtons[0] = new Button(500, 10, 100, 40, "Hola", 0, Color.WHITE, null);
+        titleScreenButtons[1] = new Button(100, 120, 100, 40, "Hola", 1, Color.WHITE, null);
+                
+        gameScreenButtons[0] = new Button(500, 10, 100, 40, "Tirar", 0, Color.WHITE, null);
+        
         screenButtons.add(titleScreenButtons);
         screenButtons.add(gameScreenButtons);
         
@@ -131,12 +105,12 @@ public class GamePanel extends JPanel implements Runnable{
             @Override
             public void run(){
                 
-                int numPlayers = gameboard.getJugadores().length;
+                // int numPlayers = gameboard.getJugadores().length;
                 
                 while(gameThread != null){
-                    if (!gameboard.getWin()) {
-                        gameboard.updateTurn();
-                    }
+               //     if (!gameboard.getWin()) {
+               //         gameboard.updateTurn();
+                //    }
                 }
             }
         };
@@ -173,43 +147,28 @@ public class GamePanel extends JPanel implements Runnable{
             }
         }
     }
+    
     public void update(){
         if (kh.keyPressed) {
             
             String key = kh.getKey();
             
             switch(key){
-                case "up":
-                    
+                case "up" -> {
                     if(selection >= maxSelection) selection = 0;
                     else selection++;
-                    
-                    System.out.println("up");
-                    
-                    break;
-                case "down":
-                    
+                }
+                case "down" -> {
                     if (selection <= 0) selection = maxSelection;
                     else selection--;
-                    
-                    System.out.println("down");
-                    
-                    break;
-                case "left": 
-                    
-                    System.out.println("left");
-                    
-                    break;
-                case "right": 
-                    
-                    System.out.println("right");
-                    
-                    break;
-                case "enter": 
-                    
+                }
+                case "left" -> System.out.println("left");
+                case "right" -> System.out.println("right");
+                case "enter" -> {
                     switch(selection){
-                        case 0: System.out.println("enter");
+                        case 0 -> System.out.println("enter");
                     }
+                }
             }
             
             kh.keyPressed = false;
@@ -240,7 +199,7 @@ public class GamePanel extends JPanel implements Runnable{
     
     private void executeAction(){
         switch(selection){
-            case 0: gameboard.rollDice();
+            // case 0: gameboard.rollDice();
         }
     }
     protected void keyPressed(String key){
@@ -254,7 +213,7 @@ public class GamePanel extends JPanel implements Runnable{
         int contador = 0;
         
         try {
-            casillas = new Casilla[((int) Files.lines(Paths.get("src/elementos/contenido/casillas.txt")).count()) - 0];
+            casillas = new Casilla[((int) Files.lines(Paths.get("src/elementos/contenido/casillas.txt")).count()) - 0]; //m paths mal
             
             br = new BufferedReader(new FileReader("src/elementos/contenido/casillas.txt"));
             
@@ -273,7 +232,7 @@ public class GamePanel extends JPanel implements Runnable{
                     int posY = 10;
                     
                     if (clase.equals("1")) casillas[contador] = new Calle(0,0,0,0, titulo, precio, grupo);
-                    else casillas[contador] = new CasillaEspecial(0,0,0,0, titulo, precio, () -> System.out.println("Evento no implementado"));
+                    else casillas[contador] = new CasillaEspecial(0,0,0,0, titulo, precio, null); // pasando null
                     contador++;                    
                 }
             }

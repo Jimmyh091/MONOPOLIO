@@ -6,41 +6,49 @@
 package visualesNuevas;
 
 import java.awt.Color;
+import juego.Event;
+import juego.Jugador;
 
 /**
  *
  * @author EAG
  */
-public class Button {
+public class Button extends VisualElement{
     
-    private MouseHandler mh; // ???
-    
-    private int x;
-    private int y;
-    private int width;
-    private int height;
-    private String text;
     private int id;
-    private boolean hoverActive;
+    private String text;
+    private boolean hover;
     private Color color;
     
-    public Button(int x, int y, int w, int h, String t, int i, Color c){
-        mh = new MouseHandler();
-        this.x = x;
-        this.y = y;
-        width = w;
-        height = h;
+    private Event event;
+    
+    public Button(int x, int y, int w, int h, String t, int i, Color c, Event e){
+        
+        super.setX(x);
+        super.setY(y);
+        super.setWidth(w);
+        super.setHeight(h);
+        
         text = t;
         id = i;
-        hoverActive = false;
+        hover = false;        
         color = c;
+        event = e;
     }
     
-    protected void triggerHover(){
-        hoverActive = !hoverActive;
+    public void activateHover(){
+        hover = true;
+    }
+    
+    public void deactiveHover(){
+        hover = false;
     }
     
     protected void event(){
-        // se declara cuando inicialice el objeto
+        event.executeEvent();
+    }
+    
+    protected void event(Jugador j){
+        event.executeEvent(j);
     }
 }

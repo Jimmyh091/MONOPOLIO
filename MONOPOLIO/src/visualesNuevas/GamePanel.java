@@ -47,8 +47,6 @@ public class GamePanel extends JPanel implements Runnable{
     private Button[] gameScreenButtons;
     private ArrayList<Button[]> screenButtons;
     
-    private Gameboard gameboard;
-    
     protected GamePanel(){
         
         // AJUSTES
@@ -62,7 +60,6 @@ public class GamePanel extends JPanel implements Runnable{
         this.setFocusable(true);
         
         Jugador[] jugador = crearJugadores();
-        gameboard = new Gameboard(2, 2, 2, 2);
         
         
         // BOTONES
@@ -131,7 +128,7 @@ public class GamePanel extends JPanel implements Runnable{
             @Override
             public void run(){
                 
-                //int numPlayers = gameboard.getJugadores().length;
+                // int numPlayers = gameboard.getJugadores().length;
                 
                 while(gameThread != null){
                //     if (!gameboard.getWin()) {
@@ -225,7 +222,7 @@ public class GamePanel extends JPanel implements Runnable{
     
     private void executeAction(){
         switch(selection){
-            //case 0: gameboard.rollDice();
+            // case 0: gameboard.rollDice();
         }
     }
     protected void keyPressed(String key){
@@ -239,7 +236,7 @@ public class GamePanel extends JPanel implements Runnable{
         int contador = 0;
         
         try {
-            casillas = new Casilla[((int) Files.lines(Paths.get("src/elementos/contenido/casillas.txt")).count()) - 0]; // paths mal
+            casillas = new Casilla[((int) Files.lines(Paths.get("src/elementos/contenido/casillas.txt")).count()) - 0]; //m paths mal
             
             br = new BufferedReader(new FileReader("src/elementos/contenido/casillas.txt"));
             

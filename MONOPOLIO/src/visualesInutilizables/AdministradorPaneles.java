@@ -122,9 +122,11 @@ public class AdministradorPaneles extends JPanel implements Runnable{
         this.add(panel, nombrePanel);
         nombrePaneles.add(nombrePanel);
         
+        /*
         if (panel instanceof PantallaPrincipal pantallaPrincipal) pP = pantallaPrincipal;
         else if (panel instanceof PantallaPreparacion pantallaPreparacion) pPr = pantallaPreparacion;
         else if (panel instanceof PantallaJuego pantallaJuego) pJ = pantallaJuego;
+*/
     }
     
     protected void pasarPanel(){

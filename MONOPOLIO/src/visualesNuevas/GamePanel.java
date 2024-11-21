@@ -52,7 +52,7 @@ public class GamePanel extends JPanel implements Runnable{
         
         // AJUSTES
         
-        kh = new KeyHandler(this);
+        kh = new KeyHandler();
         
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.red);

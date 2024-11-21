@@ -1,6 +1,7 @@
 
-import java.io.InputStream;
-import java.util.ArrayList;
+import visualesNuevas.MouseHandler;
+
+
 
 
 
@@ -16,16 +17,19 @@ import java.util.ArrayList;
  */
 public class PRUEBASSOLOPRUEBASOK {
 
+    public MouseHandler mh;
     public PRUEBASSOLOPRUEBASOK(){
-        InputStream is = getClass().getResourceAsStream("/contenido/cartasComunidad.txt");
-        if (is == null) {
-            System.out.println("Recurso no encontrado");
-        } else {
-            System.out.println("Recurso cargado con éxito");
-        }
+        mh = new MouseHandler();
     }
     public static void main(String[] args) {
-        PRUEBASSOLOPRUEBASOK p = new PRUEBASSOLOPRUEBASOK();
+        
+        PRUEBASSOLOPRUEBASOK a = new PRUEBASSOLOPRUEBASOK();
+        System.out.println("s");
+        while(true){
+            if (a.mh.mouseMoved) {
+                System.out.println(a.mh.mousePosition);
+            }
+        }
         
     }
 }

@@ -16,10 +16,10 @@ import java.awt.event.MouseMotionListener;
  */
 public class MouseHandler implements MouseListener, MouseMotionListener{
 
-    private boolean mouseClicked;
-    
-    private Point clickPosition;
-    private Point mousePosition;
+    public boolean mouseClicked;
+    public boolean mouseMoved;
+    public Point clickPosition;
+    public Point mousePosition;
     
     
     @Override
@@ -31,6 +31,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener{
     @Override
     public void mouseMoved(MouseEvent e) {
         mousePosition = e.getLocationOnScreen();
+        mouseMoved = true;
     }
 
     // --- //

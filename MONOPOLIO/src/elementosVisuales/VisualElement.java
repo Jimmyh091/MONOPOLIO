@@ -5,16 +5,21 @@
  */
 package elementosVisuales;
 
+import java.awt.Graphics2D;
+
 /**
  *
  * @author EAG
  */
-public abstract class VisualElement {
+public abstract class VisualElement implements Drawable{
     private int x;
     private int y;
     private int width;
     private int height;
 
+    @Override
+    public abstract void draw(Graphics2D g);
+    
     public int getX() {
         return x;
     }

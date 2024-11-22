@@ -6,6 +6,7 @@
 package elementosVisuales;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 import juego.Event;
 import juego.Jugador;
 
@@ -36,6 +37,11 @@ public class Button extends VisualElement{
         event = e;
     }
     
+    @Override
+    public void draw(Graphics2D g){
+        
+    }
+    
     public void activateHover(){
         hover = true;
     }
@@ -50,5 +56,9 @@ public class Button extends VisualElement{
     
     protected void event(Jugador j){
         event.executeEvent(j);
+    }
+
+    public Color getColor() {
+        return color;
     }
 }

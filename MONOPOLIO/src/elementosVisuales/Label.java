@@ -5,19 +5,30 @@
  */
 package elementosVisuales;
 
+import java.awt.Graphics2D;
+
 /**
  *
  * @author EAG
  */
-public class Text extends VisualElement{
+public class Label extends VisualElement{
     private String text;
     
-    public Text(int x, int y, int w, int h, String t){
+    public Label(int x, int y, int w, int h, String t){
         super.setX(x);
         super.setY(y);
         super.setWidth(w);
         super.setHeight(h);
         
         text = t;
+    }
+
+    @Override
+    public void draw(Graphics2D g){
+        
+    }
+    
+    public String getText() {
+        return text;
     }
 }

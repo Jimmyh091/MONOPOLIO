@@ -22,4 +22,8 @@ public class Image extends VisualElement{
         
         bi = b;
     }
+
+    public BufferedImage getBi() {
+        return bi;
+    }
 }

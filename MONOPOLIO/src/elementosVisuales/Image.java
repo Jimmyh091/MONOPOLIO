@@ -6,13 +6,14 @@
 package elementosVisuales;
 
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 
 /**
  *
  * @author EAG
  */
-public class Image extends VisualElement{
+public class Image extends VisualElement implements Hoverable{
     private final BufferedImage bi;
     
     public Image(int x, int y, int w, int h, BufferedImage b){
@@ -31,5 +32,10 @@ public class Image extends VisualElement{
     
     public BufferedImage getBi() {
         return bi;
+    }
+
+    @Override
+    public boolean mouseIn(Point p) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

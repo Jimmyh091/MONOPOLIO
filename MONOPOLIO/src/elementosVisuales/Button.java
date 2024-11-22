@@ -15,7 +15,7 @@ import juego.Jugador;
  *
  * @author EAG
  */
-public class Button extends VisualElement implements Clickable{
+public class Button extends VisualElement implements Clickable, Hoverable{
     
     private int id;
     private Label text;
@@ -47,35 +47,29 @@ public class Button extends VisualElement implements Clickable{
     }
 
     @Override
-    public Event clicked(Point p) {
+    public boolean clicked(Point p) {
         
         int x = getX();
         int y = getY();
         
-        if (p.x >= x && p.x <= x && p.y >= y && p.y <= y) {
-            return event;
-        }else{
-            return null;            
-        }
+        return p.x >= x && p.x <= x && p.y >= y && p.y <= y;
     }
     
-    public void activateHover(){
-        hover = true;
+    @Override
+    public boolean mouseIn(Point p) {
+        
     }
     
-    public void deactiveHover(){
-        hover = false;
-    }
-    
-    protected void event(){
+    public void executeEvent(){
         event.executeEvent();
     }
     
-    protected void event(Jugador j){
+    protected void executeEvent(Jugador j){
         event.executeEvent(j);
     }
 
     public Color getColor() {
         return color;
     }
+
 }

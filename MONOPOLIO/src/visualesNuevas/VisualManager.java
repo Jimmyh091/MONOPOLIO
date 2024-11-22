@@ -11,7 +11,6 @@ import elementosVisuales.VisualElement;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.ArrayList;
-import juego.Event;
 
 /**
  *
@@ -25,12 +24,13 @@ public class VisualManager {
     public VisualManager(){
         
         scenes = new ArrayList<>();
-        
+        actualScene = 0;
     }
     
     public void addScene(ArrayList<VisualElement> backgrounds, ArrayList<Image> images, ArrayList<Button> buttons, ArrayList<Label> labels){
+        
         scenes.add(new ArrayList[]{backgrounds, images, buttons, labels});
-        actualScene = 0;
+        
     }
     
     public void paintScene(Graphics2D g){
@@ -38,24 +38,26 @@ public class VisualManager {
         ArrayList<VisualElement>[] visualElementsList = scenes.get(actualScene); 
 
         for (int i = 0; i < visualElementsList.length; i++){
-
-            final int switchOpc = i;
             
             ArrayList<VisualElement> elements = visualElementsList[i];
             
-            elements.forEach(element -> element.draw(g));             
+            elements.forEach(element -> element.draw(g));
         }
             
     }
     
-    public void checkClickPosition(Point p){
-        scenes.get(actualScene)[2].forEach(button -> {
-            Event e = ((Button)button).clicked(p);
+    public void checkClickPosition(Point p){ //? no solo los botones tendrian eventos
+        scenes.get(actualScene)[2].forEach(FakeButton -> {
             
-            if (e != null) {
-                e.executeEvent(); //? no se si es vacio o jugador
+            Button button = (Button) FakeButton;
+            
+            if (button.clicked(p)) {
+                button.executeEvent();
             }
-            //? break;
         });
+    }
+
+    void checkHoverPosition(Point mousePosition) {
+        
     }
 }

@@ -118,6 +118,18 @@ public class GamePanel extends JPanel implements Runnable{
             
             Point clickPosition = mh.clickPosition;
             
+            vm.checkClickPosition(clickPosition);
+            
+            mh.mouseClicked = false;
+        }
+        
+        if (mh.mouseMoved) {
+            
+            Point mousePosition = mh.mousePosition;
+            
+            vm.checkHoverPosition(mousePosition);
+            
+            mh.mouseMoved = false;
         }
     }
     

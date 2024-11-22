@@ -5,9 +5,11 @@
 package visualesNuevas;
 
 import elementosVisuales.*;
+import elementosVisuales.Button;
+import elementosVisuales.Image;
+import elementosVisuales.Label;
 
-import java.awt.Graphics2D;
-import java.awt.Point;
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -97,4 +99,39 @@ public class VisualManager {
     }
     */
 
+    private ArrayList<VisualElement>[] addTitleScene(){
+
+        ArrayList<VisualElement> backgrounds = new ArrayList<>();
+        ArrayList<VisualElement> buttons = new ArrayList<>();
+        ArrayList<VisualElement> images = new ArrayList<>();
+        ArrayList<VisualElement> labels = new ArrayList<>();
+
+        backgrounds.add(null);
+
+        buttons.add(new Button(0, 0, 100, 100, "Jugar", "BotonJugar", new Color(0,0,0), ));
+
+        images.add(null);
+
+        labels.add(null);
+
+        return new ArrayList[]{backgrounds, buttons, images, labels};
+    }
+
+    private ArrayList<VisualElement>[] addTitleScen(){
+
+        ArrayList<VisualElement> backgrounds = new ArrayList<>();
+        ArrayList<VisualElement> buttons = new ArrayList<>();
+        ArrayList<VisualElement> images = new ArrayList<>();
+        ArrayList<VisualElement> labels = new ArrayList<>();
+
+        backgrounds.add(null);
+
+        buttons.add(null);
+
+        images.add(null);
+
+        labels.add(null);
+
+        return new ArrayList[]{backgrounds, buttons, images, labels};
+    }
 }

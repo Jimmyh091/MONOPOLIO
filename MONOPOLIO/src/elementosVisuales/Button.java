@@ -23,8 +23,8 @@ public class Button extends VisualElement implements Clickable, Hoverable{
     private Color hoverColor;
     private Event event;
     
-    public Button(int x, int y, int w, int h, String t, String i, Color c, Event e){
-        
+    public Button(String id, int x, int y, int width, int height, String text, Color color, Event event){
+        //t
         super.setX(x);
         super.setY(y);
         super.setWidth(w);

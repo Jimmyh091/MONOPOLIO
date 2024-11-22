@@ -15,13 +15,24 @@ import java.awt.image.BufferedImage;
  */
 public class Image extends VisualElement implements Hoverable{
     private final BufferedImage bi;
-    
-    public Image(int x, int y, int w, int h, BufferedImage b){
+
+    public Image(String id, int x, int y, BufferedImage b){
+        super.setId(id);
+        super.setX(x);
+        super.setY(y);
+        super.setWidth(b.getWidth());
+        super.setHeight(b.getHeight());
+
+        bi = b;
+    }
+
+    public Image(String id, int x, int y, int w, int h, BufferedImage b){
+        super.setId(id);
         super.setX(x);
         super.setY(y);
         super.setWidth(w);
         super.setHeight(h);
-        
+
         bi = b;
     }
     

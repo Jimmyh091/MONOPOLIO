@@ -14,7 +14,8 @@ import java.awt.Graphics2D;
 public class Label extends VisualElement{
     private String text;
     
-    public Label(int x, int y, int w, int h, String t){
+    public Label(String id, int x, int y, int w, int h, String t){
+        super.setId(id);
         super.setX(x);
         super.setY(y);
         super.setWidth(w);

@@ -16,6 +16,7 @@ tipo 2: el dinero del jugador disminuye segun el numero de casas y hoteles
 tipo 3: el jugador se teletransporta a una casilla
 tipo 4: el jugador recorre el tablero hasta una casilla
 */
+@FunctionalInterface
 public interface GameEvent {
     public void executeEvent(Jugador j);
 }

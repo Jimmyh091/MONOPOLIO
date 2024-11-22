@@ -25,16 +25,17 @@ public class Button extends VisualElement implements Clickable, Hoverable{
     
     public Button(String id, int x, int y, int width, int height, String text, Color color, Event event){
         //t
+        super.setId(id);
         super.setX(x);
         super.setY(y);
-        super.setWidth(w);
-        super.setHeight(h);
-        
-        text = new Label(x, y, w, h, t); //t deberia estar en el centro
-        super.setId(i);
-        hover = false;        
-        color = c;
-        event = e;
+        super.setWidth(width);
+        super.setHeight(height);
+
+        this.text = new Label(id, x, y, width, height, text); //t deberia estar en el centro
+        this.color = color;
+        this.event = event;
+
+        hover = false;
     }
     
     @Override

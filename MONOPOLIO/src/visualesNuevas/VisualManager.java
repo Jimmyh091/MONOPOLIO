@@ -26,13 +26,19 @@ public class VisualManager {
         scenes = new ArrayList<>();
         actualScene = 0;
     }
-    
-    public void addScene(ArrayList<VisualElement> backgrounds, ArrayList<Image> images, ArrayList<Button> buttons, ArrayList<Label> labels){
-        
-        scenes.add(new ArrayList[]{backgrounds, images, buttons, labels});
-        
+
+    public void nextScene(){actualScene++;}
+    public void previousScene(){actualScene--;}
+    public void setScene(int scene){
+        actualScene = scene; //t comprobar si hay suficientes escenas
     }
-    
+
+    public void addScene(ArrayList<VisualElement> backgrounds, ArrayList<Image> images, ArrayList<Button> buttons, ArrayList<Label> labels){
+
+        scenes.add(new ArrayList[]{backgrounds, images, buttons, labels});
+
+    }
+
     public void paintScene(Graphics2D g){
         
         ArrayList<VisualElement>[] visualElementsList = scenes.get(actualScene); 
@@ -98,40 +104,4 @@ public class VisualManager {
         }
     }
     */
-
-    private ArrayList<VisualElement>[] addTitleScene(){
-
-        ArrayList<VisualElement> backgrounds = new ArrayList<>();
-        ArrayList<VisualElement> buttons = new ArrayList<>();
-        ArrayList<VisualElement> images = new ArrayList<>();
-        ArrayList<VisualElement> labels = new ArrayList<>();
-
-        backgrounds.add(null);
-
-        buttons.add(new Button(0, 0, 100, 100, "Jugar", "BotonJugar", new Color(0,0,0), ));
-
-        images.add(null);
-
-        labels.add(null);
-
-        return new ArrayList[]{backgrounds, buttons, images, labels};
-    }
-
-    private ArrayList<VisualElement>[] addTitleScen(){
-
-        ArrayList<VisualElement> backgrounds = new ArrayList<>();
-        ArrayList<VisualElement> buttons = new ArrayList<>();
-        ArrayList<VisualElement> images = new ArrayList<>();
-        ArrayList<VisualElement> labels = new ArrayList<>();
-
-        backgrounds.add(null);
-
-        buttons.add(null);
-
-        images.add(null);
-
-        labels.add(null);
-
-        return new ArrayList[]{backgrounds, buttons, images, labels};
-    }
 }

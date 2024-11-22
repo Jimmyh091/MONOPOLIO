@@ -10,6 +10,7 @@ import java.awt.Point;
  *
  * @author jaime
  */
+@FunctionalInterface
 public interface Hoverable {
     public boolean mouseIn(Point p);
 }

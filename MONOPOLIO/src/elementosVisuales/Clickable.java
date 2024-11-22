@@ -10,6 +10,8 @@ import java.awt.Point;
  *
  * @author jaime
  */
+
+@FunctionalInterface
 public interface Clickable {
     public boolean clickIn(Point p);
 }

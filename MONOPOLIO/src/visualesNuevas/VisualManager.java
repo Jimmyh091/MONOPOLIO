@@ -9,7 +9,9 @@ import elementosVisuales.Image;
 import elementosVisuales.Label;
 import elementosVisuales.VisualElement;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.util.ArrayList;
+import juego.Event;
 
 /**
  *
@@ -33,112 +35,27 @@ public class VisualManager {
     
     public void paintScene(Graphics2D g){
         
-        for (int i = 0; i < scenes.size(); i++) {
-            
-            final int switchOpc = i;
-            // type of element = Button, Image...
-            for (ArrayList<VisualElement> visualElementsList : scenes.get(i)) {
-                
-                // every element of the type
-                visualElementsList.forEach(element ->{
-                
-                    switch(switchOpc){
-                        case 0 -> { //? seguro que cambiara porque el fondo no creo que sea siempre una imagen
-                            
-                            Image background = (Image) element;
-                            
-                            g.drawImage(background.getBi(), background.getX(), background.getY(), background.getWidth(), background.getHeight(), null);
-                            
-                        }
-                        
-                        case 1 -> {
-                            
-                            Image background = (Image) element;
-                            
-                            g.drawImage(background.getBi(), background.getX(), background.getY(), background.getWidth(), background.getHeight(), null);
-                            
-                        }
-                        
-                        
-                        case 2 -> {
-                            
-                            Button button = (Button) element;
-                            
-                            g.setColor(button.getColor());
-                            g.drawRect(button.getX(), button.getY(), button.getWidth(), button.getHeight());
-                            
-                        }
-                        
-                        case 3 -> {
-                            
-                            Label text = (Label) element;
-                            
-                            g.drawString(text.getText(), text.getX(), text.getY());
-                            
-                        }
-                        
-                    }
-                
-                });
-                
-            }
-                    
-        };
-            
         ArrayList<VisualElement>[] visualElementsList = scenes.get(actualScene); 
 
         for (int i = 0; i < visualElementsList.length; i++){
 
             final int switchOpc = i;
             
-            // type of element = Button, Image...
-            for (ArrayList<VisualElement> elements : visualElementsList) {
-
-                // every element of the type
-                elements.forEach(element -> {
-
-                    switch(switchOpc){
-                        case 0 -> { //? seguro que cambiara
-
-                            Image background = (Image) element;
-
-                            g.drawImage(background.getBi(), background.getX(), background.getY(), background.getWidth(), background.getHeight(), null);
-
-                        }
-
-                        case 1 -> {
-
-                            Image background = (Image) element;
-
-                            g.drawImage(background.getBi(), background.getX(), background.getY(), background.getWidth(), background.getHeight(), null);
-
-                        }
-
-
-                        case 2 -> {
-
-                            Button button = (Button) element;
-
-                            g.setColor(button.getColor());
-                            g.drawRect(button.getX(), button.getY(), button.getWidth(), button.getHeight());
-
-                        }
-
-                        case 3 -> {
-
-                            Label text = (Label) element;
-
-                            g.drawString(text.getText(), text.getX(), text.getY());
-
-                        }
-
-                    }
-                });
-
-            }                
+            ArrayList<VisualElement> elements = visualElementsList[i];
+            
+            elements.forEach(element -> element.draw(g));             
         }
             
-        };
-        
+    }
     
+    public void checkClickPosition(Point p){
+        scenes.get(actualScene)[2].forEach(button -> {
+            Event e = ((Button)button).clicked(p);
+            
+            if (e != null) {
+                e.executeEvent(); //? no se si es vacio o jugador
+            }
+            //? break;
+        });
+    }
 }

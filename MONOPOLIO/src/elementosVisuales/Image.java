@@ -5,6 +5,7 @@
  */
 package elementosVisuales;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 /**
@@ -22,7 +23,12 @@ public class Image extends VisualElement{
         
         bi = b;
     }
-
+    
+    @Override
+    public void draw(Graphics2D g){
+        g.drawImage(bi, getX(), getY(), getWidth(), getHeight(), null);
+    }
+    
     public BufferedImage getBi() {
         return bi;
     }

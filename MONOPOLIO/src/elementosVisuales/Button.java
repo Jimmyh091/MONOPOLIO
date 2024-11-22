@@ -7,6 +7,7 @@ package elementosVisuales;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import juego.Event;
 import juego.Jugador;
 
@@ -14,10 +15,10 @@ import juego.Jugador;
  *
  * @author EAG
  */
-public class Button extends VisualElement{
+public class Button extends VisualElement implements Clickable{
     
     private int id;
-    private String text;
+    private Label text;
     private boolean hover;
     private Color color;
     
@@ -30,7 +31,7 @@ public class Button extends VisualElement{
         super.setWidth(w);
         super.setHeight(h);
         
-        text = t;
+        text = new Label(x, y, w, h, t); //t deberia estar en el centro
         id = i;
         hover = false;        
         color = c;
@@ -39,7 +40,23 @@ public class Button extends VisualElement{
     
     @Override
     public void draw(Graphics2D g){
+        g.setColor(color);
+        g.drawRect(getX(), getY(), getWidth(), getHeight());
         
+        text.draw(g);
+    }
+
+    @Override
+    public Event clicked(Point p) {
+        
+        int x = getX();
+        int y = getY();
+        
+        if (p.x >= x && p.x <= x && p.y >= y && p.y <= y) {
+            return event;
+        }else{
+            return null;            
+        }
     }
     
     public void activateHover(){

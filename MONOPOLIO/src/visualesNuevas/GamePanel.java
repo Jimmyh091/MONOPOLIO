@@ -8,6 +8,7 @@ package visualesNuevas;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import javax.swing.JPanel;
 
 /**
@@ -16,13 +17,14 @@ import javax.swing.JPanel;
  */
 public class GamePanel extends JPanel implements Runnable{
     
-    private int screenWidth = 1366;
+    private int screenWidth;
     private int screenHeight;
     private final int FPS = 60;
     
     private Thread gameThread;
     private KeyHandler kh;
     private MouseHandler mh;
+    private VisualManager vm;
     
     private int selection;
     private int maxSelection;
@@ -37,6 +39,7 @@ public class GamePanel extends JPanel implements Runnable{
                 
         kh = new KeyHandler();
         mh = new MouseHandler();
+        vm = new VisualManager();
         
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setDoubleBuffered(true);
@@ -109,6 +112,12 @@ public class GamePanel extends JPanel implements Runnable{
             }
             
             kh.keyPressed = false;
+        }
+        
+        if (mh.mouseClicked) {
+            
+            Point clickPosition = mh.clickPosition;
+            
         }
     }
     

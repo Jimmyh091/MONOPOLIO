@@ -25,7 +25,7 @@ public class Label extends VisualElement{
 
     @Override
     public void draw(Graphics2D g){
-        
+        g.drawString(text, getX(), getY());
     }
     
     public String getText() {

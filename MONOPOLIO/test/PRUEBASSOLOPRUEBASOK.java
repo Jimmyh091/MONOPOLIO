@@ -1,4 +1,5 @@
 
+import javax.swing.JFrame;
 import visualesNuevas.MouseHandler;
 
 
@@ -15,16 +16,20 @@ import visualesNuevas.MouseHandler;
  *
  * @author jaime
  */
-public class PRUEBASSOLOPRUEBASOK {
+public class PRUEBASSOLOPRUEBASOK extends JFrame{
 
     public MouseHandler mh;
     public PRUEBASSOLOPRUEBASOK(){
+        
+        this.setBounds(100,100,500,500);
+        this.setVisible(true);
         mh = new MouseHandler();
+        this.addMouseListener(mh);
     }
     public static void main(String[] args) {
         
         PRUEBASSOLOPRUEBASOK a = new PRUEBASSOLOPRUEBASOK();
-        System.out.println("s");
+        
         while(true){
             if (a.mh.mouseMoved) {
                 System.out.println(a.mh.mousePosition);

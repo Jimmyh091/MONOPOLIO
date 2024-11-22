@@ -25,12 +25,14 @@ public class MouseHandler implements MouseListener, MouseMotionListener{
     @Override
     public void mouseClicked(MouseEvent e) {
         clickPosition = e.getLocationOnScreen();
+        System.out.println("CLICKED");
         mouseClicked = true;
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
         mousePosition = e.getLocationOnScreen();
+        System.out.println("MOVING");
         mouseMoved = true;
     }
 

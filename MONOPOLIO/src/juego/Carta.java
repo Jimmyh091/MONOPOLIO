@@ -11,15 +11,15 @@ package juego;
 public class Carta {
     private String titulo;
     private String desc;
-    private Event event;
+    private GameEvent gameEvent;
     
-    public Carta(String t, String d, Event e){
+    public Carta(String t, String d, GameEvent e){
         titulo = t;
         desc = d;
-        event = e;
+        gameEvent = e;
     }
     
     public void executeEvent(){
-        event.executeEvent();
+        gameEvent.executeEvent();
     }
 }

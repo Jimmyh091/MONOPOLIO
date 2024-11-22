@@ -5,12 +5,11 @@
 package elementosVisuales;
 
 import java.awt.Point;
-import juego.Event;
 
 /**
  *
  * @author jaime
  */
 public interface Clickable {
-    public boolean clicked(Point p);
+    public boolean clickIn(Point p);
 }

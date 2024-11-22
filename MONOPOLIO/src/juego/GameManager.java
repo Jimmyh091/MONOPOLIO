@@ -6,7 +6,6 @@
 package juego;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -128,10 +127,10 @@ public class GameManager {
         return contador;
     }
     
-    private Event createEvent(int event, int valor){
+    private GameEvent createEvent(int event, int valor){
         switch(event){
             case 0 -> {
-                return new Event(){
+                return new GameEvent(){
                     
                     @Override
                     public void executeEvent() {
@@ -145,7 +144,7 @@ public class GameManager {
             }
 
             case 1 -> {
-                return new Event(){
+                return new GameEvent(){
                     
                     @Override
                     public void executeEvent() {
@@ -159,7 +158,7 @@ public class GameManager {
             }
 
             case 2 -> { 
-                return new Event(){
+                return new GameEvent(){
                     
                     @Override
                     public void executeEvent() {
@@ -173,7 +172,7 @@ public class GameManager {
             }
 
             case 3 -> { 
-                return new Event(){
+                return new GameEvent(){
                     
                     @Override
                     public void executeEvent() {
@@ -187,7 +186,7 @@ public class GameManager {
             }
 
             case 4 -> { 
-                return new Event(){
+                return new GameEvent(){
                     
                     @Override
                     public void executeEvent() {
@@ -244,7 +243,7 @@ public class GameManager {
 
                     for (int i = 0; i < cantCartas; i++) {                        
                         
-                        Event eventAux = createEvent(event, valor);
+                        GameEvent eventAux = createEvent(event, valor);
                         
                         cards[i] = new Carta(titulo, desc, eventAux);
                         

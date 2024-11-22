@@ -4,10 +4,8 @@
  */
 package visualesNuevas;
 
-import elementosVisuales.Button;
-import elementosVisuales.Image;
-import elementosVisuales.Label;
-import elementosVisuales.VisualElement;
+import elementosVisuales.*;
+
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -46,18 +44,57 @@ public class VisualManager {
             
     }
     
-    public void checkClickPosition(Point p){ //? no solo los botones tendrian eventos
-        scenes.get(actualScene)[2].forEach(FakeButton -> {
+    public void checkClickPosition(Point clickPosition){ //? no solo los botones tendrian eventos
+        scenes.get(actualScene)[2].forEach(button1 -> {
             
-            Button button = (Button) FakeButton;
+            Button button = (Button) button1;
             
-            if (button.clicked(p)) {
+            if (button.clickIn(clickPosition)) {
                 button.executeEvent();
             }
         });
     }
 
-    void checkHoverPosition(Point mousePosition) {
-        
+    void checkHoverPosition(Point mousePosition) { //? puede no ser solo imagenes y botones
+        for (ArrayList<VisualElement> typeElement : scenes.get(actualScene)) {
+
+            if (typeElement.getFirst() instanceof Hoverable) {
+                scenes.get(actualScene)[2].forEach(button1 -> {
+
+                    Button button = (Button) button1;
+
+                    if (button.mouseIn(mousePosition)) {
+                        button.activateHover();
+                    }else{
+                        button.deactivateHover();
+                    }
+                });
+            }
+
+        }
+        scenes.get(actualScene)[2].forEach(button1 -> {
+
+        });
     }
+
+    /* //? tendra sentido
+    private void checkInterfacePosition(Class c){
+        for (ArrayList<VisualElement> typeElement : scenes.get(actualScene)) {
+
+            if (c.isInstance(typeElement.getFirst())) {
+
+                typeElement.forEach(element -> {
+
+                    element.
+
+                    if (element.clickIn(p)) {
+                        button.executeEvent();
+                    }
+                });
+            }
+
+        }
+    }
+    */
+
 }

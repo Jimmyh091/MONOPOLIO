@@ -12,6 +12,8 @@ import java.awt.Graphics2D;
  * @author EAG
  */
 public abstract class VisualElement implements Drawable{
+
+    private String id;
     private int x;
     private int y;
     private int width;
@@ -46,5 +48,12 @@ public abstract class VisualElement implements Drawable{
     }
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
     }
 }

@@ -12,10 +12,10 @@ public class CasillaEspecial extends Casilla{
     
     private String titulo;
     private int valor;
-    private Event evento;
+    private GameEvent evento;
     private int type;
     
-    public CasillaEspecial(int x, int y, int w, int h, String t, int v, Event e){
+    public CasillaEspecial(int x, int y, int w, int h, String t, int v, GameEvent e){
         super(x, y, w, h);
         titulo = t;
         valor = v;
@@ -30,7 +30,7 @@ public class CasillaEspecial extends Casilla{
     
     // GETTERS AND SETTERS //
 
-    public Event getEvento() {
+    public GameEvent getEvento() {
         return evento;
     }
 }

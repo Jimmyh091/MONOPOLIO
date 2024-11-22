@@ -18,7 +18,7 @@ public class Jugador {
     private String nombre;
     private int dinero;
     private int posicion;
-    private boolean[] salirCarcel;
+    private int salirCarcel;
     private int tiempoCarcel;
     private boolean bancarrota;
     
@@ -32,7 +32,7 @@ public class Jugador {
         nombre = n;
         dinero = 1500;
         posicion = 0;
-        salirCarcel = new boolean[]{false, false};
+        salirCarcel = 0;
         tiempoCarcel = 0;
         bancarrota = false;
     }

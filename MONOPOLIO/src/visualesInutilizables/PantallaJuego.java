@@ -40,7 +40,7 @@ public class PantallaJuego extends PanelBase{
         
         
         try {
-            imagenTablero = ImageIO.read(getClass().getResourceAsStream("/elementos/imagenes/tablero.jpg"));
+            imagenTablero = ImageIO.read(getClass().getResourceAsStream("imagenes/tablero.jpg"));
         } catch (IOException ex) {
             Logger.getLogger(PantallaJuego.class.getName()).log(Level.SEVERE, null, ex);
         }

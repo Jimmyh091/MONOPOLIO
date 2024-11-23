@@ -5,11 +5,11 @@
  */
 package juego;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.logging.Level;
@@ -87,7 +87,7 @@ public class GameManager {
         player.setDinero(player.getDinero() + money);
     }
     
-    public void withdrawPlayersMoney(int money){
+    public void withdrawPlayersMoney(int money, Jugador j){
         int playerMoney = money / 4;
         
         for (int i = 0; i < players.length; i++) {
@@ -99,7 +99,7 @@ public class GameManager {
         }
     }
     
-    public void discountMoneyHouses(){
+    public void discountMoneyHouses(Jugador j){
         int discountHousesPrice = 15;
         int discountHotelPrice = 45;
         
@@ -112,14 +112,16 @@ public class GameManager {
     private int countFileLines(String path, char commentCharacter){
         
         int contador = 0;
-        
+
         try {
-            List lineas = Files.readAllLines(Paths.get(path));
+            Path p = Paths.get(getClass().getResource(path).toURI());
+            System.out.println(p != null);
+
+            List lineas = Files.readAllLines(Paths.get(getClass().getResource(path).toURI()));
+            System.out.println(lineas != null);
             contador = (int) lineas.stream()
                 .filter(a -> ((String)a).charAt(0) != commentCharacter)
                 .count();
-
-            System.out.println("Número de líneas: " + contador);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -130,76 +132,26 @@ public class GameManager {
     private GameEvent createEvent(int event, int valor){
         switch(event){
             case 0 -> {
-                return new GameEvent(){
-                    
-                    @Override
-                    public void executeEvent() {
-                        manipulateMoney(valor);
-                    }
-                    
-                    @Override
-                    public void executeEvent(Jugador j) {
-                        
-                    }};
+                return (Jugador j) -> manipulateMoney(valor, j);
             }
 
             case 1 -> {
-                return new GameEvent(){
-                    
-                    @Override
-                    public void executeEvent() {
-                        withdrawPlayersMoney(valor);
-                    }
-                    
-                    @Override
-                    public void executeEvent(Jugador j) {
-                        
-                    }};
+                return (Jugador j) -> withdrawPlayersMoney(valor, j);
             }
 
-            case 2 -> { 
-                return new GameEvent(){
-                    
-                    @Override
-                    public void executeEvent() {
-                        discountMoneyHouses();
-                    }
-                    
-                    @Override
-                    public void executeEvent(Jugador j) {
-                        
-                    }};
+            case 2 -> {
+                return this::discountMoneyHouses;
             }
 
-            case 3 -> { 
-                return new GameEvent(){
-                    
-                    @Override
-                    public void executeEvent() {
-                        
-                    }
-                    
-                    @Override
-                    public void executeEvent(Jugador j) {
-                        gameboard.moveTo(valor, j);
-                    }};
+            case 3 -> {
+                return (Jugador j) -> gameboard.moveTo(valor, j);
             }
 
-            case 4 -> { 
-                return new GameEvent(){
-                    
-                    @Override
-                    public void executeEvent() {
-                        
-                    }
-                    
-                    @Override
-                    public void executeEvent(Jugador j) {
-                        gameboard.jumpTo(valor, j);
-                    }};
+            case 4 -> {
+                return (Jugador j) -> gameboard.jumpTo(valor, j);
             }
 
-            default -> System.out.println("LOG: ERROR.GameManager.createCardDeck().switch");
+            default -> System.out.println("Error");
 
         }
         
@@ -207,18 +159,18 @@ public class GameManager {
     }
     
     protected Carta[] createCardDeck(boolean comunidad){
-        
-        
-        String path = "/src/elementos/contenido/cartas"; // no se si va no lo probe
-        if (comunidad) path += "Comunidad";
-        else path += "Suerte";
+
+        String path = "/contenido/cartas"; // no se si va no lo probe
+        if (comunidad) path += "Comunidad.txt";
+        else path += "Suerte.txt";
         
         Carta[] cards = new Carta[countFileLines(path, '#')];
         
         BufferedReader br = null;
         try {
-            br = new BufferedReader(new FileReader(path));
-        } catch (FileNotFoundException ex) {
+
+            br = new BufferedReader(new FileReader(new File(getClass().getResource(path).toURI())));
+        } catch (FileNotFoundException | URISyntaxException ex) {
             Logger.getLogger(Baraja.class.getName()).log(Level.SEVERE, null, ex);
         }        
         
@@ -241,10 +193,10 @@ public class GameManager {
                     String titulo = (comunidad) ? "COMUNIDAD" : "SUERTE";    
                     
 
-                    for (int i = 0; i < cantCartas; i++) {                        
+                    for (int i = 0; i < cards.length; i++) {
                         
                         GameEvent eventAux = createEvent(event, valor);
-                        
+
                         cards[i] = new Carta(titulo, desc, eventAux);
                         
                     }                    

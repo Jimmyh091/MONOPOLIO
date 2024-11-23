@@ -5,6 +5,10 @@
  */
 package visualesNuevas;
 
+import juego.GameManager;
+import juego.Gameboard;
+import juego.Jugador;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -25,7 +29,8 @@ public class GamePanel extends JPanel implements Runnable{
     private KeyHandler kh;
     private MouseHandler mh;
     private VisualManager vm;
-    
+    private SceneImplementer si;
+
     private int selection;
     private int maxSelection;
     private int screenState;
@@ -40,7 +45,10 @@ public class GamePanel extends JPanel implements Runnable{
         kh = new KeyHandler();
         mh = new MouseHandler();
         vm = new VisualManager();
-        
+        si = new SceneImplementer(new GameManager(new Jugador[]{}), vm);
+
+        si.addTest();
+
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setDoubleBuffered(true);
         this.addKeyListener(kh);

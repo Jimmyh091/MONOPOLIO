@@ -92,9 +92,9 @@ public class MONOPOLIO {
         Casilla[] casillas = null;
         int contador = 0;
         try {
-            casillas = new Casilla[((int) Files.lines(Paths.get("src/elementos/casillas.txt")).count()) - 0];
+            casillas = new Casilla[((int) Files.lines(Paths.get("/elementos/casillas.txt")).count()) - 0];
             
-            leedor = new BufferedReader(new FileReader("src/elementos/casillas.txt"));
+            leedor = new BufferedReader(new FileReader("/elementos/casillas.txt"));
             
             while((linea = leedor.readLine()) != null){
                 String[] datos = linea.split("/");

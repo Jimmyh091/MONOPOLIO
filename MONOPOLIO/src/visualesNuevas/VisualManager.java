@@ -46,8 +46,10 @@ public class VisualManager {
         for (int i = 0; i < visualElementsList.length; i++){
             
             ArrayList<VisualElement> elements = visualElementsList[i];
-            
-            elements.forEach(element -> element.draw(g));
+
+            if (elements != null) elements.forEach(element -> {
+                if (element != null) element.draw(g);
+            });
         }
             
     }

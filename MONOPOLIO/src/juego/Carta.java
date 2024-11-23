@@ -19,7 +19,7 @@ public class Carta {
         gameEvent = e;
     }
     
-    public void executeEvent(){
-        gameEvent.executeEvent();
+    public void executeEvent(Jugador j){
+        gameEvent.executeEvent(j);
     }
 }

@@ -24,7 +24,7 @@ public abstract class Casilla {
         height = h;
     }
     
-    public abstract void interact();
+    public abstract void interact(Jugador j);
     
     public void setJugador(Jugador j){
         jugador = j;

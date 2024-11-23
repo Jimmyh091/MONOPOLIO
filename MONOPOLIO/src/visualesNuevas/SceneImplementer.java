@@ -3,6 +3,7 @@ package visualesNuevas;
 import elementosVisuales.Button;
 import elementosVisuales.Image;
 import elementosVisuales.VisualElement;
+import juego.GameManager;
 import juego.Gameboard;
 import visualesInutilizables.PantallaJuego;
 
@@ -16,14 +17,34 @@ import java.util.logging.Logger;
 
 public class SceneImplementer {
 
-    private Gameboard gameboard;
+    private GameManager gameboard;
     private VisualManager visualManager;
 
-    public SceneImplementer(Gameboard gameboard, VisualManager visualManager) {
+    public SceneImplementer(GameManager gameboard, VisualManager visualManager) {
 
         this.gameboard = gameboard;
         this.visualManager = visualManager;
 
+    }
+
+    public ArrayList<VisualElement>[] addTest(){
+
+        Button botonPrueba = new Button("botonPrueba", 0, 0, 100, 100, "Prueba", new Color(250,250,250), () -> System.out.println("JAIME FUNCIONA QUE COJOES"));
+
+        ArrayList<VisualElement> backgrounds = new ArrayList<>();
+        ArrayList<VisualElement> buttons = new ArrayList<>();
+        ArrayList<VisualElement> images = new ArrayList<>();
+        ArrayList<VisualElement> labels = new ArrayList<>();
+
+        backgrounds.add(null);
+
+        buttons.add(null);
+
+        images.add(null);
+
+        labels.add(null);
+
+        return new ArrayList[]{backgrounds, buttons, images, labels};
     }
 
     private ArrayList<VisualElement>[] addTitleScene(){
@@ -39,7 +60,7 @@ public class SceneImplementer {
 
         BufferedImage imagenTablero = null;
         try {
-            imagenTablero = ImageIO.read(getClass().getResourceAsStream("/elementos/imagenes/tablero.jpg"));
+            imagenTablero = ImageIO.read(getClass().getResourceAsStream("imagenes/tablero.jpg"));
         } catch (IOException ex) {
             Logger.getLogger(PantallaJuego.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -54,16 +75,10 @@ public class SceneImplementer {
     private ArrayList<VisualElement>[] addGameScene(){
 
         // BUTTONS
-        // Button botonJugar = new Button("BotonJugar", 0, 0, 100, 100, "Jugar", new Color(0,0,0), () -> visualManager.nextScene() )
+        Button botonJugar = new Button("BotonJugar", 0, 0, 100, 100, "Jugar", new Color(0,0,0), () -> visualManager.nextScene() );
 
         // IMAGES
-        BufferedImage imagenTablero = null;
-        try {
-            imagenTablero = ImageIO.read(getClass().getResourceAsStream("/elementos/imagenes/tablero.jpg"));
-            new Image("ImagenTablero", 0, 0, imagenTablero);
-        } catch (IOException ex) {
-            Logger.getLogger(PantallaJuego.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Image imagenTablero = new Image("imagenTablero", 0, 0, getImage("/elementos/imagenes/tablero.jpg"));
 
         ArrayList<VisualElement> backgrounds = new ArrayList<>();
         ArrayList<VisualElement> buttons = new ArrayList<>();
@@ -72,9 +87,9 @@ public class SceneImplementer {
 
         backgrounds.add(null);
 
-        buttons.add();
+        buttons.add(botonJugar);
 
-        images.add(new Image("ImagenTablero", 0, 0, imagenTablero));
+        images.add(imagenTablero);
 
         labels.add(null);
 
@@ -83,10 +98,9 @@ public class SceneImplementer {
 
     private BufferedImage getImage(String path){
         try{
-           return ImageIO.read(getClass().getResourceAsStream(path));
+            return ImageIO.read(getClass().getResourceAsStream(path));
         }catch (Exception e){
-
+            return null;
         }
-        return null;
     }
 }

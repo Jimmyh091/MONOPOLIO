@@ -63,11 +63,11 @@ public class PantallaPreparacion extends PanelBase{
         panelesBoton = new JPanel[4];
         
         try {
-            podio = ImageIO.read(getClass().getResourceAsStream("/elementos/imagenes/pantallaPreparacion/podio.jpg"));
-            botonIzquierdaImagen = ImageIO.read(getClass().getResourceAsStream("/elementos/imagenes/pantallaPreparacion/flechaIzquierda.jpg"));
-            botonDerechaImagen = ImageIO.read(getClass().getResourceAsStream("/elementos/imagenes/pantallaPreparacion/flechaIzquierda.jpg"));
-            botonContinuarSinHover = ImageIO.read(getClass().getResourceAsStream("/elementos/imagenes/pantallaPreparacion/botonContinuarSinHover.jpg"));
-            botonContinuarConHover = ImageIO.read(getClass().getResourceAsStream("/elementos/imagenes/pantallaPreparacion/botonContinuarConHover.jpg"));
+            podio = ImageIO.read(getClass().getResourceAsStream("imagenes/pantallaPreparacion/podio.jpg"));
+            botonIzquierdaImagen = ImageIO.read(getClass().getResourceAsStream("imagenes/pantallaPreparacion/flechaIzquierda.jpg"));
+            botonDerechaImagen = ImageIO.read(getClass().getResourceAsStream("imagenes/pantallaPreparacion/flechaIzquierda.jpg"));
+            botonContinuarSinHover = ImageIO.read(getClass().getResourceAsStream("imagenes/pantallaPreparacion/botonContinuarSinHover.jpg"));
+            botonContinuarConHover = ImageIO.read(getClass().getResourceAsStream("imagenes/pantallaPreparacion/botonContinuarConHover.jpg"));
         } catch (IOException ex) {
             Logger.getLogger(PantallaPreparacion.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -76,13 +76,13 @@ public class PantallaPreparacion extends PanelBase{
             // ARREGLAR ABAJO
             //fichas = cogerFichas("elementos/pantallaPreparacion/fichas");
         try {
-            fichas[0] = ImageIO.read(getClass().getResourceAsStream("/elementos/imagenes/pantallaPreparacion/fichas/barco.png"));
-            fichas[1] = ImageIO.read(getClass().getResourceAsStream("/elementos/imagenes/pantallaPreparacion/fichas/bota.png"));
-            fichas[2] = ImageIO.read(getClass().getResourceAsStream("/elementos/imagenes/pantallaPreparacion/fichas/coche.png"));
-            fichas[3] = ImageIO.read(getClass().getResourceAsStream("/elementos/imagenes/pantallaPreparacion/fichas/dedal.png"));
-            fichas[4] = ImageIO.read(getClass().getResourceAsStream("/elementos/imagenes/pantallaPreparacion/fichas/perro.png"));
-            fichas[5] = ImageIO.read(getClass().getResourceAsStream("/elementos/imagenes/pantallaPreparacion/fichas/plancha.png"));
-            fichas[6] = ImageIO.read(getClass().getResourceAsStream("/elementos/imagenes/pantallaPreparacion/fichas/sombrero.png"));
+            fichas[0] = ImageIO.read(getClass().getResourceAsStream("imagenes/pantallaPreparacion/fichas/barco.png"));
+            fichas[1] = ImageIO.read(getClass().getResourceAsStream("imagenes/pantallaPreparacion/fichas/bota.png"));
+            fichas[2] = ImageIO.read(getClass().getResourceAsStream("imagenes/pantallaPreparacion/fichas/coche.png"));
+            fichas[3] = ImageIO.read(getClass().getResourceAsStream("imagenes/pantallaPreparacion/fichas/dedal.png"));
+            fichas[4] = ImageIO.read(getClass().getResourceAsStream("imagenes/pantallaPreparacion/fichas/perro.png"));
+            fichas[5] = ImageIO.read(getClass().getResourceAsStream("imagenes/pantallaPreparacion/fichas/plancha.png"));
+            fichas[6] = ImageIO.read(getClass().getResourceAsStream("imagenes/pantallaPreparacion/fichas/sombrero.png"));
         } catch (IOException ex) {
             Logger.getLogger(PantallaPreparacion.class.getName()).log(Level.SEVERE, null, ex);
         }

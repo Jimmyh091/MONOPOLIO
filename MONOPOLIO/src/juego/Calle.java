@@ -30,7 +30,7 @@ public class Calle extends Casilla{
     }
 
     @Override
-    public void interact() {
+    public void interact(Jugador j) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -1,5 +1,9 @@
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -14,8 +18,31 @@ import java.util.List;
  * @author EAG
  */
 public class Pruebasdlk {
+
+    public Pruebasdlk() {
+
+        boolean comunidad = false;
+
+        String path = "contenido/cartas"; // no se si va no lo probe
+        if (comunidad) path += "Comunidad.txt";
+        else path += "Suerte.txt";
+
+        Path p = null;
+        try {
+            p = Paths.get(getClass().getResource(path).toURI());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println(p != null);
+    }
+
     public static void main(String[] args) {
-        String rutaArchivo = "src/elementos/contenido/cartasComunidad.txt";
+
+        new Pruebasdlk();
+
+        /*
+        String rutaArchivo = "/resources/contenido/cartasComunidad.txt";
         char caracterEspecifico = '#';
 
         try {
@@ -27,6 +54,6 @@ public class Pruebasdlk {
             System.out.println("Número de líneas: " + contador);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }

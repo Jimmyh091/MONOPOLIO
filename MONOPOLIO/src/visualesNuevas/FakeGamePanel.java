@@ -66,10 +66,10 @@ public class FakeGamePanel extends JPanel implements Runnable{
         gameScreenButtons = new Button[1];
         screenButtons = new ArrayList<>();
                 
-        titleScreenButtons[0] = new Button(500, 10, 100, 40, "Hola", "", Color.WHITE, null);
-        titleScreenButtons[1] = new Button(100, 120, 100, 40, "Hola", "", Color.WHITE, null);
+        titleScreenButtons[0] = new Button("button", 10, 100, 40, 0, "Hola",  Color.WHITE, null);
+        titleScreenButtons[1] = new Button("otherbutton", 120, 100, 40, 0, "Hola", Color.WHITE, null);
                 
-        gameScreenButtons[0] = new Button(500, 10, 100, 40, "Tirar", "", Color.WHITE, null);
+        gameScreenButtons[0] = new Button("otherotherbutton", 10, 100, 40, 0, "Tirar", Color.WHITE, null);
         
         screenButtons.add(titleScreenButtons);
         screenButtons.add(gameScreenButtons);
@@ -79,7 +79,7 @@ public class FakeGamePanel extends JPanel implements Runnable{
         
         background = new GradientPaint(0, 0, new Color(100, 255, 100), 0, screenHeight, new Color(200, 255, 200));
         try {
-            gameboardImage = ImageIO.read(getClass().getResourceAsStream("/elementos/imagenes/pantallaJuego/tablero.jpg"));
+            gameboardImage = ImageIO.read(getClass().getResourceAsStream("imagenes/pantallaJuego/tablero.jpg"));
         } catch (IOException ex) {
             Logger.getLogger(FakeGamePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -213,9 +213,9 @@ public class FakeGamePanel extends JPanel implements Runnable{
         int contador = 0;
         
         try {
-            casillas = new Casilla[((int) Files.lines(Paths.get("src/elementos/contenido/casillas.txt")).count()) - 0]; //m paths mal
+            casillas = new Casilla[((int) Files.lines(Paths.get("/elementos/contenido/casillas.txt")).count()) - 0]; //m paths mal
             
-            br = new BufferedReader(new FileReader("src/elementos/contenido/casillas.txt"));
+            br = new BufferedReader(new FileReader("/elementos/contenido/casillas.txt"));
             
             while((linea = br.readLine()) != null){
                 

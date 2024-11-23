@@ -24,8 +24,8 @@ public class CasillaEspecial extends Casilla{
         type = 0;
     }
         
-    public void interact(){
-        evento.executeEvent();
+    public void interact(Jugador j){
+        evento.executeEvent(j);
     }
     
     // GETTERS AND SETTERS //

@@ -9,18 +9,5 @@
  * @author EAG
  */
 public class Prueba2 {
-    
-    Prueba prueba;
-    
-    public Prueba2(Prueba p){
-        prueba = p;
-    }
-    
-    public void a(){
-        System.out.println("a");
-    }
-    
-    public void b(){
-        prueba.a();
-    }
+
 }

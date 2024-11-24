@@ -17,16 +17,14 @@ import java.util.logging.Logger;
 public class SceneImplementer {
 
     private GameManager gameboard;
-    private SceneManager sceneManager;
 
-    public SceneImplementer(GameManager gameboard, SceneManager sceneManager) {
+    public SceneImplementer(GameManager gameboard) {
 
         this.gameboard = gameboard;
-        this.sceneManager = sceneManager;
 
     }
 
-    public ArrayList<VisualElement>[] addTest(){
+    public ArrayList<VisualElement>[] addTest(SceneManager sceneManager) {
 
         Button botonPrueba = new Button("botonPrueba", 0, 0, 100, 100, "Prueba", new Color(250,250,250), () -> System.out.println("JAIME FUNCIONA QUE COJOES"));
 
@@ -46,7 +44,7 @@ public class SceneImplementer {
         return new ArrayList[]{backgrounds, buttons, images, labels};
     }
 
-    private ArrayList<VisualElement>[] addTitleScene(){
+    private ArrayList<VisualElement>[] addTitleScene(SceneManager sceneManager){
 
         ArrayList<VisualElement> backgrounds = new ArrayList<>();
         ArrayList<VisualElement> buttons = new ArrayList<>();
@@ -71,7 +69,7 @@ public class SceneImplementer {
         return new ArrayList[]{backgrounds, buttons, images, labels};
     }
 
-    private ArrayList<VisualElement>[] addGameScene(){
+    private ArrayList<VisualElement>[] addGameScene(SceneManager sceneManager){
 
         // BUTTONS
         Button botonJugar = new Button("BotonJugar", 0, 0, 100, 100, "Jugar", new Color(0,0,0), () -> sceneManager.nextScene() );

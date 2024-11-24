@@ -26,7 +26,7 @@ public class GamePanel extends JPanel implements Runnable{
     private Thread gameThread;
     private KeyHandler kh;
     private MouseHandler mh;
-    private SceneManager vm;
+    private SceneManager sm;
     private SceneImplementer si;
     private GameManager gm;
 
@@ -43,12 +43,11 @@ public class GamePanel extends JPanel implements Runnable{
                 
         kh = new KeyHandler();
         mh = new MouseHandler();
-        vm = new SceneManager();
         gm = new GameManager(null);
-        si = new SceneImplementer(gm, vm);
-        si.addTest();
+        sm = new SceneManager();
+        si = new SceneImplementer(gm);
 
-        si.addTest();
+        si.addTest(sm);
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setDoubleBuffered(true);
@@ -130,7 +129,7 @@ public class GamePanel extends JPanel implements Runnable{
             System.out.println("CLICKED");
 
             Point clickPosition = mh.clickPosition;
-            vm.checkClickPosition(clickPosition);
+            sm.checkClickPosition(clickPosition);
             
             mh.mouseClicked = false;
         }
@@ -141,7 +140,7 @@ public class GamePanel extends JPanel implements Runnable{
 
             Point mousePosition = mh.mousePosition;
             
-            vm.checkHoverPosition(mousePosition);
+            sm.checkHoverPosition(mousePosition);
             
             mh.mouseMoved = false;
         }
@@ -152,7 +151,7 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        vm.paintScene(g2);
+        sm.paintScene(g2);
     }
     
 }

@@ -18,7 +18,8 @@ public class Ventana extends JFrame{
         this.setTitle("MONOPOLIO");
         
         GamePanel gp = new GamePanel(500,500);
-        
+        gp.startGameThread();
+
         this.add(gp);
         
         this.pack();

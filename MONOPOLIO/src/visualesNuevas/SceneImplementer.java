@@ -4,7 +4,6 @@ import elementosVisuales.Button;
 import elementosVisuales.Image;
 import elementosVisuales.VisualElement;
 import juego.GameManager;
-import juego.Gameboard;
 import visualesInutilizables.PantallaJuego;
 
 import javax.imageio.ImageIO;
@@ -18,12 +17,12 @@ import java.util.logging.Logger;
 public class SceneImplementer {
 
     private GameManager gameboard;
-    private VisualManager visualManager;
+    private SceneManager sceneManager;
 
-    public SceneImplementer(GameManager gameboard, VisualManager visualManager) {
+    public SceneImplementer(GameManager gameboard, SceneManager sceneManager) {
 
         this.gameboard = gameboard;
-        this.visualManager = visualManager;
+        this.sceneManager = sceneManager;
 
     }
 
@@ -56,7 +55,7 @@ public class SceneImplementer {
 
         backgrounds.add(null);
 
-        buttons.add(new Button("BotonJugar", 0, 0, 100, 100, "Jugar", new Color(0,0,0), () -> visualManager.nextScene() ));
+        buttons.add(new Button("BotonJugar", 0, 0, 100, 100, "Jugar", new Color(0,0,0), () -> sceneManager.nextScene() ));
 
         BufferedImage imagenTablero = null;
         try {
@@ -75,7 +74,7 @@ public class SceneImplementer {
     private ArrayList<VisualElement>[] addGameScene(){
 
         // BUTTONS
-        Button botonJugar = new Button("BotonJugar", 0, 0, 100, 100, "Jugar", new Color(0,0,0), () -> visualManager.nextScene() );
+        Button botonJugar = new Button("BotonJugar", 0, 0, 100, 100, "Jugar", new Color(0,0,0), () -> sceneManager.nextScene() );
 
         // IMAGES
         Image imagenTablero = new Image("imagenTablero", 0, 0, getImage("/elementos/imagenes/tablero.jpg"));

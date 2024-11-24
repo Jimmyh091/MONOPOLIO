@@ -6,8 +6,6 @@
 package visualesNuevas;
 
 import juego.GameManager;
-import juego.Gameboard;
-import juego.Jugador;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -28,8 +26,9 @@ public class GamePanel extends JPanel implements Runnable{
     private Thread gameThread;
     private KeyHandler kh;
     private MouseHandler mh;
-    private VisualManager vm;
+    private SceneManager vm;
     private SceneImplementer si;
+    private GameManager gm;
 
     private int selection;
     private int maxSelection;
@@ -44,8 +43,10 @@ public class GamePanel extends JPanel implements Runnable{
                 
         kh = new KeyHandler();
         mh = new MouseHandler();
-        vm = new VisualManager();
-        si = new SceneImplementer(new GameManager(new Jugador[]{}), vm);
+        vm = new SceneManager();
+        gm = new GameManager(null);
+        si = new SceneImplementer(gm, vm);
+        si.addTest();
 
         si.addTest();
 
@@ -106,7 +107,7 @@ public class GamePanel extends JPanel implements Runnable{
     
     public void update(){
         if (kh.keyPressed) {
-            
+
             String key = kh.getKey();
             
             switch(key){
@@ -121,18 +122,23 @@ public class GamePanel extends JPanel implements Runnable{
             
             kh.keyPressed = false;
         }
-        
+
+        System.out.println("sdf");
+
         if (mh.mouseClicked) {
-            
+
+            System.out.println("CLICKED");
+
             Point clickPosition = mh.clickPosition;
-            
             vm.checkClickPosition(clickPosition);
             
             mh.mouseClicked = false;
         }
         
         if (mh.mouseMoved) {
-            
+
+            System.out.println("MOVING");
+
             Point mousePosition = mh.mousePosition;
             
             vm.checkHoverPosition(mousePosition);

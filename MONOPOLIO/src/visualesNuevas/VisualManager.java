@@ -10,6 +10,7 @@ public class VisualManager {
     public VisualManager(SceneManager sm, GameManager gm) {
         this.sm = sm;
         si = new SceneImplementer(gm);
+        addTest();
     }
 
     public void addTest(){

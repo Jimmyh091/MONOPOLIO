@@ -23,7 +23,7 @@ public class Button extends VisualElement implements Clickable, Hoverable{
     private Color hoverColor;
     private Event event;
     
-    public Button(String id, int x, int y, int width, int height, String text, Color color, Event event){
+    public Button(String id, int x, int y, int width, int height, String text, Color color, Color hoverColor, Event event){
         //t
         super.setId(id);
         super.setX(x);
@@ -33,6 +33,7 @@ public class Button extends VisualElement implements Clickable, Hoverable{
 
         this.text = new Label(id, x, y, width, height, text); //t deberia estar en el centro
         this.color = color;
+        this.hoverColor = hoverColor;
         this.event = event;
 
         hover = false;

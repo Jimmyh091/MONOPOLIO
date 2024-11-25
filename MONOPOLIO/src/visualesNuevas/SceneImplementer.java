@@ -26,16 +26,16 @@ public class SceneImplementer {
 
     public ArrayList<VisualElement>[] addTest(SceneManager sceneManager) {
 
-        Button botonPrueba = new Button("botonPrueba", 0, 0, 100, 100, "Prueba", new Color(20,20,200), () -> System.out.println("JAIME FUNCIONA QUE COJOES"));
+        Button botonPrueba = new Button("botonPrueba", 0, 0, 100, 100, "Prueba", new Color(20,20,200), new Color(0,0,0), () -> System.out.println("JAIME FUNCIONA QUE COJOES"));
 
         ArrayList<VisualElement> backgrounds = new ArrayList<>();
         ArrayList<VisualElement> buttons = new ArrayList<>();
         ArrayList<VisualElement> images = new ArrayList<>();
         ArrayList<VisualElement> labels = new ArrayList<>();
 
-        backgrounds.add(botonPrueba);
+        backgrounds.add(null);
 
-        buttons.add(null);
+        buttons.add(botonPrueba);
 
         images.add(null);
 
@@ -53,7 +53,7 @@ public class SceneImplementer {
 
         backgrounds.add(null);
 
-        buttons.add(new Button("BotonJugar", 0, 0, 100, 100, "Jugar", new Color(0,0,0), () -> sceneManager.setScene("pantallaPrincipal") ));
+        buttons.add(new Button("BotonJugar", 0, 0, 100, 100, "Jugar", new Color(0,0,0), new Color(0,0,0), () -> sceneManager.setScene("pantallaPrincipal") ));
 
         BufferedImage imagenTablero = null;
         try {
@@ -72,7 +72,7 @@ public class SceneImplementer {
     private ArrayList<VisualElement>[] addGameScene(SceneManager sceneManager){
 
         // BUTTONS
-        Button botonJugar = new Button("BotonJugar", 0, 0, 100, 100, "Jugar", new Color(0,0,0), () -> sceneManager.setScene("pantallaPrincipal") );
+        Button botonJugar = new Button("BotonJugar", 0, 0, 100, 100, "Jugar", new Color(0,0,0), new Color(20,20,20), () -> sceneManager.setScene("pantallaPrincipal") );
 
         // IMAGES
         Image imagenTablero = new Image("imagenTablero", 0, 0, getImage("/elementos/imagenes/tablero.jpg"));

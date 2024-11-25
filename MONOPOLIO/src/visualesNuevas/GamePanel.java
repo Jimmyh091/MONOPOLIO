@@ -22,7 +22,8 @@ public class GamePanel extends JPanel implements Runnable{
     private int screenWidth;
     private int screenHeight;
     private final int FPS = 60;
-    
+    private boolean debugMode;
+
     private Thread gameThread;
     private KeyHandler kh;
     private MouseHandler mh;
@@ -34,13 +35,14 @@ public class GamePanel extends JPanel implements Runnable{
     private int maxSelection;
     private int screenState;
     
-    public GamePanel(int sw, int sh){
+    public GamePanel(int sw, int sh, boolean debugMode){
         
         // SETTINGS
         
         screenWidth = sw;
         screenHeight = sh;
-                
+        debugMode = debugMode;
+
         kh = new KeyHandler();
         mh = new MouseHandler();
         gm = new GameManager(null);
@@ -94,9 +96,9 @@ public class GamePanel extends JPanel implements Runnable{
             }
 
             if (cronometer >= 1000000000) {
+                if (debugMode) System.out.println("FPS: " + drawCount);
                 drawCount = 0;
                 cronometer = 0;
-                System.out.println("FPS: " + drawCount);
             }
         }
         
@@ -122,7 +124,7 @@ public class GamePanel extends JPanel implements Runnable{
 
         if (mh.mouseClicked) {
 
-            System.out.println("CLICKED");
+            System.out.println("Click en: " + mh.clickPosition.x + ", " + mh.clickPosition.y);
 
             Point clickPosition = mh.clickPosition;
             sm.checkClickPosition(clickPosition);
@@ -132,7 +134,7 @@ public class GamePanel extends JPanel implements Runnable{
         
         if (mh.mouseMoved) {
 
-            System.out.println("MOVING");
+            System.out.println("Raton en: " + mh.mousePosition.x + ", " + mh.mousePosition.y);
 
             Point mousePosition = mh.mousePosition;
             

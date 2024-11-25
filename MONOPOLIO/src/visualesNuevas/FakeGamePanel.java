@@ -66,10 +66,10 @@ public class FakeGamePanel extends JPanel implements Runnable{
         gameScreenButtons = new Button[1];
         screenButtons = new ArrayList<>();
                 
-        titleScreenButtons[0] = new Button("button", 10, 100, 40, 0, "Hola",  Color.WHITE, null);
-        titleScreenButtons[1] = new Button("otherbutton", 120, 100, 40, 0, "Hola", Color.WHITE, null);
+        titleScreenButtons[0] = new Button("button", 10, 100, 40, 0, "Hola",  Color.WHITE, Color.BLACK, null);
+        titleScreenButtons[1] = new Button("otherbutton", 120, 100, 40, 0, "Hola", Color.WHITE, Color.BLACK, null);
                 
-        gameScreenButtons[0] = new Button("otherotherbutton", 10, 100, 40, 0, "Tirar", Color.WHITE, null);
+        gameScreenButtons[0] = new Button("otherotherbutton", 10, 100, 40, 0, "Tirar", Color.WHITE, Color.BLACK, null);
         
         screenButtons.add(titleScreenButtons);
         screenButtons.add(gameScreenButtons);

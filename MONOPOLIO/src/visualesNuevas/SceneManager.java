@@ -44,6 +44,7 @@ public class SceneManager {
     public void addScene(String nombre, ArrayList<VisualElement>[] scene){
 
         scenes.put(nombre, scene);
+        actualScene = nombre;
 
     }
 
@@ -90,14 +91,20 @@ public class SceneManager {
             for (ArrayList<VisualElement> typeElement : scenes.get(actualScene)) {
 
                 if (typeElement.get(0) instanceof Hoverable) {
+                    System.out.println("Hoverable");
                     scenes.get(actualScene)[2].forEach(button1 -> {
 
                         Button button = (Button) button1;
+                        if (button != null){
 
-                        if (button.mouseIn(mousePosition)) {
-                            button.activateHover();
+                            if (button.mouseIn(mousePosition)) {
+                                button.activateHover();
+                            }else{
+                                button.deactivateHover();
+                            }
+
                         }else{
-                            button.deactivateHover();
+                            System.out.println("LOG.ERROR.SceneManager.checkHoverPosition");
                         }
                     });
                 }

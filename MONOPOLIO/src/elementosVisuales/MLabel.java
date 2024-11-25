@@ -5,28 +5,35 @@
  */
 package elementosVisuales;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 
 /**
  *
  * @author EAG
  */
-public class Label extends VisualElement{
+public class MLabel extends VisualElement{ //a ABANDONADA
+
     private String text;
-    
-    public Label(String id, int x, int y, int w, int h, String t){
+    private Color color;
+    private Font font;
+    private Color background;
+
+    public MLabel(String id, int x, int y, String t){
         super.setId(id);
         super.setX(x);
         super.setY(y);
-        super.setWidth(w);
-        super.setHeight(h);
         
         text = t;
+
+        font = new Font("Arial", Font.BOLD, 24);
     }
 
     @Override
     public void draw(Graphics2D g){
+        g.setColor(color);
+        g.setFont(font);
         g.drawString(text, getX(), getY());
+
     }
     
     public String getText() {

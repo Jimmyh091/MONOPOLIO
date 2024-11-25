@@ -5,21 +5,16 @@
  */
 package elementosVisuales;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.image.BufferedImage;
-
-import juego.GameEvent;
-import juego.Jugador;
 
 /**
  *
  * @author Jaime
  */
-public class Button extends VisualElement implements Clickable, Hoverable{
+public class MButton extends VisualElement implements Clickable, Hoverable{
 
-    private Label text;
+    private MLabel text;
     private boolean hover;
     private Color color;
     private Color hoverColor;
@@ -27,7 +22,7 @@ public class Button extends VisualElement implements Clickable, Hoverable{
     private BufferedImage hoverImage;
     private Event event;
 
-    public Button(String id, int x, int y, int width, int height, String text, Color color, Color hoverColor, Event event){
+    public MButton(String id, int x, int y, int width, int height, String text, Color color, Color hoverColor, Event event){
         //t
         super.setId(id);
         super.setX(x);
@@ -35,7 +30,7 @@ public class Button extends VisualElement implements Clickable, Hoverable{
         super.setWidth(width);
         super.setHeight(height);
 
-        this.text = new Label(id, x, y, width, height, text); //t deberia estar en el centro
+        this.text = new MLabel(id, x, y, text); //t deberia estar en el centro
         this.color = color;
         this.hoverColor = hoverColor;
         this.image = null;
@@ -45,15 +40,15 @@ public class Button extends VisualElement implements Clickable, Hoverable{
         hover = false;
     }
 
-    public Button(String id, int x, int y, int width, int height, String text, BufferedImage image, BufferedImage hoverImage, Event event){
+    public MButton(String id, int x, int y, int weight, int height, String text, BufferedImage image, BufferedImage hoverImage, Event event){
         //t
         super.setId(id);
         super.setX(x);
         super.setY(y);
-        super.setWidth(width);
+        super.setWidth(weight);
         super.setHeight(height);
 
-        this.text = new Label(id, x, y, width, height, text); //t deberia estar en el centro
+        this.text = new MLabel(id, x, y, text); //t deberia estar en el centro
         this.color = null;
         this.hoverColor = null;
         this.image = image;
@@ -69,9 +64,7 @@ public class Button extends VisualElement implements Clickable, Hoverable{
         if (image == null){
 
             g.setColor(color);
-            g.drawRect(getX(), getY(), getWidth(), getHeight());
-
-            g.drawLine(getX(), getY(), getX() + getWidth(), getY() + getHeight());
+            g.fill(new Rectangle(getX(), getY(), getWidth(), getHeight()));
 
         }else{
             if (!hover){

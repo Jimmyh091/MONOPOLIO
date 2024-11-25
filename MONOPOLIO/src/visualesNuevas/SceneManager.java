@@ -5,9 +5,7 @@
 package visualesNuevas;
 
 import elementosVisuales.*;
-import elementosVisuales.Button;
-import elementosVisuales.Image;
-import elementosVisuales.Label;
+import elementosVisuales.MButton;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -73,7 +71,7 @@ public class SceneManager {
 
                 scenes.get(actualScene)[2].forEach(button1 -> {
 
-                    Button button = (Button) button1;
+                    MButton button = (MButton) button1;
 
                     if (button.clickIn(clickPosition)) {
                         button.executeEvent();
@@ -94,7 +92,7 @@ public class SceneManager {
 
                     scenes.get(actualScene)[2].forEach(button1 -> {
 
-                        Button button = (Button) button1;
+                        MButton button = (MButton) button1;
                         if (button != null){
 
                             if (button.mouseIn(mousePosition)) {

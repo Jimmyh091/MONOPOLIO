@@ -13,10 +13,10 @@ import java.awt.image.BufferedImage;
  *
  * @author EAG
  */
-public class Image extends VisualElement implements Hoverable{
+public class MImage extends VisualElement implements Hoverable{
     private final BufferedImage bi;
 
-    public Image(String id, int x, int y, BufferedImage b){
+    public MImage(String id, int x, int y, BufferedImage b){
         super.setId(id);
         super.setX(x);
         super.setY(y);
@@ -26,7 +26,7 @@ public class Image extends VisualElement implements Hoverable{
         bi = b;
     }
 
-    public Image(String id, int x, int y, int w, int h, BufferedImage b){
+    public MImage(String id, int x, int y, int w, int h, BufferedImage b){
         super.setId(id);
         super.setX(x);
         super.setY(y);

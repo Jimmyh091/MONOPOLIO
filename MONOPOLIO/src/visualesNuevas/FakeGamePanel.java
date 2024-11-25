@@ -4,7 +4,7 @@
  */
 package visualesNuevas;
 
-import elementosVisuales.Button;
+import elementosVisuales.MButton;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GradientPaint;
@@ -27,7 +27,7 @@ import juego.*;
  *
  * @author jaime
  */
-public class FakeGamePanel extends JPanel implements Runnable{
+public class FakeGamePanel extends JPanel implements Runnable{ //a ABANDONADA
     
     private final int screenWidth = 1366;
     private final int screenHeight = 768;
@@ -44,9 +44,9 @@ public class FakeGamePanel extends JPanel implements Runnable{
     private int maxSelection;
     
     private int screenState;
-    private Button[] titleScreenButtons;
-    private Button[] gameScreenButtons;
-    private ArrayList<Button[]> screenButtons;
+    private MButton[] titleScreenButtons;
+    private MButton[] gameScreenButtons;
+    private ArrayList<MButton[]> screenButtons;
     
     protected FakeGamePanel(){
         
@@ -62,14 +62,14 @@ public class FakeGamePanel extends JPanel implements Runnable{
         
         
         // BOTONES
-        titleScreenButtons = new Button[2];
-        gameScreenButtons = new Button[1];
+        titleScreenButtons = new MButton[2];
+        gameScreenButtons = new MButton[1];
         screenButtons = new ArrayList<>();
                 
-        titleScreenButtons[0] = new Button("button", 10, 100, 40, 0, "Hola",  Color.WHITE, Color.BLACK, null);
-        titleScreenButtons[1] = new Button("otherbutton", 120, 100, 40, 0, "Hola", Color.WHITE, Color.BLACK, null);
+        titleScreenButtons[0] = new MButton("button", 10, 100, 40, 0, "Hola",  Color.WHITE, Color.BLACK, null);
+        titleScreenButtons[1] = new MButton("otherbutton", 120, 100, 40, 0, "Hola", Color.WHITE, Color.BLACK, null);
                 
-        gameScreenButtons[0] = new Button("otherotherbutton", 10, 100, 40, 0, "Tirar", Color.WHITE, Color.BLACK, null);
+        gameScreenButtons[0] = new MButton("otherotherbutton", 10, 100, 40, 0, "Tirar", Color.WHITE, Color.BLACK, null);
         
         screenButtons.add(titleScreenButtons);
         screenButtons.add(gameScreenButtons);

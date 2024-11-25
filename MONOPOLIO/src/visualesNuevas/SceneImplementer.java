@@ -41,7 +41,7 @@ public class SceneImplementer {
 
         labels.add(null);
 
-        return new ArrayList[]{backgrounds, buttons, images, labels};
+        return new ArrayList[]{backgrounds, images, buttons, labels};
     }
 
     private ArrayList<VisualElement>[] addTitleScene(SceneManager sceneManager){
@@ -66,7 +66,7 @@ public class SceneImplementer {
 
         labels.add(null);
 
-        return new ArrayList[]{backgrounds, buttons, images, labels};
+        return new ArrayList[]{backgrounds, images, buttons, labels};
     }
 
     private ArrayList<VisualElement>[] addGameScene(SceneManager sceneManager){
@@ -90,7 +90,7 @@ public class SceneImplementer {
 
         labels.add(null);
 
-        return new ArrayList[]{backgrounds, buttons, images, labels};
+        return new ArrayList[]{backgrounds, images, buttons, labels};
     }
 
     private BufferedImage getImage(String path){

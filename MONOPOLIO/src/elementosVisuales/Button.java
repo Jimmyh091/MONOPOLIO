@@ -43,7 +43,9 @@ public class Button extends VisualElement implements Clickable, Hoverable{
     public void draw(Graphics2D g){
         g.setColor(color);
         g.drawRect(getX(), getY(), getWidth(), getHeight());
-        
+
+        g.drawLine(getX(), getY(), getX() + getWidth(), getY() + getHeight());
+
         text.draw(g);
     }
 
@@ -60,8 +62,10 @@ public class Button extends VisualElement implements Clickable, Hoverable{
     private boolean pointIn(Point p){
         int x = getX();
         int y = getY();
+        int w = getWidth();
+        int h = getHeight();
 
-        return p.x >= x && p.x <= x && p.y >= y && p.y <= y;
+        return p.x >= x && p.x <= x + w && p.y >= y && p.y <= y + h;
     }
 
     public void executeEvent(){

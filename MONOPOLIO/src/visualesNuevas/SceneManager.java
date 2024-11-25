@@ -91,7 +91,7 @@ public class SceneManager {
             for (ArrayList<VisualElement> typeElement : scenes.get(actualScene)) {
 
                 if (typeElement.get(0) instanceof Hoverable) {
-                    System.out.println("Hoverable");
+
                     scenes.get(actualScene)[2].forEach(button1 -> {
 
                         Button button = (Button) button1;

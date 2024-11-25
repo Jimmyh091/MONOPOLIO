@@ -74,9 +74,12 @@ public class Button extends VisualElement implements Clickable, Hoverable{
             g.drawLine(getX(), getY(), getX() + getWidth(), getY() + getHeight());
 
         }else{
-            g.drawImage(image, getX(), getY(), getWidth(), getHeight(), null);
+            if (!hover){
+                g.drawImage(image, getX(), getY(), getWidth(), getHeight(), null);
+            }else{
+                g.drawImage(hoverImage, getX(), getY(), getWidth(), getHeight(), null);
+            }
         }
-
 
         text.draw(g);
     }

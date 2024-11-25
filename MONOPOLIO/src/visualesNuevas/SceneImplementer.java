@@ -27,6 +27,9 @@ public class SceneImplementer {
     public ArrayList<VisualElement>[] addTest(SceneManager sceneManager) {
 
         Button botonPrueba = new Button("botonPrueba", 0, 0, 100, 100, "Prueba", new Color(20,20,200), new Color(0,0,0), () -> System.out.println("JAIME FUNCIONA QUE COJONES"));
+        Button botonPrueba2 = new Button("botonPrueba2", 100, 500, 500, 200, "Pruebilla", getImage("/imagenes/test/botonPrueba.png"), getImage("/imagenes/test/botonPruebaHover.jpg"), () -> System.out.println("hola"));
+
+        // --- //
 
         ArrayList<VisualElement> backgrounds = new ArrayList<>();
         ArrayList<VisualElement> buttons = new ArrayList<>();
@@ -36,6 +39,7 @@ public class SceneImplementer {
         backgrounds.add(null);
 
         buttons.add(botonPrueba);
+        buttons.add(botonPrueba2);
 
         images.add(null);
 
@@ -57,7 +61,7 @@ public class SceneImplementer {
 
         BufferedImage imagenTablero = null;
         try {
-            imagenTablero = ImageIO.read(getClass().getResourceAsStream("imagenes/tablero.jpg"));
+            imagenTablero = ImageIO.read(getClass().getResourceAsStream("/imagenes/tablero.jpg"));
         } catch (IOException ex) {
             Logger.getLogger(PantallaJuego.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -94,7 +98,7 @@ public class SceneImplementer {
     }
 
     private BufferedImage getImage(String path){
-        try{
+       try{
             return ImageIO.read(getClass().getResourceAsStream(path));
         }catch (Exception e){
             return null;

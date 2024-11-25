@@ -45,9 +45,9 @@ public class PantallaPrincipal extends PanelBase{
         anchoVentana = super.getAncho();
         
         try {
-            imagenTitulo = ImageIO.read(getClass().getResourceAsStream("imagenes/pantallaPrincipal/titulo.png"));
-            imagenBotonSinHover = ImageIO.read(getClass().getResourceAsStream("imagenes/pantallaPrincipal/boton.jpg"));
-            imagenBotonConHover = ImageIO.read(getClass().getResourceAsStream("imagenes/pantallaPrincipal/botonHover.jpg"));
+            imagenTitulo = ImageIO.read(getClass().getResourceAsStream("/imagenes/pantallaPrincipal/titulo.png"));
+            imagenBotonSinHover = ImageIO.read(getClass().getResourceAsStream("/imagenes/pantallaPrincipal/boton.jpg"));
+            imagenBotonConHover = ImageIO.read(getClass().getResourceAsStream("/imagenes/pantallaPrincipal/botonHover.jpg"));
         } catch (IOException ex) {
             Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }

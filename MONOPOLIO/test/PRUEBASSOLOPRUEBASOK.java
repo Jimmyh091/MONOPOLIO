@@ -31,9 +31,12 @@ public class PRUEBASSOLOPRUEBASOK extends JFrame{
         PRUEBASSOLOPRUEBASOK a = new PRUEBASSOLOPRUEBASOK();
         
         while(true){
+            /*
             if (a.mh.mouseMoved) {
                 System.out.println(a.mh.mousePosition);
             }
+
+             */
         }
         
     }

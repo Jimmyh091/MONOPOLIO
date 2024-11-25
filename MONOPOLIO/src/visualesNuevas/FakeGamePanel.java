@@ -79,7 +79,7 @@ public class FakeGamePanel extends JPanel implements Runnable{
         
         background = new GradientPaint(0, 0, new Color(100, 255, 100), 0, screenHeight, new Color(200, 255, 200));
         try {
-            gameboardImage = ImageIO.read(getClass().getResourceAsStream("imagenes/pantallaJuego/tablero.jpg"));
+            gameboardImage = ImageIO.read(getClass().getResourceAsStream("/imagenes/pantallaJuego/tablero.jpg"));
         } catch (IOException ex) {
             Logger.getLogger(FakeGamePanel.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -121,16 +121,18 @@ public class GamePanel extends JPanel implements Runnable{
         }
 
         if (clickRecieved) {
-
-            System.out.println("Click en: " + clickPosition.x + ", " + clickPosition.y);
+            if (debugMode){
+                System.out.println("Click en: " + clickPosition.x + ", " + clickPosition.y);
+            }
             sm.checkClickPosition(clickPosition);
             
             clickRecieved = false;
         }
         
         if (mouseMovedRecieved) {
-
-            System.out.println("Raton en: " + mousePosition.x + ", " + mousePosition.y);
+            if (debugMode) {
+                System.out.println("Raton en: " + mousePosition.x + ", " + mousePosition.y);
+            }
             sm.checkHoverPosition(mousePosition);
             
             mouseMovedRecieved = false;

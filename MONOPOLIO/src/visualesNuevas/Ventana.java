@@ -17,7 +17,7 @@ public class Ventana extends JFrame{
         this.setResizable(true);
         this.setTitle("MONOPOLIO");
         
-        GamePanel gp = new GamePanel(500,500);
+        GamePanel gp = new GamePanel(1024,768);
         gp.startGameThread();
 
         this.add(gp);

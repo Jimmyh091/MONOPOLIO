@@ -41,9 +41,9 @@ public class SceneManager {
         actualScene = nombre; //t comprobar si hay suficientes escenas
     }
 
-    public void addScene(String nombre, ArrayList<VisualElement> backgrounds, ArrayList<Image> images, ArrayList<Button> buttons, ArrayList<Label> labels){
+    public void addScene(String nombre, ArrayList<VisualElement>[] scene){
 
-        scenes.put(nombre, new ArrayList[]{backgrounds, images, buttons, labels});
+        scenes.put(nombre, scene);
 
     }
 
@@ -51,48 +51,60 @@ public class SceneManager {
         
         ArrayList<VisualElement>[] visualElementsList = scenes.get(actualScene); 
 
-        for (int i = 0; i < visualElementsList.length; i++){
-            
-            ArrayList<VisualElement> elements = visualElementsList[i];
+        if (visualElementsList != null){
 
-            if (elements != null) elements.forEach(element -> {
-                if (element != null) element.draw(g);
-            });
-        }
-            
-    }
-    
-    public void checkClickPosition(Point clickPosition){ //? no solo los botones tendrian eventos
-        scenes.get(actualScene)[2].forEach(button1 -> {
-            
-            Button button = (Button) button1;
-            
-            if (button.clickIn(clickPosition)) {
-                button.executeEvent();
-            }
-        });
-    }
+            for (int i = 0; i < visualElementsList.length; i++){
 
-    void checkHoverPosition(Point mousePosition) { //? puede no ser solo imagenes y botones
-        for (ArrayList<VisualElement> typeElement : scenes.get(actualScene)) {
+                ArrayList<VisualElement> elements = visualElementsList[i];
 
-            if (typeElement.get(0) instanceof Hoverable) {
-                scenes.get(actualScene)[2].forEach(button1 -> {
-
-                    Button button = (Button) button1;
-
-                    if (button.mouseIn(mousePosition)) {
-                        button.activateHover();
-                    }else{
-                        button.deactivateHover();
-                    }
+                if (elements != null) elements.forEach(element -> {
+                    if (element != null) element.draw(g);
                 });
             }
 
         }
-        scenes.get(actualScene)[2].forEach(button1 -> {
+    }
+    
+    public void checkClickPosition(Point clickPosition){ //? no solo los botones tendrian eventos
+        if (scenes.get(actualScene) != null){
 
-        });
+            if (scenes.get(actualScene)[2].get(0) != null){
+
+                scenes.get(actualScene)[2].forEach(button1 -> {
+
+                    Button button = (Button) button1;
+
+                    if (button.clickIn(clickPosition)) {
+                        button.executeEvent();
+                    }
+                });
+
+            }
+
+        }
+    }
+
+    void checkHoverPosition(Point mousePosition) { //? puede no ser solo imagenes y botones
+        if (scenes.get(actualScene) != null) {
+
+            for (ArrayList<VisualElement> typeElement : scenes.get(actualScene)) {
+
+                if (typeElement.get(0) instanceof Hoverable) {
+                    scenes.get(actualScene)[2].forEach(button1 -> {
+
+                        Button button = (Button) button1;
+
+                        if (button.mouseIn(mousePosition)) {
+                            button.activateHover();
+                        }else{
+                            button.deactivateHover();
+                        }
+                    });
+                }
+
+            }
+
+        }
     }
 
     /* //? tendra sentido

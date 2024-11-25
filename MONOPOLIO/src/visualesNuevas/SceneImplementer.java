@@ -26,14 +26,14 @@ public class SceneImplementer {
 
     public ArrayList<VisualElement>[] addTest(SceneManager sceneManager) {
 
-        Button botonPrueba = new Button("botonPrueba", 0, 0, 100, 100, "Prueba", new Color(250,250,250), () -> System.out.println("JAIME FUNCIONA QUE COJOES"));
+        Button botonPrueba = new Button("botonPrueba", 0, 0, 100, 100, "Prueba", new Color(20,20,200), () -> System.out.println("JAIME FUNCIONA QUE COJOES"));
 
         ArrayList<VisualElement> backgrounds = new ArrayList<>();
         ArrayList<VisualElement> buttons = new ArrayList<>();
         ArrayList<VisualElement> images = new ArrayList<>();
         ArrayList<VisualElement> labels = new ArrayList<>();
 
-        backgrounds.add(null);
+        backgrounds.add(botonPrueba);
 
         buttons.add(null);
 

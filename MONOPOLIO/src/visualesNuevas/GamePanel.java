@@ -26,9 +26,9 @@ public class GamePanel extends JPanel implements Runnable{
     private Thread gameThread;
     private KeyHandler kh;
     private MouseHandler mh;
-    private SceneManager sm;
-    private SceneImplementer si;
+    private VisualManager vm;
     private GameManager gm;
+    private SceneManager sm;
 
     private int selection;
     private int maxSelection;
@@ -45,9 +45,7 @@ public class GamePanel extends JPanel implements Runnable{
         mh = new MouseHandler();
         gm = new GameManager(null);
         sm = new SceneManager();
-        si = new SceneImplementer(gm);
-
-        si.addTest(sm);
+        vm = new VisualManager(sm, gm);
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setDoubleBuffered(true);
@@ -94,7 +92,7 @@ public class GamePanel extends JPanel implements Runnable{
                 delta--;
                 drawCount++;                
             }
-            
+
             if (cronometer >= 1000000000) {
                 drawCount = 0;
                 cronometer = 0;
@@ -121,8 +119,6 @@ public class GamePanel extends JPanel implements Runnable{
             
             kh.keyPressed = false;
         }
-
-        System.out.println("sdf");
 
         if (mh.mouseClicked) {
 

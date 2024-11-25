@@ -30,7 +30,7 @@ public class SceneManager {
 
     public SceneManager(ArrayList<VisualElement>[] scene){
 
-        scenes = new ArrayList<>();
+        scenes = new ArrayList<>(); //t convert to hashmap
         scenes.add(scene);
         actualScene = 0;
 

@@ -53,7 +53,7 @@ public class SceneImplementer {
 
         backgrounds.add(null);
 
-        buttons.add(new Button("BotonJugar", 0, 0, 100, 100, "Jugar", new Color(0,0,0), () -> sceneManager.nextScene() ));
+        buttons.add(new Button("BotonJugar", 0, 0, 100, 100, "Jugar", new Color(0,0,0), () -> sceneManager.setScene("pantallaPrincipal") ));
 
         BufferedImage imagenTablero = null;
         try {
@@ -72,7 +72,7 @@ public class SceneImplementer {
     private ArrayList<VisualElement>[] addGameScene(SceneManager sceneManager){
 
         // BUTTONS
-        Button botonJugar = new Button("BotonJugar", 0, 0, 100, 100, "Jugar", new Color(0,0,0), () -> sceneManager.nextScene() );
+        Button botonJugar = new Button("BotonJugar", 0, 0, 100, 100, "Jugar", new Color(0,0,0), () -> sceneManager.setScene("pantallaPrincipal") );
 
         // IMAGES
         Image imagenTablero = new Image("imagenTablero", 0, 0, getImage("/elementos/imagenes/tablero.jpg"));

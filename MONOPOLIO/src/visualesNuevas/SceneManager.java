@@ -11,6 +11,7 @@ import elementosVisuales.Label;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -18,33 +19,31 @@ import java.util.ArrayList;
  */
 public class SceneManager {
     
-    private ArrayList<ArrayList<VisualElement>[]> scenes;
-    private int actualScene;
+    private HashMap<String, ArrayList<VisualElement>[]> scenes;
+    private String actualScene;
 
-    public SceneManager(){
+    public SceneManager(){ //? creo que nunca se va a usar
 
-        scenes = new ArrayList<>();
-        actualScene = 0;
-
-    }
-
-    public SceneManager(ArrayList<VisualElement>[] scene){
-
-        scenes = new ArrayList<>(); //t convert to hashmap
-        scenes.add(scene);
-        actualScene = 0;
+        scenes = new HashMap<>();
+        actualScene = "";
 
     }
 
-    public void nextScene(){actualScene++;}
-    public void previousScene(){actualScene--;}
-    public void setScene(int scene){
-        actualScene = scene; //t comprobar si hay suficientes escenas
+    public SceneManager(String nombre, ArrayList<VisualElement>[] scene){
+
+        scenes = new HashMap<>(); //t convert to hashmap
+        scenes.put(nombre, scene);
+        actualScene = nombre;
+
     }
 
-    public void addScene(ArrayList<VisualElement> backgrounds, ArrayList<Image> images, ArrayList<Button> buttons, ArrayList<Label> labels){
+    public void setScene(String nombre){
+        actualScene = nombre; //t comprobar si hay suficientes escenas
+    }
 
-        scenes.add(new ArrayList[]{backgrounds, images, buttons, labels});
+    public void addScene(String nombre, ArrayList<VisualElement> backgrounds, ArrayList<Image> images, ArrayList<Button> buttons, ArrayList<Label> labels){
+
+        scenes.put(nombre, new ArrayList[]{backgrounds, images, buttons, labels});
 
     }
 
@@ -77,7 +76,7 @@ public class SceneManager {
     void checkHoverPosition(Point mousePosition) { //? puede no ser solo imagenes y botones
         for (ArrayList<VisualElement> typeElement : scenes.get(actualScene)) {
 
-            if (typeElement.getFirst() instanceof Hoverable) {
+            if (typeElement.get(0) instanceof Hoverable) {
                 scenes.get(actualScene)[2].forEach(button1 -> {
 
                     Button button = (Button) button1;

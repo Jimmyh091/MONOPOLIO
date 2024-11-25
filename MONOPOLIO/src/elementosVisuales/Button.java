@@ -8,12 +8,14 @@ package elementosVisuales;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+
 import juego.GameEvent;
 import juego.Jugador;
 
 /**
  *
- * @author EAG
+ * @author Jaime
  */
 public class Button extends VisualElement implements Clickable, Hoverable{
 
@@ -21,8 +23,10 @@ public class Button extends VisualElement implements Clickable, Hoverable{
     private boolean hover;
     private Color color;
     private Color hoverColor;
+    private BufferedImage image;
+    private BufferedImage hoverImage;
     private Event event;
-    
+
     public Button(String id, int x, int y, int width, int height, String text, Color color, Color hoverColor, Event event){
         //t
         super.setId(id);
@@ -34,17 +38,45 @@ public class Button extends VisualElement implements Clickable, Hoverable{
         this.text = new Label(id, x, y, width, height, text); //t deberia estar en el centro
         this.color = color;
         this.hoverColor = hoverColor;
+        this.image = null;
+        this.hoverImage = null;
         this.event = event;
 
         hover = false;
     }
-    
+
+    public Button(String id, int x, int y, int width, int height, String text, BufferedImage image, BufferedImage hoverImage, Event event){
+        //t
+        super.setId(id);
+        super.setX(x);
+        super.setY(y);
+        super.setWidth(width);
+        super.setHeight(height);
+
+        this.text = new Label(id, x, y, width, height, text); //t deberia estar en el centro
+        this.color = null;
+        this.hoverColor = null;
+        this.image = image;
+        this.hoverImage = hoverImage;
+        this.event = event;
+
+        hover = false;
+    }
+
     @Override
     public void draw(Graphics2D g){
-        g.setColor(color);
-        g.drawRect(getX(), getY(), getWidth(), getHeight());
 
-        g.drawLine(getX(), getY(), getX() + getWidth(), getY() + getHeight());
+        if (image == null){
+
+            g.setColor(color);
+            g.drawRect(getX(), getY(), getWidth(), getHeight());
+
+            g.drawLine(getX(), getY(), getX() + getWidth(), getY() + getHeight());
+
+        }else{
+            g.drawImage(image, getX(), getY(), getWidth(), getHeight(), null);
+        }
+
 
         text.draw(g);
     }

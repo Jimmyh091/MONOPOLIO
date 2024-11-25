@@ -28,7 +28,6 @@ public class Ventana extends JFrame{
         gp.startGameThread();
 
         this.add(gp);
-        
         this.pack();
         
         //this.setLocationRelativeTo(null);

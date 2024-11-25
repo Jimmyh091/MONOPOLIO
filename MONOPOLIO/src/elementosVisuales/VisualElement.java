@@ -19,6 +19,14 @@ public abstract class VisualElement implements Drawable{
     private int width;
     private int height;
 
+    public VisualElement(String id, int x, int y, int width, int height){
+        this.id = id;
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+
     @Override
     public abstract void draw(Graphics2D g);
     

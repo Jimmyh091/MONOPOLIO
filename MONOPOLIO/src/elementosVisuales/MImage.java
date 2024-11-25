@@ -17,22 +17,12 @@ public class MImage extends VisualElement implements Hoverable{
     private final BufferedImage bi;
 
     public MImage(String id, int x, int y, BufferedImage b){
-        super.setId(id);
-        super.setX(x);
-        super.setY(y);
-        super.setWidth(b.getWidth());
-        super.setHeight(b.getHeight());
-
+        super(id, x, y, b.getWidth(), b.getHeight());
         bi = b;
     }
 
     public MImage(String id, int x, int y, int w, int h, BufferedImage b){
-        super.setId(id);
-        super.setX(x);
-        super.setY(y);
-        super.setWidth(w);
-        super.setHeight(h);
-
+        super(id, x, y, w, h);
         bi = b;
     }
     

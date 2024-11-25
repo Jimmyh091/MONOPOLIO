@@ -24,11 +24,7 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
 
     public MButton(String id, int x, int y, int width, int height, String text, Color color, Color hoverColor, Event event){
         //t
-        super.setId(id);
-        super.setX(x);
-        super.setY(y);
-        super.setWidth(width);
-        super.setHeight(height);
+        super(id, x, y, width, height);
 
         this.text = new MLabel(id, x, y, text); //t deberia estar en el centro
         this.color = color;
@@ -42,11 +38,7 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
 
     public MButton(String id, int x, int y, int weight, int height, String text, BufferedImage image, BufferedImage hoverImage, Event event){
         //t
-        super.setId(id);
-        super.setX(x);
-        super.setY(y);
-        super.setWidth(weight);
-        super.setHeight(height);
+        super(id, x, y, weight, height);
 
         this.text = new MLabel(id, x, y, text); //t deberia estar en el centro
         this.color = null;

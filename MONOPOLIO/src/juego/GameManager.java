@@ -115,10 +115,8 @@ public class GameManager {
 
         try {
             Path p = Paths.get(getClass().getResource(path).toURI());
-            System.out.println(p != null);
 
             List lineas = Files.readAllLines(Paths.get(getClass().getResource(path).toURI()));
-            System.out.println(lineas != null);
             contador = (int) lineas.stream()
                 .filter(a -> ((String)a).charAt(0) != commentCharacter)
                 .count();

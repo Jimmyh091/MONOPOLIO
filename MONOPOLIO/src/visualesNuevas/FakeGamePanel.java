@@ -52,7 +52,7 @@ public class FakeGamePanel extends JPanel implements Runnable{
         
         // AJUSTES
         
-        kh = new KeyHandler();
+        //kh = new KeyHandler();
         
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.red);
@@ -149,6 +149,7 @@ public class FakeGamePanel extends JPanel implements Runnable{
     }
     
     public void update(){
+        /*
         if (kh.keyPressed) {
             
             String key = kh.getKey();
@@ -173,6 +174,8 @@ public class FakeGamePanel extends JPanel implements Runnable{
             
             kh.keyPressed = false;
         }
+
+         */
     }
     @Override
     public void paintComponent(Graphics g){

@@ -23,13 +23,18 @@ public class GamePanel extends JPanel implements Runnable{
     private int screenHeight;
     private final int FPS = 60;
     private boolean debugMode;
+    private boolean keyPressed;
+    private boolean clickRecieved;
+    private boolean mouseMovedRecieved;
+    private String key;
+    private Point clickPosition;
+    private Point mousePosition;
 
-    private Thread gameThread;
-    private KeyHandler kh;
-    private MouseHandler mh;
     private VisualManager vm;
-    private GameManager gm;
     private SceneManager sm;
+    
+    private Thread gameThread;
+    private GameManager gm;
 
     private int selection;
     private int maxSelection;
@@ -41,19 +46,14 @@ public class GamePanel extends JPanel implements Runnable{
         
         screenWidth = sw;
         screenHeight = sh;
-        debugMode = debugMode;
+        this.debugMode = debugMode;
 
-        kh = new KeyHandler();
-        mh = new MouseHandler();
         gm = new GameManager(null);
         sm = new SceneManager();
         vm = new VisualManager(sm, gm);
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setDoubleBuffered(true);
-        this.addKeyListener(kh);
-        this.addMouseListener(mh);
-        this.addMouseMotionListener(mh);
         this.setFocusable(true);
         
         
@@ -105,10 +105,8 @@ public class GamePanel extends JPanel implements Runnable{
     }
     
     public void update(){
-        if (kh.keyPressed) {
+        if (keyPressed) {
 
-            String key = kh.getKey();
-            
             switch(key){
                 case "up" -> System.out.println("No implementado");
                 case "down" -> System.out.println("No implementado");
@@ -119,28 +117,23 @@ public class GamePanel extends JPanel implements Runnable{
                 case "escape" -> System.out.println("No implementado");
             }
             
-            kh.keyPressed = false;
+            keyPressed = false;
         }
 
-        if (mh.mouseClicked) {
+        if (clickRecieved) {
 
-            System.out.println("Click en: " + mh.clickPosition.x + ", " + mh.clickPosition.y);
-
-            Point clickPosition = mh.clickPosition;
+            System.out.println("Click en: " + clickPosition.x + ", " + clickPosition.y);
             sm.checkClickPosition(clickPosition);
             
-            mh.mouseClicked = false;
+            clickRecieved = false;
         }
         
-        if (mh.mouseMoved) {
+        if (mouseMovedRecieved) {
 
-            System.out.println("Raton en: " + mh.mousePosition.x + ", " + mh.mousePosition.y);
-
-            Point mousePosition = mh.mousePosition;
-            
+            System.out.println("Raton en: " + mousePosition.x + ", " + mousePosition.y);
             sm.checkHoverPosition(mousePosition);
             
-            mh.mouseMoved = false;
+            mouseMovedRecieved = false;
         }
     }
     
@@ -153,5 +146,19 @@ public class GamePanel extends JPanel implements Runnable{
 
         g.dispose(); //? no se si tendria que usarlo
     }
-    
+
+    public synchronized void getKey(String key){
+        this.key = key;
+        keyPressed = true;
+    }
+
+    public synchronized void getClick(Point p){
+        clickPosition = p;
+        clickRecieved = true;
+    }
+
+    public synchronized void getMousePosition(Point p){
+        mousePosition = p;
+        mouseMovedRecieved = true;
+    }
 }

@@ -150,8 +150,7 @@ public class PantallaPreparacion extends PanelBase{
         while(URLImagenes.hasMoreElements()){
             URL url = URLImagenes.nextElement();
             File directorio = null;
-            
-            System.out.println(url.getProtocol());
+
             try {
                 directorio = new File(url.toURI());
             } catch (URISyntaxException ex) {

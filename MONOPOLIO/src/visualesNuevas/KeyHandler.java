@@ -13,23 +13,23 @@ import java.awt.event.KeyListener;
  */
 public class KeyHandler implements KeyListener{
 
-    protected boolean keyPressed;
-    private String key;
-    
-    public KeyHandler(){
-        keyPressed = false;
-        key = "";
+    private GamePanel gamePanel;
+
+    public KeyHandler(GamePanel gamePanel){
+        this.gamePanel = gamePanel;
     }
     
     @Override
     public void keyTyped(KeyEvent e) {
+
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         
         int code = e.getKeyCode();
-        
+        String key = "";
+
         switch (code) {
             
             case KeyEvent.VK_UP, KeyEvent.VK_W -> key = "up";
@@ -77,15 +77,12 @@ public class KeyHandler implements KeyListener{
             case KeyEvent.VK_ENTER -> key = "enter";
         }
         
-        keyPressed = true;
+        gamePanel.getKey(key);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         
     }
-    
-    protected String getKey(){
-        return key;
-    }
+
 }

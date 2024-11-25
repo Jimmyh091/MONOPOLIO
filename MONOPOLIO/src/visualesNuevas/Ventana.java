@@ -18,6 +18,14 @@ public class Ventana extends JFrame{
         this.setTitle("MONOPOLIO");
         
         GamePanel gp = new GamePanel(1024,768, true);
+
+        KeyHandler kh = new KeyHandler(gp);
+        MouseHandler mh = new MouseHandler(gp);
+
+        gp.addKeyListener(kh);
+        gp.addMouseListener(mh);
+        gp.addMouseMotionListener(mh);
+
         gp.startGameThread();
 
         this.add(gp);
@@ -25,6 +33,7 @@ public class Ventana extends JFrame{
         this.pack();
         
         //this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setVisible(true);
     }
     

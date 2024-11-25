@@ -16,17 +16,17 @@ import java.util.logging.Logger;
 
 public class SceneImplementer {
 
-    private GameManager gameboard;
+    private GameManager gameManager;
 
-    public SceneImplementer(GameManager gameboard) {
+    public SceneImplementer(GameManager gameManager) {
 
-        this.gameboard = gameboard;
+        this.gameManager = gameManager;
 
     }
 
     public ArrayList<VisualElement>[] addTest(SceneManager sceneManager) {
 
-        Button botonPrueba = new Button("botonPrueba", 0, 0, 100, 100, "Prueba", new Color(20,20,200), new Color(0,0,0), () -> System.out.println("JAIME FUNCIONA QUE COJOES"));
+        Button botonPrueba = new Button("botonPrueba", 0, 0, 100, 100, "Prueba", new Color(20,20,200), new Color(0,0,0), () -> System.out.println("JAIME FUNCIONA QUE COJONES"));
 
         ArrayList<VisualElement> backgrounds = new ArrayList<>();
         ArrayList<VisualElement> buttons = new ArrayList<>();

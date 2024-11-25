@@ -23,7 +23,7 @@ public class PRUEBASSOLOPRUEBASOK extends JFrame{
         
         this.setBounds(100,100,500,500);
         this.setVisible(true);
-        mh = new MouseHandler();
+        //mh = new MouseHandler();
         this.addMouseListener(mh);
     }
     public static void main(String[] args) {

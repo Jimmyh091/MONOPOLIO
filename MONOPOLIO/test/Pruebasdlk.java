@@ -34,7 +34,6 @@ public class Pruebasdlk {
             throw new RuntimeException(e);
         }
 
-        System.out.println(p != null);
     }
 
     public static void main(String[] args) {

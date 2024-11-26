@@ -12,6 +12,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,7 +21,7 @@ import java.util.logging.Logger;
  *
  * @author EAG
  */
-public class GameManager {
+public class GameManager extends Observable {
     
     private Jugador[] players;
     private Casilla[] squares;
@@ -52,7 +54,10 @@ public class GameManager {
     
     public void updateTurn(){        
         if (turn == players.length - 1) turn = 0;        
-        activePlayer = turn;        
+        activePlayer = turn;
+
+        setChanged();
+        notifyObservers();
     }
     
     public void rollDice(){

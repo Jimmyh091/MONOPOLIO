@@ -9,10 +9,16 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SceneImplementer {
+public class SceneImplementer implements Observer {
+    @Override
+    public void update(Observable o, Object arg) {
+
+    }
 
     private GameManager gameManager;
 

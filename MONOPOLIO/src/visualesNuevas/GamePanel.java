@@ -19,8 +19,8 @@ import javax.swing.JPanel;
  */
 public class GamePanel extends JPanel implements Runnable{
     
-    private int screenWidth;
-    private int screenHeight;
+    public static int SCREEN_WIDTH = 800;
+    public static int SCREEN_HEIGHT = 600;
     private final int FPS = 60;
     private boolean debugMode;
     private boolean keyPressed;
@@ -40,19 +40,16 @@ public class GamePanel extends JPanel implements Runnable{
     private int maxSelection;
     private int screenState;
     
-    public GamePanel(int sw, int sh, boolean debugMode){
+    public GamePanel(boolean debugMode){
         
         // SETTINGS
-        
-        screenWidth = sw;
-        screenHeight = sh;
         this.debugMode = debugMode;
 
         gm = new GameManager(null);
         sm = new SceneManager();
         vm = new VisualManager(sm, gm);
 
-        this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         

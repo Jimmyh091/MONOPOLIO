@@ -22,25 +22,12 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
     private BufferedImage hoverImage;
     private Event event;
 
-    public MButton(String id, int x, int y, int width, int height, String text, Color color, Color hoverColor, Event event){
-        //t
-        super(id, x, y, width, height);
 
-        this.text = new MLabel(id, x, y, text); //t deberia estar en el centro
-        this.color = color;
-        this.hoverColor = hoverColor;
-        this.image = null;
-        this.hoverImage = null;
-        this.event = event;
-
-        hover = false;
-    }
-
-    public MButton(String id, int x, int y, int weight, int height, String text, BufferedImage image, BufferedImage hoverImage, Event event){
+    public MButton(String id, int x, int y, int weight, int height, BufferedImage image, BufferedImage hoverImage, Event event){
         //t
         super(id, x, y, weight, height);
 
-        this.text = new MLabel(id, x, y, text); //t deberia estar en el centro
+        this.text = null;
         this.color = null;
         this.hoverColor = null;
         this.image = image;
@@ -50,23 +37,50 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
         hover = false;
     }
 
+    public MButton(String id, int x, int y, int width, int height, String text, int size, Color color, Color hoverColor, Event event){ // nunca lo usare si no fuera en debug y para el debug ya tengo el de abajo
+        //t
+        super(id, x, y, width, height);
+
+        this.text = new MLabel(id, x, y, text, size); //t deberia estar en el centro
+        this.color = color;
+        this.hoverColor = hoverColor;
+        this.image = null;
+        this.hoverImage = null;
+        this.event = event;
+
+        hover = false;
+    }
+
+    public MButton(String id, int x, int y, int width, int height, String text, int size, Color color, Event event){
+        //t
+        super(id, x, y, width, height);
+
+        this.text = new MLabel(id, x + width / 2 - text.length(), y + height / 2 - size / 2, text, size); //t deberia estar en el centro
+        this.color = color;
+        this.hoverColor = color;
+        this.image = null;
+        this.hoverImage = null;
+        this.event = event;
+
+        hover = false;
+    }
+
+
     @Override
     public void draw(Graphics2D g){
+        if (image != null){
 
-        if (image == null){
-
-            g.setColor(color);
-            g.fill(new Rectangle(getX(), getY(), getWidth(), getHeight()));
-
-        }else{
             if (!hover){
                 g.drawImage(image, getX(), getY(), getWidth(), getHeight(), null);
             }else{
                 g.drawImage(hoverImage, getX(), getY(), getWidth(), getHeight(), null);
             }
+
+        }else{
+            g.drawRect(getX(), getY(), getWidth(), getHeight());
+            text.draw(g);
         }
 
-        text.draw(g);
     }
 
     @Override

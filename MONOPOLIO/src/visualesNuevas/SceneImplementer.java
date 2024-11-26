@@ -1,9 +1,6 @@
 package visualesNuevas;
 
-import elementosVisuales.MButton;
-import elementosVisuales.MImage;
-import elementosVisuales.MLabel;
-import elementosVisuales.VisualElement;
+import elementosVisuales.*;
 import juego.GameManager;
 import visualesInutilizables.PantallaJuego;
 
@@ -27,10 +24,12 @@ public class SceneImplementer {
 
     public ArrayList<VisualElement>[] addTest(SceneManager sceneManager) {
 
-        MLabel labelPrueba = new MLabel("prueba", 0, 10, "SOY UNA PRUEBAAA");
+        MBackground fondoPrueba = new MBackground("fond", new GradientPaint(0, 0, new Color(100, 255, 100), 0, GamePanel.SCREEN_HEIGHT, new Color(200, 255, 200)));
 
-        MButton botonPrueba = new MButton("botonPrueba", 0, 0, 100, 100, "Prueba", new Color(20,20,200), new Color(0,0,0), () -> System.out.println("JAIME FUNCIONA QUE COJONES"));
-        MButton botonPrueba2 = new MButton("botonPrueba2", 100, 500, 500, 200, "Pruebilla", getImage("/imagenes/test/botonPrueba.png"), getImage("/imagenes/test/botonPruebaHover.jpg"), () -> System.out.println("hola"));
+        MLabel labelPrueba = new MLabel("prueba", 0, 30, "SOY UNA PRUEBAAA", 30);
+
+        MButton botonPrueba = new MButton("botonPrueba", 0, 0, 100, 100, "Prueba", 16, new Color(20,20,200), new Color(0,0,0), () -> System.out.println("JAIME FUNCIONA QUE COJONES"));
+        MButton botonPrueba2 = new MButton("botonPrueba2", 100, 500, 500, 200, getImage("/imagenes/test/botonPrueba.png"), getImage("/imagenes/test/botonPruebaHover.jpg"), () -> System.out.println("hola"));
 
         // --- //
 
@@ -39,7 +38,7 @@ public class SceneImplementer {
         ArrayList<VisualElement> images = new ArrayList<>();
         ArrayList<VisualElement> labels = new ArrayList<>();
 
-        backgrounds.add(null);
+        backgrounds.add(fondoPrueba);
 
         buttons.add(botonPrueba);
         buttons.add(botonPrueba2);
@@ -60,7 +59,7 @@ public class SceneImplementer {
 
         backgrounds.add(null);
 
-        buttons.add(new MButton("BotonJugar", 0, 0, 100, 100, "Jugar", new Color(0,0,0), new Color(0,0,0), () -> sceneManager.setScene("pantallaPrincipal") ));
+        buttons.add(new MButton("BotonJugar", 0, 0, 100, 100, "Jugar", 20, new Color(0,0,0), new Color(0,0,0), () -> sceneManager.setScene("pantallaPrincipal") ));
 
         BufferedImage imagenTablero = null;
         try {
@@ -79,7 +78,7 @@ public class SceneImplementer {
     private ArrayList<VisualElement>[] addGameScene(SceneManager sceneManager){
 
         // BUTTONS
-        MButton botonJugar = new MButton("BotonJugar", 0, 0, 100, 100, "Jugar", new Color(0,0,0), new Color(20,20,20), () -> sceneManager.setScene("pantallaPrincipal") );
+        MButton botonJugar = new MButton("BotonJugar", 0, 0, 100, 100, "Jugar", 20, new Color(0,0,0), new Color(20,20,20), () -> sceneManager.setScene("pantallaPrincipal") );
 
         // IMAGES
         MImage imagenTablero = new MImage("imagenTablero", 0, 0, getImage("/elementos/imagenes/tablero.jpg"));

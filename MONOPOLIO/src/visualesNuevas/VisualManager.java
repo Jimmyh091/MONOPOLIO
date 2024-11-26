@@ -10,7 +10,7 @@ public class VisualManager {
     public VisualManager(SceneManager sm, GameManager gm) {
         this.sm = sm;
         si = new SceneImplementer(gm);
-        addTest();
+        addGameScene();
     }
 
     public void addTest(){
@@ -19,5 +19,9 @@ public class VisualManager {
 
     public void addTitleScene(){
         sm.addScene("test", si.addTest(sm));
+    }
+
+    public void addGameScene(){
+        sm.addScene("game", si.addGameScene(sm));
     }
 }

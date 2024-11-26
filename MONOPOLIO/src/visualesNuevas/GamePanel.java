@@ -7,11 +7,8 @@ package visualesNuevas;
 
 import juego.GameManager;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import javax.swing.JPanel;
+import java.awt.*;
+import javax.swing.*;
 
 /**
  *
@@ -19,8 +16,8 @@ import javax.swing.JPanel;
  */
 public class GamePanel extends JPanel implements Runnable{
     
-    public static int SCREEN_WIDTH = 800;
-    public static int SCREEN_HEIGHT = 600;
+    public static int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
+    public static int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
     private final int FPS = 60;
     public static boolean DEBUG_MODE = false;
     private boolean keyPressed;

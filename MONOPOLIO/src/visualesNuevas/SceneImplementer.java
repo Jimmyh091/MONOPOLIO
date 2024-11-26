@@ -38,7 +38,7 @@ public class SceneImplementer {
         ArrayList<VisualElement> images = new ArrayList<>();
         ArrayList<VisualElement> labels = new ArrayList<>();
 
-        backgrounds.add(fondoPrueba);
+        backgrounds.add(null);
 
         buttons.add(botonPrueba);
         buttons.add(botonPrueba2);
@@ -50,7 +50,7 @@ public class SceneImplementer {
         return new ArrayList[]{backgrounds, images, buttons, labels};
     }
 
-    private ArrayList<VisualElement>[] addTitleScene(SceneManager sceneManager){
+    public ArrayList<VisualElement>[] addTitleScene(SceneManager sceneManager){
 
         ArrayList<VisualElement> backgrounds = new ArrayList<>();
         ArrayList<VisualElement> buttons = new ArrayList<>();
@@ -75,13 +75,21 @@ public class SceneImplementer {
         return new ArrayList[]{backgrounds, images, buttons, labels};
     }
 
-    private ArrayList<VisualElement>[] addGameScene(SceneManager sceneManager){
+    public ArrayList<VisualElement>[] addGameScene(SceneManager sceneManager){
 
         // BUTTONS
-        MButton botonJugar = new MButton("BotonJugar", 0, 0, 100, 100, "Jugar", 20, new Color(0,0,0), new Color(20,20,20), () -> sceneManager.setScene("pantallaPrincipal") );
+        MButton botonJugar = new MButton("BotonJugar", GamePanel.SCREEN_WIDTH - 100 / 2, GamePanel.SCREEN_HEIGHT / 3 * 2, 100, 100, "Jugar", 20, new Color(0,0,0), new Color(20,20,20), () -> sceneManager.setScene("pantallaPrincipal") );
 
         // IMAGES
-        MImage imagenTablero = new MImage("imagenTablero", 0, 0, getImage("/elementos/imagenes/tablero.jpg"));
+        MImage imagenTablero = new MImage("imagenTablero",
+                (int) (GamePanel.SCREEN_HEIGHT * 0.1),
+                (int) (GamePanel.SCREEN_HEIGHT * 0.1),
+                (int) (GamePanel.SCREEN_HEIGHT * 0.8),
+                (int) (GamePanel.SCREEN_HEIGHT * 0.8), getImage("/imagenes/tablero.jpg"));
+
+
+
+        // --- //
 
         ArrayList<VisualElement> backgrounds = new ArrayList<>();
         ArrayList<VisualElement> buttons = new ArrayList<>();

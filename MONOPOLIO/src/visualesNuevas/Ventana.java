@@ -16,7 +16,9 @@ public class Ventana extends JFrame{
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(true);
         this.setTitle("MONOPOLIO");
-        
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setUndecorated(false);
+
         GamePanel gp = new GamePanel();
         KeyHandler kh = new KeyHandler(gp);
         MouseHandler mh = new MouseHandler(gp);
@@ -30,7 +32,7 @@ public class Ventana extends JFrame{
         this.add(gp);
         this.pack();
         
-        //this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setVisible(true);
     }

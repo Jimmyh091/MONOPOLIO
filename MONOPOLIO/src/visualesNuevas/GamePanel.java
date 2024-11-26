@@ -22,7 +22,7 @@ public class GamePanel extends JPanel implements Runnable{
     public static int SCREEN_WIDTH = 800;
     public static int SCREEN_HEIGHT = 600;
     private final int FPS = 60;
-    private boolean debugMode;
+    public static boolean DEBUG_MODE = false;
     private boolean keyPressed;
     private boolean clickRecieved;
     private boolean mouseMovedRecieved;
@@ -40,10 +40,9 @@ public class GamePanel extends JPanel implements Runnable{
     private int maxSelection;
     private int screenState;
     
-    public GamePanel(boolean debugMode){
+    public GamePanel(){
         
         // SETTINGS
-        this.debugMode = debugMode;
 
         gm = new GameManager(null);
         sm = new SceneManager();
@@ -61,7 +60,7 @@ public class GamePanel extends JPanel implements Runnable{
         maxSelection = 0; //t
         
     }
-    
+
     public void startGameThread(){
         gameThread = new Thread(this);
         gameThread.start();
@@ -93,7 +92,7 @@ public class GamePanel extends JPanel implements Runnable{
             }
 
             if (cronometer >= 1000000000) {
-                if (debugMode) System.out.println("FPS: " + drawCount);
+                if (DEBUG_MODE) System.out.println("FPS: " + drawCount);
                 drawCount = 0;
                 cronometer = 0;
             }
@@ -118,7 +117,7 @@ public class GamePanel extends JPanel implements Runnable{
         }
 
         if (clickRecieved) {
-            if (debugMode){
+            if (DEBUG_MODE){
                 System.out.println("Click en: " + clickPosition.x + ", " + clickPosition.y);
             }
             sm.checkClickPosition(clickPosition);
@@ -127,7 +126,7 @@ public class GamePanel extends JPanel implements Runnable{
         }
         
         if (mouseMovedRecieved) {
-            if (debugMode) {
+            if (DEBUG_MODE) {
                 System.out.println("Raton en: " + mousePosition.x + ", " + mousePosition.y);
             }
             sm.checkHoverPosition(mousePosition);

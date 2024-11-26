@@ -5,6 +5,8 @@
  */
 package elementosVisuales;
 
+import visualesNuevas.GamePanel;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -23,11 +25,11 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
     private Event event;
 
 
-    public MButton(String id, int x, int y, int weight, int height, BufferedImage image, BufferedImage hoverImage, Event event){
-        //t
-        super(id, x, y, weight, height);
+    public MButton(String id, int x, int y, int width, int height, String nombre, BufferedImage image, BufferedImage hoverImage, Event event){
 
-        this.text = null;
+        super(id, x, y, width, height);
+
+        this.text = new MLabel("id", x + width / 2 - 18, y + height / 2, nombre, 15);
         this.color = null;
         this.hoverColor = null;
         this.image = image;
@@ -68,7 +70,7 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
 
     @Override
     public void draw(Graphics2D g){
-        if (image != null){
+        if (image != null && !GamePanel.DEBUG_MODE){
 
             if (!hover){
                 g.drawImage(image, getX(), getY(), getWidth(), getHeight(), null);

@@ -5,6 +5,8 @@
  */
 package elementosVisuales;
 
+import juego.VisualGameElement;
+
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
@@ -13,7 +15,7 @@ import java.awt.image.BufferedImage;
  *
  * @author EAG
  */
-public class MImage extends VisualElement implements Hoverable{
+public class MImage extends VisualElement implements Hoverable {
     private final BufferedImage bi;
 
     public MImage(String id, int x, int y, BufferedImage b){
@@ -25,7 +27,11 @@ public class MImage extends VisualElement implements Hoverable{
         super(id, x, y, w, h);
         bi = b;
     }
-    
+
+    public void uploadInfo(VisualGameElement vge){
+
+    }
+
     @Override
     public void draw(Graphics2D g){
         g.drawImage(bi, getX(), getY(), getWidth(), getHeight(), null);
@@ -38,5 +44,10 @@ public class MImage extends VisualElement implements Hoverable{
     @Override
     public boolean mouseIn(Point p) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void update(VisualGameElement vgm) {
+
     }
 }

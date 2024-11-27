@@ -11,7 +11,7 @@ import java.awt.Graphics2D;
  *
  * @author EAG
  */
-public abstract class VisualElement implements Drawable{
+public abstract class VisualElement implements Drawable, MObserver{
 
     private String id;
     private int x;

@@ -4,16 +4,14 @@
  */
 package juego;
 
+import java.awt.image.BufferedImage;
 import java.util.Scanner;
 
 /**
  *
  * @author jaime
  */
-public class Jugador {
-    private final int id;
-    
-    private int x, y, w, h;
+public class Jugador extends VisualGameElement{
     
     private String nombre;
     private int dinero;
@@ -25,10 +23,9 @@ public class Jugador {
     private int numHouse;
     private int numHotel;
         
-    public Jugador(int i, String n){
-        id = i;
-        x = 0; 
-        y = 0;
+    public Jugador(int x, int y, int width, int height, String n, BufferedImage sprite) {
+        super(x, y, width, height, sprite);
+
         nombre = n;
         dinero = 1500;
         posicion = 0;

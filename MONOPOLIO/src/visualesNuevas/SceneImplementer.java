@@ -14,11 +14,7 @@ import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SceneImplementer implements Observer {
-    @Override
-    public void update(Observable o, Object arg) {
-
-    }
+public class SceneImplementer {
 
     private GameManager gameManager;
 

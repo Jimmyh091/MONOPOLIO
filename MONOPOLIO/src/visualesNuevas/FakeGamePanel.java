@@ -66,10 +66,10 @@ public class FakeGamePanel extends JPanel implements Runnable{ //a ABANDONADA
         gameScreenButtons = new MButton[1];
         screenButtons = new ArrayList<>();
                 
-        titleScreenButtons[0] = new MButton("button", 10, 100, 40, 0, "Hola", 20, Color.WHITE, Color.BLACK, null);
-        titleScreenButtons[1] = new MButton("otherbutton", 120, 100, 40, 0, "Hola", 20, Color.WHITE, Color.BLACK, null);
+        titleScreenButtons[0] = new MButton("button", 10, 100, 40, 0, null, "Hola", 20, Color.WHITE, Color.BLACK, null);
+        titleScreenButtons[1] = new MButton("otherbutton", 120, 100, 40, 0, null, "Hola", 20, Color.WHITE, Color.BLACK, null);
                 
-        gameScreenButtons[0] = new MButton("otherotherbutton", 10, 100, 40, 0, "Tirar", 20, Color.WHITE, Color.BLACK, null);
+        gameScreenButtons[0] = new MButton("otherotherbutton", 10, 100, 40, 0, null, "Tirar", 20, Color.WHITE, Color.BLACK, null);
         
         screenButtons.add(titleScreenButtons);
         screenButtons.add(gameScreenButtons);
@@ -249,7 +249,7 @@ public class FakeGamePanel extends JPanel implements Runnable{ //a ABANDONADA
         Jugador[] j = new Jugador[4];
         
         for (int i = 0; i < 4; i++) {
-            j[i] = new Jugador(i, "" + i);
+            //j[i] = new Jugador(i, "" + i);
         }
         
         return j;

@@ -7,6 +7,7 @@ package elementosVisuales;
 
 import juego.VisualGameElement;
 import visualesNuevas.GamePanel;
+import visualesNuevas.GameUtilities;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -30,7 +31,7 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
 
         super(id, x, y, width, height, update);
 
-        this.text = new MLabel("id", x + width / 2 - 18, y + height / 2, nombre, 15);
+        this.text = new MLabel("id", x + width / 2 - 18, y + height / 2, null, nombre, 15);
         this.color = null;
         this.hoverColor = null;
         this.image = image;
@@ -44,7 +45,7 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
         //t
         super(id, x, y, width, height, update);
 
-        this.text = new MLabel(id, x, y, text, size); //t deberia estar en el centro
+        this.text = new MLabel(id, x, y, null, text, size); //t deberia estar en el centro
         this.color = color;
         this.hoverColor = hoverColor;
         this.image = null;
@@ -58,7 +59,7 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
         //t
         super(id, x, y, width, height, update);
 
-        this.text = new MLabel(id, x + width / 2 - text.length(), y + height / 2 - size / 2, text, size); //t deberia estar en el centro
+        this.text = new MLabel(id, x + width / 2 - text.length(), y + height / 2 - size / 2, null, text, size); //t deberia estar en el centro
         this.color = color;
         this.hoverColor = color;
         this.image = null;
@@ -71,7 +72,7 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
 
     @Override
     public void draw(Graphics2D g){
-        if (image != null && !GamePanel.DEBUG_MODE){
+        if (image != null && !GameUtilities.DEBUG){
 
             if (!hover){
                 g.drawImage(image, getX(), getY(), getWidth(), getHeight(), null);

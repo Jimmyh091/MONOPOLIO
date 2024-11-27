@@ -15,8 +15,9 @@ public class ComprobadorRutasImagenes extends JFrame {
         BufferedImage image = null;
 
         try {
-            image = ImageIO.read(getClass().getResourceAsStream(path));
-        } catch (IOException e) {
+            image = hola.getImage(path);
+        } catch (Exception e) {
+            System.out.println("puto");
             throw new RuntimeException(e);
         }
 
@@ -30,6 +31,20 @@ public class ComprobadorRutasImagenes extends JFrame {
     }
 
     public static void main(String[] args) {
-        new ComprobadorRutasImagenes("imagenes/test/botonPrueba.png");
+        new ComprobadorRutasImagenes("/imagenes/test/botonPrueba.png");
+
     }
+
+    public class hola{
+
+        private static BufferedImage getImage(String path){
+            try{
+                return ImageIO.read(hola.class.getResourceAsStream(path));
+            }catch (Exception e){
+                return null;
+            }
+        }
+
+    }
+
 }

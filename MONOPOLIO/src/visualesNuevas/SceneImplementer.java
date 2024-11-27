@@ -28,10 +28,10 @@ public class SceneImplementer {
 
         MBackground fondoPrueba = new MBackground("fond", new GradientPaint(0, 0, new Color(100, 255, 100), 0, GamePanel.SCREEN_HEIGHT, new Color(200, 255, 200)));
 
-        MLabel labelPrueba = new MLabel("prueba", 0, 30, "SOY UNA PRUEBAAA", 30);
+        MLabel labelPrueba = new MLabel("prueba", 0, 30,null, "SOY UNA PRUEBAAA", 30);
 
-        MButton botonPrueba = new MButton("botonPrueba", 0, 0, 100, 100, "Prueba", 16, new Color(20,20,200), new Color(0,0,0), () -> System.out.println("JAIME FUNCIONA QUE COJONES"));
-        MButton botonPrueba2 = new MButton("botonPrueba2", 100, 500, 500, 200, "BotonPrueba", getImage("/imagenes/test/botonPrueba.png"), getImage("/imagenes/test/botonPruebaHover.jpg"), () -> System.out.println("hola"));
+        MButton botonPrueba = new MButton("botonPrueba", 0, 0, 100, 100, null, "Prueba", 16, new Color(20,20,200), new Color(0,0,0), () -> System.out.println("JAIME FUNCIONA QUE COJONES"));
+        MButton botonPrueba2 = new MButton("botonPrueba2", 100, 500, 500, 200, null, "BotonPrueba", GameUtilities.getImage("/imagenes/test/botonPrueba.png"), GameUtilities.getImage("/imagenes/test/botonPruebaHover.jpg"), () -> System.out.println("hola"));
 
         // --- //
 
@@ -61,7 +61,7 @@ public class SceneImplementer {
 
         backgrounds.add(null);
 
-        buttons.add(new MButton("BotonJugar", 0, 0, 100, 100, "Jugar", 20, new Color(0,0,0), new Color(0,0,0), () -> sceneManager.setScene("pantallaPrincipal") ));
+        buttons.add(new MButton("BotonJugar", 0, 0, 100, 100, null, "Jugar", 20, new Color(0,0,0), new Color(0,0,0), () -> sceneManager.setScene("pantallaPrincipal") ));
 
         BufferedImage imagenTablero = null;
         try {
@@ -70,7 +70,7 @@ public class SceneImplementer {
             Logger.getLogger(PantallaJuego.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        images.add(new MImage("ImagenTablero", 0, 0, imagenTablero));
+        images.add(new MImage("ImagenTablero", 0, 0, imagenTablero, null));
 
         labels.add(null);
 
@@ -80,14 +80,14 @@ public class SceneImplementer {
     public ArrayList<VisualElement>[] addGameScene(SceneManager sceneManager){
 
         // BUTTONS
-        MButton botonJugar = new MButton("BotonJugar", GamePanel.SCREEN_WIDTH - 100 / 2, GamePanel.SCREEN_HEIGHT / 3 * 2, 100, 100, "Jugar", 20, new Color(0,0,0), new Color(20,20,20), () -> sceneManager.setScene("pantallaPrincipal") );
+        MButton botonJugar = new MButton("BotonJugar", GamePanel.SCREEN_WIDTH - 100 / 2, GamePanel.SCREEN_HEIGHT / 3 * 2, 100, 100, null, "Jugar", 20, new Color(0,0,0), new Color(20,20,20), () -> sceneManager.setScene("pantallaPrincipal") );
 
         // IMAGES
         MImage imagenTablero = new MImage("imagenTablero",
                 (int) (GamePanel.SCREEN_HEIGHT * 0.1),
                 (int) (GamePanel.SCREEN_HEIGHT * 0.1),
                 (int) (GamePanel.SCREEN_HEIGHT * 0.8),
-                (int) (GamePanel.SCREEN_HEIGHT * 0.8), getImage("/imagenes/tablero.jpg"));
+                (int) (GamePanel.SCREEN_HEIGHT * 0.8), GameUtilities.getImage("/imagenes/tablero.jpg"), null);
 
 
 
@@ -107,13 +107,5 @@ public class SceneImplementer {
         labels.add(null);
 
         return new ArrayList[]{backgrounds, images, buttons, labels};
-    }
-
-    private BufferedImage getImage(String path){
-       try{
-            return ImageIO.read(getClass().getResourceAsStream(path));
-        }catch (Exception e){
-            return null;
-        }
     }
 }

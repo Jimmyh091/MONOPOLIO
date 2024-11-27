@@ -9,7 +9,7 @@ package juego;
  *
  * @author jaime
  */
-public abstract class Casilla {
+public abstract class Casilla extends VisualGameElement {
     private Jugador jugador;
     private final int x;
     private final int y;
@@ -17,6 +17,7 @@ public abstract class Casilla {
     private final int height;
     
     public Casilla(int x, int y, int w, int h){
+        super(x, y, w, h, null);
         jugador = null;
         this.x = x;
         this.y = y;

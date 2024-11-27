@@ -19,7 +19,6 @@ public class GamePanel extends JPanel implements Runnable{
     public static int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
     public static int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
     private final int FPS = 60;
-    public static boolean DEBUG_MODE = false;
     private boolean keyPressed;
     private boolean clickRecieved;
     private boolean mouseMovedRecieved;
@@ -89,7 +88,7 @@ public class GamePanel extends JPanel implements Runnable{
             }
 
             if (cronometer >= 1000000000) {
-                if (DEBUG_MODE) System.out.println("FPS: " + drawCount);
+                if (GameUtilities.DEBUG) System.out.println("FPS: " + drawCount);
                 drawCount = 0;
                 cronometer = 0;
             }
@@ -114,7 +113,7 @@ public class GamePanel extends JPanel implements Runnable{
         }
 
         if (clickRecieved) {
-            if (DEBUG_MODE){
+            if (GameUtilities.DEBUG){
                 System.out.println("Click en: " + clickPosition.x + ", " + clickPosition.y);
             }
             sm.checkClickPosition(clickPosition);
@@ -123,7 +122,7 @@ public class GamePanel extends JPanel implements Runnable{
         }
         
         if (mouseMovedRecieved) {
-            if (DEBUG_MODE) {
+            if (GameUtilities.DEBUG) {
                 System.out.println("Raton en: " + mousePosition.x + ", " + mousePosition.y);
             }
             sm.checkHoverPosition(mousePosition);

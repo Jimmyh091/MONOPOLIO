@@ -1,6 +1,7 @@
 package visualesNuevas;
 
 import elementosVisuales.*;
+import juego.Casilla;
 import juego.CuboDados;
 import juego.GameManager;
 import juego.VisualGameElement;
@@ -87,17 +88,31 @@ public class SceneImplementer {
                 gameManager.getDiceCube().getX(), gameManager.getDiceCube().getY(), 100, 100,
                 "dado", 10,
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
-                GameUtilities.getImage("//imagenes/tablero.jpg"),
+                GameUtilities.getImage("/imagenes/tablero.jpg"),
                 () -> gameManager.rollDice()); //t coordenadas mal e imagen
-
         dice.setUpdate((vgm) -> {
                 CuboDados cd = (CuboDados) vgm;
 
                 switch (cd.getResult()[0]){
-                    case 1 -> dice.setImage(GameUtilities.getImage("imagendadotirada"));
+                    case 1 -> System.out.println("se cambiaria la foto pero no la tengo");//dice.setImage(GameUtilities.getImage("imagendadotirada"));
                 }
 
             });
+
+        MButton[] botonesCasillas = new MButton[gameManager.getNumSquares()];
+        Casilla[] casillas = gameManager.getGameboard().getSquares();
+
+        /*for (int i = 0; i < casillas.length; i++) {
+            botonesCasillas[i] =
+                    new MButton("casilla" + i,
+                    casillas[i].getX(), casillas[i].getY(), casillas[i].getWidth(), casillas[i].getHeight(),
+                    "casilla " + i, 7,
+                    GameUtilities.getImage("/"),
+                    GameUtilities.getImage("/"),
+                    () -> System.out.println("Funciona creo"));
+        }*/
+
+        gameManager.getDiceCube().addObserver(dice); //? son dos tiradas, dos dados diferentes entonces no se si deberia tener dos imagenes o que
 
 
         // IMAGES
@@ -106,8 +121,6 @@ public class SceneImplementer {
                 (int) (GamePanel.SCREEN_HEIGHT * 0.1),
                 (int) (GamePanel.SCREEN_HEIGHT * 0.8),
                 (int) (GamePanel.SCREEN_HEIGHT * 0.8), GameUtilities.getImage("/imagenes/tablero.jpg"), null);
-
-
 
         // --- //
 
@@ -119,6 +132,9 @@ public class SceneImplementer {
         backgrounds.add(null);
 
         buttons.add(dice);
+        /*for (int i = 0; i < botonesCasillas.length; i++) {
+            buttons.add(botonesCasillas[i]);
+        }*/
 
         images.add(imagenTablero);
 

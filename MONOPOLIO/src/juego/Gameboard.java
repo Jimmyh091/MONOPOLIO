@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
 
 /**
  *
@@ -26,19 +27,32 @@ public class Gameboard extends VisualGameElement{
     private int innerHeight;
     
     private Casilla[] squares;
-        
+    private HashMap<Integer, Integer> positions;
+
     public Gameboard(int x, int y, int w, int h, BufferedImage bi){
         super(x, y, w, h, bi);
+
+        asignInnerCoords();
+        squares = new Casilla[48];
+        squares = crearCasillas();
+
+        positions = new HashMap<>();
+        positions.put(0, 0);
+        positions.put(1, 0);
+        positions.put(2, 0);
+        positions.put(3, 0);
+
+
     }
     
     public void movePlayer(int advanceSquares, Jugador player){
         if (advanceSquares == -1) { // -1 = jail            
-            jumpTo(18/*jail square*/, player);
+            jumpTo(31 /*jail square*/, player);
         }else{
-            moveTo(player.getPosicion() + advanceSquares, player);
+            moveTo(positions.get(player.getId()) + advanceSquares, player);
         }
 
-        if (GameUtilities.DEBUG) System.out.println("Jugador " + player.getNombre() + " movido a la casilla " + player.getPosicion() + advanceSquares);
+        if (GameUtilities.DEBUG) System.out.println("Jugador " + player.getNombre() + " movido a la casilla " + positions.get(player.getId()) + advanceSquares);
 
     }
     
@@ -58,9 +72,9 @@ public class Gameboard extends VisualGameElement{
     }
 
     private void asignInnerCoords(){
-        int percentage = 75;
+        Float percentage = 0.8F;
 
-        int innerSideLength = super.getWidth() * (percentage / 100);
+        int innerSideLength = (int) (super.getWidth() * percentage);
 
         int margin = (super.getWidth() - innerSideLength) / 2;
 
@@ -206,5 +220,16 @@ public class Gameboard extends VisualGameElement{
         }
         
         return new Point[][]{points, lengths};
+    }
+
+    public HashMap<Integer, Integer> getPositions() {
+        return positions;
+    }
+    public void setPositions(HashMap<Integer, Integer> positions) {
+        this.positions = positions;
+    }
+
+    public Casilla[] getSquares() {
+        return squares;
     }
 }

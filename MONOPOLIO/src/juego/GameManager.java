@@ -5,14 +5,17 @@
  */
 package juego;
 
+import visualesNuevas.GamePanel;
 import visualesNuevas.GameUtilities;
 
+import javax.swing.*;
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -33,22 +36,22 @@ public class GameManager {
     private Gameboard gameboard;    
     
     private int numSquares;
-    
+
     private int turn;
     private boolean win;
-    
+
     private int activePlayer;
     
     public GameManager(Jugador[] players){
         
-        numSquares = 48; // always 48
+        numSquares = 48;
         
         players = null;
         squares = null;
         comunityCardDeck = new Baraja(0, 0, 0, 0, null, createCardDeck(true));
         luckyCardDeck = new Baraja(0, 0, 0, 0, null, createCardDeck(false));
         diceCube = new CuboDados(0, 0, 0, 0, null, 6, 2);
-        gameboard = new Gameboard(0, 0, 0, 0, null);
+        gameboard = new Gameboard((int) (GamePanel.SCREEN_WIDTH * 0.1), (int) (GamePanel.SCREEN_WIDTH * 0.1), (int) (GamePanel.SCREEN_WIDTH * 0.8), (int) (GamePanel.SCREEN_WIDTH * 0.8), GameUtilities.getImage("/imagenes/tablero.jpg"));
         
         turn = 0;
         win = false;
@@ -66,7 +69,12 @@ public class GameManager {
 
         if (GameUtilities.DEBUG) System.out.println("Tirar dados : GameManager");
 
-        int result = getDiceResult(0, 0);
+
+        if (gameboard.getPositions().get(activePlayer) == 31){
+            int result = getDiceResult(0, 0);
+        }else{
+
+        }
     }
     
     public int getDiceResult(int times, int r){
@@ -242,5 +250,9 @@ public class GameManager {
     }
     public Gameboard getGameboard() {
         return gameboard;
+    }
+
+    public int getNumSquares() {
+        return numSquares;
     }
 }

@@ -30,7 +30,6 @@ public class GamePanel extends JPanel implements Runnable{
     private SceneManager sm;
     
     private Thread gameThread;
-    private GameManager gm;
 
     private int selection;
     private int maxSelection;
@@ -39,10 +38,8 @@ public class GamePanel extends JPanel implements Runnable{
     public GamePanel(){
         
         // SETTINGS
-
-        gm = new GameManager(null);
         sm = new SceneManager();
-        vm = new VisualManager(sm, gm);
+        vm = new VisualManager(sm);
 
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setDoubleBuffered(true);

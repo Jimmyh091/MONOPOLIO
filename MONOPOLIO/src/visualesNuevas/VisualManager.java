@@ -6,9 +6,11 @@ public class VisualManager {
 
     SceneManager sm;
     SceneImplementer si;
+    GameManager gm;
 
-    public VisualManager(SceneManager sm, GameManager gm) {
+    public VisualManager(SceneManager sm) {
         this.sm = sm;
+        GameManager gm = new GameManager(null); //t
         si = new SceneImplementer(gm);
         addGameScene();
     }

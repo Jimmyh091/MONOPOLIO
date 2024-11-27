@@ -34,6 +34,10 @@ public class Jugador extends VisualGameElement{
         bancarrota = false;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
     public int getDinero() {
         return dinero;
     }

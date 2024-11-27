@@ -4,6 +4,10 @@
  */
 package juego;
 
+import visualesNuevas.GameUtilities;
+
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author jaime
@@ -16,8 +20,8 @@ public class Calle extends Casilla{
     private int numCasas;
     private int numHoteles;
     
-    public Calle(int x, int y, int w, int h, String t, int p, int g){
-        super(x, y, w, h);
+    public Calle(int x, int y, int w, int h, BufferedImage bi, String t, int p, int g){
+        super(x, y, w, h, bi);
         titulo = t;
         propietario = null;
         price1 = p;
@@ -31,6 +35,9 @@ public class Calle extends Casilla{
 
     @Override
     public void interact(Jugador j) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        if (GameUtilities.DEBUG) System.out.println("Interactuar : Calle");
+
+        throw new UnsupportedOperationException("Not supported yet."); //t
     }
 }

@@ -5,6 +5,8 @@
  */
 package juego;
 
+import visualesNuevas.GameUtilities;
+
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -21,7 +23,7 @@ import java.util.logging.Logger;
  *
  * @author EAG
  */
-public class GameManager extends Observable {
+public class GameManager {
     
     private Jugador[] players;
     private Casilla[] squares;
@@ -43,10 +45,10 @@ public class GameManager extends Observable {
         
         players = null;
         squares = null;
-        comunityCardDeck = new Baraja(createCardDeck(true));
-        luckyCardDeck = new Baraja(createCardDeck(false));
-        diceCube = new CuboDados(6, 2);
-        gameboard = new Gameboard(0, 0, 0, 0);
+        comunityCardDeck = new Baraja(0, 0, 0, 0, null, createCardDeck(true));
+        luckyCardDeck = new Baraja(0, 0, 0, 0, null, createCardDeck(false));
+        diceCube = new CuboDados(0, 0, 0, 0, null, 6, 2);
+        gameboard = new Gameboard(0, 0, 0, 0, null);
         
         turn = 0;
         win = false;
@@ -56,11 +58,14 @@ public class GameManager extends Observable {
         if (turn == players.length - 1) turn = 0;        
         activePlayer = turn;
 
-        setChanged();
-        notifyObservers();
+        if (GameUtilities.DEBUG) System.out.println("Actualizar turnos");
+
     }
     
     public void rollDice(){
+
+        if (GameUtilities.DEBUG) System.out.println("Tirar dados : GameManager");
+
         int result = getDiceResult(0, 0);
     }
     
@@ -74,9 +79,15 @@ public class GameManager extends Observable {
             
             if (diceResult[0] == diceResult[1]) {
                 if (i == 3) {
+
+                    if (GameUtilities.DEBUG) System.out.println("Se va a la carcel");
+
                     return -1; // significa ir a la carcel
                 }   
             }else{
+
+                if (GameUtilities.DEBUG) System.out.println("Tirada: " + result);
+
                 return result;
             }
         }
@@ -190,19 +201,19 @@ public class GameManager extends Observable {
                     String desc1 = datos[2];
                     String desc2 = datos[4];
                     int valor = Integer.parseInt(datos[3]);
-                    
+
                     String desc = desc1 + valor + desc2;
-                    
-                    String titulo = (comunidad) ? "COMUNIDAD" : "SUERTE";    
-                    
+
+                    String titulo = (comunidad) ? "COMUNIDAD" : "SUERTE";
+
 
                     for (int i = 0; i < cards.length; i++) {
-                        
+
                         GameEvent eventAux = createEvent(event, valor);
 
-                        cards[i] = new Carta(titulo, desc, eventAux);
-                        
-                    }                    
+                        cards[i] = new Carta(0, 0, 0, 0, null, titulo, desc, eventAux);
+
+                    }
                 }
             }
         } catch (IOException ex) {
@@ -210,5 +221,26 @@ public class GameManager extends Observable {
         }
         
         return cards;
+    }
+
+    public Jugador[] getPlayers() {
+        return players;
+    }
+    public Casilla[] getSquares() {
+        return squares;
+    }
+
+    public Baraja getComunityCardDeck() {
+        return comunityCardDeck;
+    }
+    public Baraja getLuckyCardDeck() {
+        return luckyCardDeck;
+    }
+
+    public CuboDados getDiceCube() {
+        return diceCube;
+    }
+    public Gameboard getGameboard() {
+        return gameboard;
     }
 }

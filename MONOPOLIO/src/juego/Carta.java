@@ -4,22 +4,30 @@
  */
 package juego;
 
+import visualesNuevas.GameUtilities;
+
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author jaime
  */
-public class Carta {
+public class Carta extends VisualGameElement{
     private String titulo;
     private String desc;
     private GameEvent gameEvent;
     
-    public Carta(String t, String d, GameEvent e){
+    public Carta(int x, int y, int width, int height, BufferedImage bi, String t, String d, GameEvent e){
+        super(x, y, width, height, bi);
         titulo = t;
         desc = d;
         gameEvent = e;
     }
     
     public void executeEvent(Jugador j){
+
+        if (GameUtilities.DEBUG) System.out.println("Ejecutar evento : Carta");
+
         gameEvent.executeEvent(j);
     }
 }

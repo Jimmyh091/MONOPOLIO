@@ -88,7 +88,7 @@ public class GamePanel extends JPanel implements Runnable{
             }
 
             if (cronometer >= 1000000000) {
-                if (GameUtilities.DEBUG) System.out.println("FPS: " + drawCount);
+                if (GameUtilities.FPS) System.out.println("FPS: " + drawCount);
                 drawCount = 0;
                 cronometer = 0;
             }
@@ -113,18 +113,18 @@ public class GamePanel extends JPanel implements Runnable{
         }
 
         if (clickRecieved) {
-            if (GameUtilities.DEBUG){
-                System.out.println("Click en: " + clickPosition.x + ", " + clickPosition.y);
-            }
+
+            if (GameUtilities.CLICK_POSITION){ System.out.println("Click en: " + clickPosition.x + ", " + clickPosition.y); }
+
             sm.checkClickPosition(clickPosition);
             
             clickRecieved = false;
         }
         
         if (mouseMovedRecieved) {
-            if (GameUtilities.DEBUG) {
-                System.out.println("Raton en: " + mousePosition.x + ", " + mousePosition.y);
-            }
+
+            if (GameUtilities.MOUSE_POSITION) { System.out.println("Raton en: " + mousePosition.x + ", " + mousePosition.y); }
+
             sm.checkHoverPosition(mousePosition);
             
             mouseMovedRecieved = false;

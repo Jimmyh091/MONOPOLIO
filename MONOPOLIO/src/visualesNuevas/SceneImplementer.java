@@ -1,7 +1,9 @@
 package visualesNuevas;
 
 import elementosVisuales.*;
+import juego.CuboDados;
 import juego.GameManager;
+import juego.VisualGameElement;
 import visualesInutilizables.PantallaJuego;
 
 import javax.imageio.ImageIO;
@@ -30,8 +32,8 @@ public class SceneImplementer {
 
         MLabel labelPrueba = new MLabel("prueba", 0, 30,null, "SOY UNA PRUEBAAA", 30);
 
-        MButton botonPrueba = new MButton("botonPrueba", 0, 0, 100, 100, null, "Prueba", 16, new Color(20,20,200), new Color(0,0,0), () -> System.out.println("JAIME FUNCIONA QUE COJONES"));
-        MButton botonPrueba2 = new MButton("botonPrueba2", 100, 500, 500, 200, null, "BotonPrueba", GameUtilities.getImage("/imagenes/test/botonPrueba.png"), GameUtilities.getImage("/imagenes/test/botonPruebaHover.jpg"), () -> System.out.println("hola"));
+        MButton botonPrueba = new MButton("botonPrueba", 0, 0, 100, 100, "Prueba", 16, new Color(20,20,200), new Color(0,0,0), () -> System.out.println("JAIME FUNCIONA QUE COJONES"));
+        MButton botonPrueba2 = new MButton("botonPrueba2", 100, 500, 500, 200, "BotonPrueba", 16, GameUtilities.getImage("/imagenes/test/botonPrueba.png"), GameUtilities.getImage("/imagenes/test/botonPruebaHover.jpg"), () -> System.out.println("hola"));
 
         // --- //
 
@@ -61,7 +63,7 @@ public class SceneImplementer {
 
         backgrounds.add(null);
 
-        buttons.add(new MButton("BotonJugar", 0, 0, 100, 100, null, "Jugar", 20, new Color(0,0,0), new Color(0,0,0), () -> sceneManager.setScene("pantallaPrincipal") ));
+        buttons.add(new MButton("BotonJugar", 0, 0, 100, 100, "Jugar", 20, new Color(0,0,0), new Color(0,0,0), () -> sceneManager.setScene("pantallaPrincipal") ));
 
         BufferedImage imagenTablero = null;
         try {
@@ -80,7 +82,23 @@ public class SceneImplementer {
     public ArrayList<VisualElement>[] addGameScene(SceneManager sceneManager){
 
         // BUTTONS
-        MButton botonJugar = new MButton("BotonJugar", GamePanel.SCREEN_WIDTH - 100 / 2, GamePanel.SCREEN_HEIGHT / 3 * 2, 100, 100, null, "Jugar", 20, new Color(0,0,0), new Color(20,20,20), () -> sceneManager.setScene("pantallaPrincipal") );
+        // ex.: MButton botonJugar = new MButton("BotonJugar", GamePanel.SCREEN_WIDTH - 100 / 2, GamePanel.SCREEN_HEIGHT / 3 * 2, 100, 100, null, "Jugar", 20, new Color(0,0,0), new Color(20,20,20), () -> sceneManager.setScene("pantallaPrincipal") );
+        MButton dice = new MButton("dice",
+                gameManager.getDiceCube().getX(), gameManager.getDiceCube().getY(), 100, 100,
+                "dado", 10,
+                GameUtilities.getImage("/imagenes/tablero.jpg"),
+                GameUtilities.getImage("//imagenes/tablero.jpg"),
+                () -> gameManager.rollDice()); //t coordenadas mal e imagen
+
+        dice.setUpdate((vgm) -> {
+                CuboDados cd = (CuboDados) vgm;
+
+                switch (cd.getResult()[0]){
+                    case 1 -> dice.setImage(GameUtilities.getImage("imagendadotirada"));
+                }
+
+            });
+
 
         // IMAGES
         MImage imagenTablero = new MImage("imagenTablero",
@@ -100,7 +118,7 @@ public class SceneImplementer {
 
         backgrounds.add(null);
 
-        buttons.add(botonJugar);
+        buttons.add(dice);
 
         images.add(imagenTablero);
 

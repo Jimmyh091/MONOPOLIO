@@ -5,7 +5,10 @@
  */
 package juego;
 
+import visualesNuevas.GameUtilities;
+
 import java.awt.Point;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.nio.file.Files;
@@ -15,13 +18,8 @@ import java.nio.file.Paths;
  *
  * @author EAG
  */
-public class Gameboard {
-    
-    private int x;
-    private int y;
-    private int width;
-    private int height;
-        
+public class Gameboard extends VisualGameElement{
+
     private int innerX;
     private int innerY;
     private int innerWidth;
@@ -29,12 +27,8 @@ public class Gameboard {
     
     private Casilla[] squares;
         
-    public Gameboard(int x, int y, int w, int h){
-        
-        this.x = x;
-        this.y = y;
-        this.width = w;
-        this.height = h;
+    public Gameboard(int x, int y, int w, int h, BufferedImage bi){
+        super(x, y, w, h, bi);
     }
     
     public void movePlayer(int advanceSquares, Jugador player){
@@ -42,27 +36,36 @@ public class Gameboard {
             jumpTo(18/*jail square*/, player);
         }else{
             moveTo(player.getPosicion() + advanceSquares, player);
-        }        
+        }
+
+        if (GameUtilities.DEBUG) System.out.println("Jugador " + player.getNombre() + " movido a la casilla " + player.getPosicion() + advanceSquares);
+
     }
     
     public void moveTo(int position, Jugador player){
         squares[position].setJugador(player);
         squares[position].interact(player);
+
+        if (GameUtilities.DEBUG) System.out.println("Jugador " + player.getNombre() + " movido a la casilla " + position);
+
     }
     
     public void jumpTo(int position, Jugador player){
         squares[position].setJugador(player);
+
+        if (GameUtilities.DEBUG) System.out.println("Jugador " + player.getNombre() + " saltado a la casilla " + position);
+
     }
-    
+
     private void asignInnerCoords(){
         int percentage = 75;
-        
-        int innerSideLength = width * (percentage / 100);
-        
-        int margin = (width - innerSideLength) / 2;
-        
-        innerX = x + margin;
-        innerY = y + margin;
+
+        int innerSideLength = super.getWidth() * (percentage / 100);
+
+        int margin = (super.getWidth() - innerSideLength) / 2;
+
+        innerX = super.getX() + margin;
+        innerY = getY() + margin;
         innerWidth = innerSideLength;
         innerHeight = innerSideLength;
     }
@@ -84,13 +87,13 @@ public class Gameboard {
                 if (linea.charAt(0) != '#') {
                     String[] datos = linea.split("/");
                     
-                    int tempX = puntos[0][contador].x;
-                    int tempY = puntos[0][contador].y;
-                    int tempWidth = puntos[1][contador].x;
-                    int tempHeight = puntos[1][contador].y;
+                    int x = puntos[0][contador].x;
+                    int y = puntos[0][contador].y;
+                    int width = puntos[1][contador].x;
+                    int height = puntos[1][contador].y;
                                         
-                    if (datos[0].equals("1")) casillas[contador++] = new Calle(tempX, tempY, tempWidth, tempHeight, datos[1], Integer.parseInt(datos[2]), Integer.parseInt(datos[3]));
-                    else casillas[contador++] = new CasillaEspecial(tempX, tempY, tempWidth, tempHeight, datos[1], Integer.parseInt(datos[2]), null);
+                    if (datos[0].equals("1")) casillas[contador++] = new Calle(x, y, width, height, null, datos[1], Integer.parseInt(datos[2]), Integer.parseInt(datos[3]));
+                    else casillas[contador++] = new CasillaEspecial(x, y, width, height, null/*imagen*/, datos[1], Integer.parseInt(datos[2]), null);
                 }
             }
         } catch (Exception ex) {
@@ -129,50 +132,50 @@ public class Gameboard {
                 switch(corner){
                     case 0:
                         
-                        tempX = x + width - innerWidth / 2 + innerWidth;
-                        tempY =  y + height - innerHeight / 2 + innerHeight;
+                        tempX = super.getX() + super.getWidth() - innerWidth / 2 + innerWidth;
+                        tempY =  super.getY() + super.getHeight() - innerHeight / 2 + innerHeight;
                         break;
                         
                     case 1:
                         
-                        tempX = x;
-                        tempY =  y + innerHeight + (height - innerHeight) / 2;
+                        tempX = super.getX();
+                        tempY =  super.getY() + innerHeight + (super.getHeight() - innerHeight) / 2;
                         break;
                         
                     case 2:
                         
-                        tempX = x;
-                        tempY = y;
+                        tempX = super.getX();
+                        tempY = super.getY();
                         break;
                         
                     case 3:
                         
-                        tempX = x + width - innerWidth / 2 + innerWidth;
-                        tempY = y;
+                        tempX = super.getX() + super.getWidth() - innerWidth / 2 + innerWidth;
+                        tempY = super.getY();
                         break;
                         
                     default:
                         System.out.println("LOG: ERROR.Asignacion Coordenadas Esquinas");
                 }
                 
-                tempWidth = (width - innerWidth) / 2;
-                tempHeight = (height - innerHeight) / 2;
+                tempWidth = (super.getWidth() - innerWidth) / 2;
+                tempHeight = (super.getHeight() - innerHeight) / 2;
                 
             }else{
                 switch(numCorner){
                     case 0:
                         
-                        tempX = x + (innerWidth + (width - innerWidth) / 2) - (innerWidth / 9 * (i + 1));
+                        tempX = super.getX() + (innerWidth + (super.getWidth() - innerWidth) / 2) - (innerWidth / 9 * (i + 1));
                         tempY = 0;
                         tempWidth = innerWidth / 9;
-                        tempHeight = innerHeight + (height - innerHeight) / 2;
+                        tempHeight = innerHeight + (super.getHeight() - innerHeight) / 2;
                         break;
                         
                     case 1:
                         
                         tempX = 0;
                         tempY = 0;
-                        tempWidth = (width - innerWidth) / 2;
+                        tempWidth = (super.getWidth() - innerWidth) / 2;
                         tempHeight = innerHeight / 9;
                         break;
                         
@@ -181,14 +184,14 @@ public class Gameboard {
                         tempX = 0;
                         tempY = 0;
                         tempWidth = innerWidth / 9;
-                        tempHeight = innerHeight + (height - innerHeight) / 2;
+                        tempHeight = innerHeight + (super.getHeight() - innerHeight) / 2;
                         break;
                         
                     case 3:
                         
                         tempX = 0;
                         tempY = 0;
-                        tempWidth = (width - innerWidth) / 2;
+                        tempWidth = (super.getWidth() - innerWidth) / 2;
                         tempHeight = innerHeight / 9;
                         break;
                         

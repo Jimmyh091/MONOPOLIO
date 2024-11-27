@@ -66,10 +66,10 @@ public class FakeGamePanel extends JPanel implements Runnable{ //a ABANDONADA
         gameScreenButtons = new MButton[1];
         screenButtons = new ArrayList<>();
                 
-        titleScreenButtons[0] = new MButton("button", 10, 100, 40, 0, null, "Hola", 20, Color.WHITE, Color.BLACK, null);
-        titleScreenButtons[1] = new MButton("otherbutton", 120, 100, 40, 0, null, "Hola", 20, Color.WHITE, Color.BLACK, null);
+        titleScreenButtons[0] = new MButton("button", 10, 100, 40, 0, "Hola", 20, Color.WHITE, Color.BLACK, null);
+        titleScreenButtons[1] = new MButton("otherbutton", 120, 100, 40, 0, "Hola", 20, Color.WHITE, Color.BLACK, null);
                 
-        gameScreenButtons[0] = new MButton("otherotherbutton", 10, 100, 40, 0, null, "Tirar", 20, Color.WHITE, Color.BLACK, null);
+        gameScreenButtons[0] = new MButton("otherotherbutton", 10, 100, 40, 0, "Tirar", 20, Color.WHITE, Color.BLACK, null);
         
         screenButtons.add(titleScreenButtons);
         screenButtons.add(gameScreenButtons);
@@ -234,8 +234,8 @@ public class FakeGamePanel extends JPanel implements Runnable{ //a ABANDONADA
                     int posX = contador * 10;
                     int posY = 10;
                     
-                    if (clase.equals("1")) casillas[contador] = new Calle(0,0,0,0, titulo, precio, grupo);
-                    else casillas[contador] = new CasillaEspecial(0,0,0,0, titulo, precio, null); // pasando null
+                    if (clase.equals("1")) casillas[contador] = new Calle(0,0,0,0, null, titulo, precio, grupo);
+                    else casillas[contador] = new CasillaEspecial(0,0,0,0, null, titulo, precio, null); // pasando null
                     contador++;                    
                 }
             }

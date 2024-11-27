@@ -5,6 +5,10 @@
 package juego;
 
 
+import visualesNuevas.GameUtilities;
+
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author jaime
@@ -16,8 +20,9 @@ public abstract class Casilla extends VisualGameElement {
     private final int width;
     private final int height;
     
-    public Casilla(int x, int y, int w, int h){
-        super(x, y, w, h, null);
+    public Casilla(int x, int y, int w, int h, BufferedImage bi) {
+        super(x, y, w, h, bi); //t
+
         jugador = null;
         this.x = x;
         this.y = y;

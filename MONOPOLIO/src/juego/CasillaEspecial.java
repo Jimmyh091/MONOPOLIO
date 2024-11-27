@@ -4,6 +4,10 @@
  */
 package juego;
 
+import visualesNuevas.GameUtilities;
+
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author jaime
@@ -15,16 +19,20 @@ public class CasillaEspecial extends Casilla{
     private GameEvent evento;
     private int type;
     
-    public CasillaEspecial(int x, int y, int w, int h, String t, int v, GameEvent e){
-        super(x, y, w, h);
+    public CasillaEspecial(int x, int y, int w, int h, BufferedImage bi, String t, int v, GameEvent e){
+        super(x, y, w, h, bi);
+
         titulo = t;
         valor = v;
         evento = e;
         
-        type = 0;
+        type = 0; //? no es necesario
     }
         
     public void interact(Jugador j){
+
+        if (GameUtilities.DEBUG) System.out.println("Interactuar : CasillaEspecial");
+
         evento.executeEvent(j);
     }
     

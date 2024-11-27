@@ -41,6 +41,10 @@ public abstract class VisualElement implements Drawable, MObserver{
         update.update(vgm);
     }
 
+    public void setUpdate(MObserver update){
+        this.update = update;
+    }
+
     public int getX() {
         return x;
     }

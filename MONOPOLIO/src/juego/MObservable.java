@@ -2,8 +2,6 @@ package juego;
 
 import elementosVisuales.VisualElement;
 
-import java.util.Observer;
-
 public abstract class MObservable {
 
     VisualElement ve;
@@ -12,8 +10,8 @@ public abstract class MObservable {
         this.ve = ve;
     }
 
-    public void updateObserver(){
-        ve.update();
+    public void updateObserver(VisualGameElement vge){
+        ve.update(vge);
     }
 
     public VisualElement getVe() {

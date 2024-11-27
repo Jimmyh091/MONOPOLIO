@@ -5,6 +5,8 @@
  */
 package elementosVisuales;
 
+import juego.VisualGameElement;
+
 import java.awt.Graphics2D;
 
 /**
@@ -19,17 +21,26 @@ public abstract class VisualElement implements Drawable, MObserver{
     private int width;
     private int height;
 
-    public VisualElement(String id, int x, int y, int width, int height){
+    private MObserver update;
+
+    public VisualElement(String id, int x, int y, int width, int height, MObserver update) {
         this.id = id;
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+
+        this.update = update;
     }
 
     @Override
     public abstract void draw(Graphics2D g);
-    
+
+    @Override
+    public void update(VisualGameElement vgm){
+        update.update(vgm);
+    }
+
     public int getX() {
         return x;
     }

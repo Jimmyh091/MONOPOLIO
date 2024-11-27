@@ -3,7 +3,6 @@ package juego;
 import elementosVisuales.VisualElement;
 
 import java.awt.image.BufferedImage;
-import java.util.Observer;
 
 public class VisualGameElement extends MObservable {
 
@@ -26,7 +25,7 @@ public class VisualGameElement extends MObservable {
     }
 
     @Override
-    public void updateObserver() {
-        super.updateObserver();
+    public void updateObserver(VisualGameElement visualGameElement) {
+        super.updateObserver(this); //? imagino que se le pasa la instancia del objeto y no la clase, espero
     }
 }

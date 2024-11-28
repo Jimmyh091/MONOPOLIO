@@ -1,0 +1,8 @@
+# numero de cartas en el mazo - tipo de evento - descripcion 1 - cantidad - descripcion 2
+#
+# COMUNIDAD
+5-0-Recibe -200-€ por haber pasado por la casilla de salida
+5-0-Banco paga dividendos de -50-€
+5-0-Devolución de impuestos: cobra -20-€
+5-0-Has ganado el segundo premio en un concurso de belleza, cobra -10-€
+5-0-Herencia: recibe -100-€

@@ -9,10 +9,7 @@ import visualesNuevas.GameUtilities;
 
 import java.awt.Point;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -89,14 +86,15 @@ public class Gameboard extends VisualGameElement{
         
         Point[][] puntos = asignPoints();
 
-        String path = "contenido/casillas.txt";
+        String path = "resources/contenido/casillas.txt";
         String linea;
 
-        Path p = Paths.get("resources/" + path);
-        System.out.println(p != null);
+        Path p = Paths.get(path);
 
-        InputStream is = getClass().getClassLoader().getResourceAsStream(path);
-        System.out.println(is != null);
+        File f = new File(path);
+        boolean b = f.exists();
+
+        System.out.println("saf");
         try {
             List lineas = Files.readAllLines(Paths.get(p.toUri())); // el path sigue sin funcionar
             int linesCounter = (int) lineas.stream()

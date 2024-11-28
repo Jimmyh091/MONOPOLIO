@@ -161,7 +161,7 @@ public class SceneImplementer {
 
         MImage imagenCalle = new MImage("imagenCalle",
                 d, 300, 300, 550,
-                null,
+                GameUtilities.getImage("imagenes/pantallaJuego/carta.jpg"),
                 "imagenCalle", 30);
         imagenCalle.setUpdate(mo -> {
             Casilla casilla = (Casilla) mo;

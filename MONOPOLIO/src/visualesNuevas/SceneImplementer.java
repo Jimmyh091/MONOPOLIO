@@ -58,7 +58,7 @@ public class SceneImplementer {
 
     public ArrayList<VisualElement>[] addTestSquaresPos(SceneManager sceneManager){
 
-        MButton[] lista = new MButton[40];
+        MButton[] lista = new MButton[41];
 
         Point[][] p = gameManager.getGameboard().asignPoints();
 
@@ -70,6 +70,13 @@ public class SceneImplementer {
                     null,
                     null);
         }
+
+        lista[40] = new MButton("asdf",
+                gameManager.getGameboard().getX(), gameManager.getGameboard().getY(), gameManager.getGameboard().getWidth(), gameManager.getGameboard().getHeight(),
+                "Tablero", 20,
+                new Color(250,250,250),
+                new Color(250,250,250),
+                null);
 
         ArrayList<VisualElement> backgrounds = new ArrayList<>();
         ArrayList<VisualElement> buttons = new ArrayList<>();

@@ -4,7 +4,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 
 public class GameUtilities {
-    public static boolean DEBUG = true;
+    public static boolean DEBUG = false;
     public static boolean MOUSE_POSITION = false;
     public static boolean CLICK_POSITION = false;
     public static boolean FPS = false;

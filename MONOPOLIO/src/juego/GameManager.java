@@ -51,7 +51,7 @@ public class GameManager {
         comunityCardDeck = new Baraja(0, 0, 0, 0, null, createCardDeck(true));
         luckyCardDeck = new Baraja(0, 0, 0, 0, null, createCardDeck(false));
         diceCube = new CuboDados(0, 0, 0, 0, null, 6, 2);
-        gameboard = new Gameboard((int) (GamePanel.SCREEN_WIDTH * 0.1), (int) (GamePanel.SCREEN_WIDTH * 0.1), (int) (GamePanel.SCREEN_WIDTH * 0.8), (int) (GamePanel.SCREEN_WIDTH * 0.8), GameUtilities.getImage("/imagenes/tablero.jpg"));
+        gameboard = new Gameboard((int) (GamePanel.SCREEN_HEIGHT * 0.1), (int) (GamePanel.SCREEN_HEIGHT * 0.1), (int) (GamePanel.SCREEN_HEIGHT * 0.8), (int) (GamePanel.SCREEN_HEIGHT * 0.8), GameUtilities.getImage("/imagenes/tablero.jpg"));
         
         turn = 0;
         win = false;

@@ -75,7 +75,7 @@ public class Gameboard extends VisualGameElement{
     }
 
     private void asignInnerCoords(){
-        Float percentage = 0.6F;
+        Float percentage = 0.7F;
 
         int innerSideLength = (int) (super.getWidth() * percentage);
 
@@ -156,21 +156,21 @@ public class Gameboard extends VisualGameElement{
             
             int tempX = super.getX();
             int tempY = super.getY();
-            int tempWidth = super.getWidth();
-            int tempHeight = super.getHeight();
+            int tempWidth = 0;
+            int tempHeight = 0;
             
             if (isCorner) {
                 switch(numCorner){
                     case 1:
                         
-                        tempX = (super.getWidth() - innerWidth) / 2 + innerWidth;
-                        tempY = (super.getHeight() - innerHeight) / 2 + innerHeight;
+                        tempX += (super.getWidth() - innerWidth) / 2 + innerWidth;
+                        tempY += (super.getHeight() - innerHeight) / 2 + innerHeight;
                         break;
 
                     case 2:
 
                         tempX = super.getX();
-                        tempY = innerHeight + (super.getHeight() - innerHeight) / 2;
+                        tempY += innerHeight + (super.getHeight() - innerHeight) / 2;
                         break;
                         
                     case 3:
@@ -181,7 +181,7 @@ public class Gameboard extends VisualGameElement{
                         
                     case 4:
                         
-                        tempX = (super.getWidth() - innerWidth) / 2 + innerWidth;
+                        tempX += (super.getWidth() - innerWidth) / 2 + innerWidth;
                         tempY = super.getY();
                         break;
                         
@@ -195,35 +195,35 @@ public class Gameboard extends VisualGameElement{
             }else{
                 switch(numCorner){
                     case 1:
-                        
-                        tempX = (innerWidth + (super.getWidth() - innerWidth) / 2) - (innerWidth / 9 * i);
-                        tempY = innerHeight + (super.getHeight() - innerHeight) / 2;
-                        tempWidth = innerWidth / 9;
-                        tempHeight = (super.getHeight() - innerHeight) / 2;
+
+                        tempX += (innerWidth + (super.getWidth() - innerWidth) / 2) - (innerWidth / 9 * i); //? no entiendo porque es 11
+                        tempY += innerHeight + (super.getHeight() - innerHeight) / 2;
+                        tempWidth += innerWidth / 9;
+                        tempHeight += (super.getHeight() - innerHeight) / 2;
                         break;
                         
                     case 2:
 
                         tempX = super.getX();
-                        tempY = (innerHeight + (super.getHeight() - innerHeight) / 2) - (innerHeight / 9 * (i - quarterTable * (numCorner - 1)));
-                        tempWidth = (super.getWidth() - innerWidth) / 2;
-                        tempHeight = innerHeight / 9;
+                        tempY += (innerHeight + (super.getHeight() - innerHeight) / 2) - (innerHeight / 9 * (i - quarterTable * (numCorner - 1)));
+                        tempWidth += (super.getWidth() - innerWidth) / 2;
+                        tempHeight += innerHeight / 9;
                         break;
                         
                     case 3:
-                        
-                        tempX = ((super.getWidth() - innerWidth) / 2) + (innerWidth / 9 * (i - (quarterTable * (numCorner - 1)) - 1)); //? el ultimo -1 raro
+
+                        tempX += ((super.getWidth() - innerWidth) / 2) + (innerWidth / 9 * (i - (quarterTable * (numCorner - 1)) - 1));
                         tempY = super.getY();
-                        tempWidth = innerWidth / 9;
-                        tempHeight = (super.getHeight() - innerHeight) / 2;
+                        tempWidth += innerWidth / 9;
+                        tempHeight += (super.getHeight() - innerHeight) / 2;
                         break;
                         
                     case 4:
                         
-                        tempX = innerWidth + (super.getWidth() - innerWidth) / 2;
-                        tempY = ((super.getHeight() - innerHeight) / 2) + (innerHeight / 9 * (i - (quarterTable * (numCorner - 1)) - 1));
-                        tempWidth = (super.getWidth() - innerWidth) / 2;
-                        tempHeight = innerHeight / 9;
+                        tempX += innerWidth + (super.getWidth() - innerWidth) / 2;
+                        tempY += ((super.getHeight() - innerHeight) / 2) + (innerHeight / 9 * (i - (quarterTable * (numCorner - 1)) - 1));
+                        tempWidth += (super.getWidth() - innerWidth) / 2;
+                        tempHeight += innerHeight / 9;
                         break;
                         
                     default:

@@ -25,7 +25,7 @@ public class VisualGameElement extends MObservable {
 
     @Override
     public void updateObserver(MObservable mo) {
-        super.updateObserver(this); //? imagino que se le pasa la instancia del objeto y no la clase, espero
+        super.updateObserver(mo);
     }
 
     public int getX() {

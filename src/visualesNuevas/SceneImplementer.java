@@ -34,8 +34,8 @@ public class SceneImplementer {
         MButton botonPrueba = new MButton("botonPrueba",
                 0, 0, 100, 100,
                 "Prueba", 16,
-                new Color(20,20,200),
-                new Color(0,0,0),
+                (BufferedImage) null,
+                null,
                 (FlatEvent) () -> System.out.println("JAIME FUNCIONA QUE COJONES"));
         MButton botonPrueba2 = new MButton("botonPrueba2",
                 100, 500, 500, 200,
@@ -81,8 +81,8 @@ public class SceneImplementer {
         lista[40] = new MButton("asdf",
                 gameManager.getGameboard().getX(), gameManager.getGameboard().getY(), gameManager.getGameboard().getWidth(), gameManager.getGameboard().getHeight(),
                 "Tablero", 20,
-                new Color(250,250,250),
-                new Color(250,250,250),
+                (BufferedImage) null,
+                null,
                 null);
 
         ArrayList<VisualElement> backgrounds = new ArrayList<>();
@@ -113,8 +113,8 @@ public class SceneImplementer {
         buttons.add(new MButton("BotonJugar",
                 0, 0, 100, 100,
                 "Jugar", 20,
-                new Color(0,0,0),
-                new Color(0,0,0),
+                (BufferedImage) null,
+                null,
                 (FlatEvent)() -> sceneManager.setScene("pantallaPrincipal") ));
 
         BufferedImage imagenTablero = null;
@@ -151,45 +151,46 @@ public class SceneImplementer {
 
             });
 
+        // IMAGES
+        MImage imagenCalle = new MImage("imagenCalle",
+                700, 20, 300, 550,
+                null,
+                "imagenCalle", 30);
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        imagenCalle.setUpdate(mo -> {
+            Casilla casilla = (Casilla) mo;
+            imagenCalle.setName(casilla.getTitle());
+        });
+
+        // BUTTONS pero despues porque tengo que inicializar la imagen
         Gameboard gameboardAux = gameManager.getGameboard();
 
         MButton gameboard = new MButton("gameboard",
                 gameboardAux.getX(), gameboardAux.getY(), gameboardAux.getWidth(), gameboardAux.getHeight(),
                 "Tablero", 30,
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
-                GameUtilities.getImage("/imagenes/tablero.jpg"),
-                (ClickEvent) click -> {
+                GameUtilities.getImage("/imagenes/tablero.jpg"));
+        gameboard.setEvent((ClickEvent) click -> {
 
-                    Casilla[] casillas = gameboardAux.getSquares();
+            Casilla[] casillas = gameboardAux.getSquares();
 
-                    for (Casilla casilla : casillas) {
+            for (Casilla casilla : casillas) {
 
-                        if (click.x >= casilla.getX() && click.x <= casilla.getX() + casilla.getWidth()){
-                            if (click.y >= casilla.getY() && click.y <= casilla.getY() + casilla.getHeight()){
-                                casilla.updateObserver(casilla);
-                            }
-                        }
+                if (click.x >= casilla.getX() && click.x <= casilla.getX() + casilla.getWidth()){
+                    if (click.y >= casilla.getY() && click.y <= casilla.getY() + casilla.getHeight()){
+                        imagenCalle.updateObserver(casilla);
                     }
+                }
+            }
 
-                });
+        });
         gameboard.setUpdate((mo) -> {
             // no tiene pinta que el tablero se vaya a actualizar
         });
 
-        // IMAGES
-        MImage imagenCalle = new MImage("imagenCalle",
-                700, 20, 300, 550,
-                null,
-                "imagenCalle", 30);
-        imagenCalle.setUpdate(mo -> {
-            Casilla casilla = (Casilla) mo;
-
-            imagenCalle.setName(casilla.getTitle());
-        });
-
         // OBSERVERS //
 
-        gameManager.getDiceCube().addObserver(dice); //? son dos tiradas, dos dados diferentes entonces no se si deberia tener dos imagenes o que
+        gameManager.getDiceCube().addObserver(dice);
         gameboard.addObserver(imagenCalle);
 
         // --- //

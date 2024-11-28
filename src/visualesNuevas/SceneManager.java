@@ -66,6 +66,7 @@ public class SceneManager {
     }
     
     public void checkClickPosition(Point clickPosition){ //? no solo los botones tendrian eventos
+
         if (scenes.get(actualScene) != null){
 
             if (scenes.get(actualScene)[2].get(0) != null){

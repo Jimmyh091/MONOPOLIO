@@ -1,5 +1,6 @@
 package elementosVisuales;
 
+import juego.MObservable;
 import visualesNuevas.GamePanel;
 
 import java.awt.*;
@@ -38,4 +39,8 @@ public class MBackground extends VisualElement{
         }
     }
 
+    @Override
+    public void update(MObservable mo) {
+        //? ?????????????
+    }
 }

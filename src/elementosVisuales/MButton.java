@@ -40,34 +40,19 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
         hover = false;
     }
 
-    public MButton(String id, int x, int y, int width, int height, String text, int size, Color color, Color hoverColor, MEvent event){ // nunca lo usare si no fuera en debug y para el debug ya tengo el de abajo
-        //t
+    public MButton(String id, int x, int y, int width, int height, String text, int size, BufferedImage image, BufferedImage hoverImage){
+
         super(id, x, y, width, height, null);
 
-        this.text = new MLabel(id, x + width / 2 - text.length(), y + height / 2, text, size, null); //t deberia estar en el centro
-        this.color = color;
-        this.hoverColor = hoverColor;
-        this.image = null;
-        this.hoverImage = null;
+        this.text = new MLabel("id", x + width / 2 - text.length(), y + height / 2, text, size, null);
+        this.color = new Color(0, 0, 0);
+        this.hoverColor = new Color(0, 0, 0);
+        this.image = image;
+        this.hoverImage = hoverImage;
         this.event = event;
 
         hover = false;
     }
-
-    public MButton(String id, int x, int y, int width, int height, String text, int size, Color color, MEvent event){ //?
-        //t
-        super(id, x, y, width, height, null);
-
-        this.text = new MLabel(id, x + width / 2 - text.length(), y + height / 2 - size / 2, text, size, null); //t deberia estar en el centro
-        this.color = color;
-        this.hoverColor = color;
-        this.image = null;
-        this.hoverImage = null;
-        this.event = event;
-
-        hover = false;
-    }
-
 
     @Override
     public void draw(Graphics2D g){
@@ -120,6 +105,15 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
     public void activateHover(){hover = true;}
     public void deactivateHover(){hover = false;}
 
+    public void setEvent(MEvent event){
+        this.event = event;
+    }
+
+    @Override
+    public void setUpdate(MObserver update){
+        super.setUpdate(update);
+    }
+
     @Override
     public void update(MObservable mo){
         super.update(mo);
@@ -134,10 +128,6 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
     }
     public void setImage(BufferedImage image) {
         this.image = image;
-    }
-
-    public void setUpdate(MObserver update){
-        super.setUpdate(update);
     }
 
     public MEvent getEvent() {

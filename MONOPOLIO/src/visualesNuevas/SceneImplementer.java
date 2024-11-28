@@ -12,6 +12,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
@@ -51,6 +52,37 @@ public class SceneImplementer {
         images.add(null);
 
         labels.add(labelPrueba);
+
+        return new ArrayList[]{backgrounds, images, buttons, labels};
+    }
+
+    public ArrayList<VisualElement>[] addTestSquaresPos(SceneManager sceneManager){
+
+        MButton[] lista = new MButton[40];
+
+        Point[][] p = gameManager.getGameboard().asignPoints();
+
+        for (int i = 0; i < gameManager.getNumSquares(); i++) {
+            lista[i] = new MButton("asdf",
+                    p[0][i].x, p[0][i].y, p[1][i].x, p[1][i].y,
+                    "b" + i, 10,
+                    (BufferedImage) null,
+                    null,
+                    null);
+        }
+
+        ArrayList<VisualElement> backgrounds = new ArrayList<>();
+        ArrayList<VisualElement> buttons = new ArrayList<>();
+        ArrayList<VisualElement> images = new ArrayList<>();
+        ArrayList<VisualElement> labels = new ArrayList<>();
+
+        backgrounds.add(null);
+
+        buttons.addAll(Arrays.asList(lista));
+
+        images.add(null);
+
+        labels.add(null);
 
         return new ArrayList[]{backgrounds, images, buttons, labels};
     }

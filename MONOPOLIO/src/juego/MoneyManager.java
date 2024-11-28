@@ -7,7 +7,7 @@ package juego;
 
 /**
  *
- * @author EAG
+ * @author Jaime
  */
 public class MoneyManager {
     

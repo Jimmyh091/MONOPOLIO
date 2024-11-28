@@ -11,7 +11,7 @@ import java.awt.*;
 
 /**
  *
- * @author EAG
+ * @author Jaime
  */
 public class MLabel extends VisualElement{ //a ABANDONADA
 

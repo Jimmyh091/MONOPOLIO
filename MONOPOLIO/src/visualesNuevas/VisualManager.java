@@ -12,7 +12,7 @@ public class VisualManager {
         this.sm = sm;
         GameManager gm = new GameManager(null); //t
         si = new SceneImplementer(gm);
-        addGameScene();
+        addTestSquaresPos();
     }
 
     public void addTest(){
@@ -25,5 +25,9 @@ public class VisualManager {
 
     public void addGameScene(){
         sm.addScene("game", si.addGameScene(sm));
+    }
+
+    public void addTestSquaresPos(){
+        sm.addScene("test", si.addTestSquaresPos(sm));
     }
 }

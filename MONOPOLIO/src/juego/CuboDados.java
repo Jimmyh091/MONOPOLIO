@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 
 /**
  *
- * @author EAG
+ * @author Jaime
  */
 public class CuboDados extends VisualGameElement{
     

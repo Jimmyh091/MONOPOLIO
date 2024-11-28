@@ -1,7 +1,8 @@
-#1/Nombre de la calle/valor/grupo
-#0/Nombre del evento/valor/evento
+# 1/Nombre de la calle/valor/grupo
+# 0/Nombre del evento/valor/-
 #
 # CALLES
+#
 0/Salida/200/?
 1/Ronda de valencia/60/1
 0/Caja de la Comunidad/0/?

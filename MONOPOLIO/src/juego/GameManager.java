@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author EAG
+ * @author Jaime
  */
 public class GameManager {
     
@@ -44,14 +44,14 @@ public class GameManager {
     
     public GameManager(Jugador[] players){
         
-        numSquares = 48;
+        numSquares = 40;
         
         players = null;
         squares = null;
         comunityCardDeck = new Baraja(0, 0, 0, 0, null, createCardDeck(true));
         luckyCardDeck = new Baraja(0, 0, 0, 0, null, createCardDeck(false));
         diceCube = new CuboDados(0, 0, 0, 0, null, 6, 2);
-        gameboard = new Gameboard((int) (GamePanel.SCREEN_WIDTH * 0.1), (int) (GamePanel.SCREEN_WIDTH * 0.1), (int) (GamePanel.SCREEN_WIDTH * 0.8), (int) (GamePanel.SCREEN_WIDTH * 0.8), GameUtilities.getImage("/imagenes/tablero.jpg"));
+        gameboard = new Gameboard((int) 0, (int) 0, (int) 500, (int) 500, GameUtilities.getImage("/imagenes/tablero.jpg"));
         
         turn = 0;
         win = false;

@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
 
 /**
  *
- * @author EAG
+ * @author Jaime
  */
 public class MImage extends VisualElement implements Hoverable {
     private final BufferedImage bi;

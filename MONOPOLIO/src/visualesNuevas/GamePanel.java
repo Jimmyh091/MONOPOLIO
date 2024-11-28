@@ -12,7 +12,7 @@ import javax.swing.*;
 
 /**
  *
- * @author EAG
+ * @author Jaime
  */
 public class GamePanel extends JPanel implements Runnable{
     

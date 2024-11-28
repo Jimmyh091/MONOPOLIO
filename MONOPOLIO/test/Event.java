@@ -6,7 +6,7 @@
 
 /**
  *
- * @author EAG
+ * @author Jaime
  */
 public interface Event {
     

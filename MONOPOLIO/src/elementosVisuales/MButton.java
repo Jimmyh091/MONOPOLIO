@@ -31,8 +31,8 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
         super(id, x, y, width, height, null);
 
         this.text = new MLabel("id", x + width / 2 - 18, y + height / 2, null, nombre, size);
-        this.color = null;
-        this.hoverColor = null;
+        this.color = new Color(0, 0, 0);
+        this.hoverColor = new Color(0, 0, 0);
         this.image = image;
         this.hoverImage = hoverImage;
         this.event = event;
@@ -54,7 +54,7 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
         hover = false;
     }
 
-    public MButton(String id, int x, int y, int width, int height, String text, int size, Color color, Event event){
+    public MButton(String id, int x, int y, int width, int height, String text, int size, Color color, Event event){ //?
         //t
         super(id, x, y, width, height, null);
 
@@ -68,7 +68,6 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
         hover = false;
     }
 
-
     @Override
     public void draw(Graphics2D g){
         if (image != null && !GameUtilities.DEBUG){
@@ -80,8 +79,11 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
             }
 
         }else{
-            g.drawRect(getX(), getY(), getWidth(), getHeight());
-            text.draw(g);
+
+            if (color != null){
+                g.drawRect(getX(), getY(), getWidth(), getHeight());
+                text.draw(g);
+            }
         }
 
     }

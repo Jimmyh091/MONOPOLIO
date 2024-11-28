@@ -20,7 +20,7 @@ public class VisualManager {
     }
 
     public void addTitleScene(){
-        sm.addScene("test", si.addTest(sm));
+        sm.addScene("title", si.addTest(sm));
     }
 
     public void addGameScene(){
@@ -28,6 +28,6 @@ public class VisualManager {
     }
 
     public void addTestSquaresPos(){
-        sm.addScene("test", si.addTestSquaresPos(sm));
+        sm.addScene("testSqrPos", si.addTestSquaresPos(sm));
     }
 }

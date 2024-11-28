@@ -16,14 +16,15 @@ public class VisualGameElement extends MObservable {
         this.height = height;
         this.image = image;
     }
-    //? ??????????????
+
+    //? no se porque se le pondria override si hace solo lo que hace el padre
     @Override
     public void addObserver(VisualElement ve){
         super.addObserver(ve);
     }
 
     @Override
-    public void updateObserver(VisualGameElement visualGameElement) {
+    public void updateObserver(MObservable mo) {
         super.updateObserver(this); //? imagino que se le pasa la instancia del objeto y no la clase, espero
     }
 

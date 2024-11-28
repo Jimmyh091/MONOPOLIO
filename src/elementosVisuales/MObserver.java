@@ -1,7 +1,7 @@
 package elementosVisuales;
 
-import juego.VisualGameElement;
+import juego.MObservable;
 
 public interface MObserver {
-    public void update(VisualGameElement vgm);
+    public void update(MObservable mo);
 }

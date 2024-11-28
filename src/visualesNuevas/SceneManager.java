@@ -57,6 +57,7 @@ public class SceneManager {
                 ArrayList<VisualElement> elements = visualElementsList[i];
 
                 if (elements != null) elements.forEach(element -> {
+
                     if (element != null) element.draw(g);
                 });
             }
@@ -74,7 +75,12 @@ public class SceneManager {
                     MButton button = (MButton) button1;
 
                     if (button.clickIn(clickPosition)) {
-                        button.executeEvent();
+
+                        if (button.getEvent() instanceof ClickEvent){
+                            button.executeEvent(clickPosition);
+                        } else {
+                            button.executeEvent();
+                        }
                     }
                 });
 

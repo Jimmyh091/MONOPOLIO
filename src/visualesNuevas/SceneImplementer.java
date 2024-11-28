@@ -29,7 +29,7 @@ public class SceneImplementer {
 
         MBackground fondoPrueba = new MBackground("fond", new GradientPaint(0, 0, new Color(100, 255, 100), 0, GamePanel.SCREEN_HEIGHT, new Color(200, 255, 200)));
 
-        MLabel labelPrueba = new MLabel("prueba", 0, 30,null, "SOY UNA PRUEBAAA", 30);
+        MLabel labelPrueba = new MLabel("prueba", 0, 30, "SOY UNA PRUEBAAA", 30,null);
 
         MButton botonPrueba = new MButton("botonPrueba",
                 0, 0, 100, 100,
@@ -124,7 +124,9 @@ public class SceneImplementer {
             Logger.getLogger(PantallaJuego.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        images.add(new MImage("ImagenTablero", 0, 0, imagenTablero, null));
+        images.add(new MImage("ImagenTablero",
+                0, 0, 0, 0,
+                imagenTablero, "imagenalskdfjas", 3));
 
         labels.add(null);
 
@@ -140,8 +142,8 @@ public class SceneImplementer {
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
                 (FlatEvent) () -> gameManager.rollDice()); //t coordenadas mal e imagen
-        dice.setUpdate(vgm -> {
-                CuboDados cd = (CuboDados) vgm;
+        dice.setUpdate(mo -> {
+                CuboDados cd = (CuboDados) mo;
 
                 switch (cd.getResult()[0]){
                     case 1 -> System.out.println("se cambiaria la foto pero no la tengo");//dice.setImage(GameUtilities.getImage("imagendadotirada"));
@@ -163,28 +165,33 @@ public class SceneImplementer {
                     for (Casilla casilla : casillas) {
 
                         if (click.x >= casilla.getX() && click.x <= casilla.getX() + casilla.getWidth()){
-                            if (click.x >= casilla.getX() && click.x <= casilla.getX() + casilla.getWidth()){
+                            if (click.y >= casilla.getY() && click.y <= casilla.getY() + casilla.getHeight()){
                                 casilla.updateObserver(casilla);
                             }
                         }
                     }
 
                 });
-        gameboard.setUpdate((vgm) -> {
+        gameboard.setUpdate((mo) -> {
             // no tiene pinta que el tablero se vaya a actualizar
         });
-
-        gameManager.getDiceCube().addObserver(dice); //? son dos tiradas, dos dados diferentes entonces no se si deberia tener dos imagenes o que
 
         // IMAGES
         MImage imagenCalle = new MImage("imagenCalle",
                 700, 20, 300, 550,
-                null);
-        imagenCalle.setUpdate(vge -> {
-            Casilla casilla = (Casilla) vge;
+                null,
+                "imagenCalle", 30);
+        imagenCalle.setUpdate(mo -> {
+            Casilla casilla = (Casilla) mo;
 
             imagenCalle.setName(casilla.getTitle());
         });
+
+        // OBSERVERS //
+
+        gameManager.getDiceCube().addObserver(dice); //? son dos tiradas, dos dados diferentes entonces no se si deberia tener dos imagenes o que
+        gameboard.addObserver(imagenCalle);
+
         // --- //
 
         ArrayList<VisualElement> backgrounds = new ArrayList<>();

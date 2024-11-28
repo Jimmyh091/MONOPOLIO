@@ -12,7 +12,7 @@ public class VisualManager {
         this.sm = sm;
         GameManager gm = new GameManager(null); //t
         si = new SceneImplementer(gm);
-        addGameScene();
+        addTestSquaresPos();
     }
 
     public void addTest(){

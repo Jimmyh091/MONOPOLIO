@@ -9,6 +9,7 @@ import juego.MObservable;
 import juego.VisualGameElement;
 
 import java.awt.Graphics2D;
+import java.util.Observer;
 
 /**
  *
@@ -44,6 +45,16 @@ public abstract class VisualElement extends MObservable implements Drawable, MOb
 
     public void setUpdate(MObserver update){
         this.update = update;
+    }
+
+    @Override
+    public void addObserver(VisualElement ve){
+        super.addObserver(ve);
+    }
+
+    @Override
+    public void updateObserver(MObservable mo){
+        super.updateObserver(mo);
     }
 
     public int getX() {

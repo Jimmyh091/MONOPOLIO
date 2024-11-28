@@ -151,19 +151,24 @@ public class SceneImplementer {
 
             });
 
+        Gameboard gameboardAux = gameManager.getGameboard();
         // IMAGES
+
+        int a = gameboardAux.getX() + gameboardAux.getWidth();
+        int b = GamePanel.SCREEN_WIDTH;
+        int c = a + b - a;
+        int d = c / 2 +  300 / 2;
+
         MImage imagenCalle = new MImage("imagenCalle",
-                700, 20, 300, 550,
+                d, 300, 300, 550,
                 null,
                 "imagenCalle", 30);
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         imagenCalle.setUpdate(mo -> {
             Casilla casilla = (Casilla) mo;
             imagenCalle.setName(casilla.getTitle());
         });
 
         // BUTTONS pero despues porque tengo que inicializar la imagen
-        Gameboard gameboardAux = gameManager.getGameboard();
 
         MButton gameboard = new MButton("gameboard",
                 gameboardAux.getX(), gameboardAux.getY(), gameboardAux.getWidth(), gameboardAux.getHeight(),
@@ -178,7 +183,7 @@ public class SceneImplementer {
 
                 if (click.x >= casilla.getX() && click.x <= casilla.getX() + casilla.getWidth()){
                     if (click.y >= casilla.getY() && click.y <= casilla.getY() + casilla.getHeight()){
-                        imagenCalle.updateObserver(casilla);
+                        gameboard.updateObserver(casilla);
                     }
                 }
             }

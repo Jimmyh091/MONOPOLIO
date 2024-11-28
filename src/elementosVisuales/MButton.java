@@ -119,6 +119,8 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
         super.update(mo);
     }
 
+
+
     public Color getColor() {
         return (hover) ? hoverColor : color;
     }

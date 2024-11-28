@@ -34,7 +34,7 @@ public class MImage extends VisualElement implements Hoverable {
         name = new MLabel("debugImageName", x / 2 - text.length(), y - size / 2, text, size, null);
     }
 
-
+    @Override
     public void setUpdate(MObserver update){
         super.setUpdate(update);
     }

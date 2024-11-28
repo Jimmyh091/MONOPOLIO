@@ -14,18 +14,17 @@ import java.awt.image.BufferedImage;
  */
 public class Calle extends Casilla{
     private Integer propietario;
-    private String titulo;
     private int price1, price2, price3, priceH;    
     private int grupo;
     private int numCasas;
     private int numHoteles;
     
     public Calle(int x, int y, int w, int h, BufferedImage bi, String t, int p, int g){
-        super(x, y, w, h, bi);
-        titulo = t;
+        super(x, y, w, h, bi, t);
+
         propietario = null;
         price1 = p;
-        price2 = (int) (price1 + price1 * 0.2); //?
+        price2 = (int) (price1 + price1 * 0.2); //t
         price3 = (int) (price1 + price1 * 0.4);
         priceH = (int) (price1 + price1 * 0.6);
         grupo = g;

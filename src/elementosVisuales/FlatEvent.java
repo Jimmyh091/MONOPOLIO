@@ -1,6 +1,6 @@
 package elementosVisuales;
 
 @FunctionalInterface
-public interface Event {
+public interface FlatEvent extends MEvent{
     public void executeEvent();
 }

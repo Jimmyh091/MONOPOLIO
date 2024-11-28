@@ -17,15 +17,21 @@ import java.awt.image.BufferedImage;
  */
 public class MImage extends VisualElement implements Hoverable {
     private final BufferedImage bi;
+    private String name;
 
-    public MImage(String id, int x, int y, BufferedImage b, MObserver update){
-        super(id, x, y, b.getWidth(), b.getHeight(), update);
+    public MImage(String id, int x, int y, BufferedImage b, String name) {
+        super(id, x, y, b.getWidth(), b.getHeight(), null);
+        bi = b;
+        this.name = name;
+    }
+
+    public MImage(String id, int x, int y, int w, int h, BufferedImage b){
+        super(id, x, y, w, h, null);
         bi = b;
     }
 
-    public MImage(String id, int x, int y, int w, int h, BufferedImage b, MObserver update){
-        super(id, x, y, w, h, update);
-        bi = b;
+    public void setUpdate(MObserver update){
+        super.setUpdate(update);
     }
 
     @Override
@@ -45,5 +51,12 @@ public class MImage extends VisualElement implements Hoverable {
     @Override
     public void update(VisualGameElement vge) { //? es igual en todos, no creo que sea asi
         super.update(vge);
+    }
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
 }

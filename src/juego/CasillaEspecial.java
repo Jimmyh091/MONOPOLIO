@@ -13,16 +13,13 @@ import java.awt.image.BufferedImage;
  * @author jaime
  */
 public class CasillaEspecial extends Casilla{
-    
-    private String titulo;
+
     private int valor;
     private GameEvent evento;
     private int type;
     
     public CasillaEspecial(int x, int y, int w, int h, BufferedImage bi, String t, int v, GameEvent e){
-        super(x, y, w, h, bi);
-
-        titulo = t;
+        super(x, y, w, h, bi, t);
         valor = v;
         evento = e;
         

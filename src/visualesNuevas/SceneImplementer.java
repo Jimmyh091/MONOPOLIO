@@ -1,10 +1,7 @@
 package visualesNuevas;
 
 import elementosVisuales.*;
-import juego.Casilla;
-import juego.CuboDados;
-import juego.GameManager;
-import juego.VisualGameElement;
+import juego.*;
 import visualesInutilizables.PantallaJuego;
 
 import javax.imageio.ImageIO;
@@ -34,8 +31,18 @@ public class SceneImplementer {
 
         MLabel labelPrueba = new MLabel("prueba", 0, 30,null, "SOY UNA PRUEBAAA", 30);
 
-        MButton botonPrueba = new MButton("botonPrueba", 0, 0, 100, 100, "Prueba", 16, new Color(20,20,200), new Color(0,0,0), () -> System.out.println("JAIME FUNCIONA QUE COJONES"));
-        MButton botonPrueba2 = new MButton("botonPrueba2", 100, 500, 500, 200, "BotonPrueba", 16, GameUtilities.getImage("/imagenes/test/botonPrueba.png"), GameUtilities.getImage("/imagenes/test/botonPruebaHover.jpg"), () -> System.out.println("hola"));
+        MButton botonPrueba = new MButton("botonPrueba",
+                0, 0, 100, 100,
+                "Prueba", 16,
+                new Color(20,20,200),
+                new Color(0,0,0),
+                (FlatEvent) () -> System.out.println("JAIME FUNCIONA QUE COJONES"));
+        MButton botonPrueba2 = new MButton("botonPrueba2",
+                100, 500, 500, 200,
+                "BotonPrueba", 16,
+                GameUtilities.getImage("/imagenes/test/botonPrueba.png"),
+                GameUtilities.getImage("/imagenes/test/botonPruebaHover.jpg"),
+                (FlatEvent) () -> System.out.println("hola"));
 
         // --- //
 
@@ -103,7 +110,12 @@ public class SceneImplementer {
 
         backgrounds.add(null);
 
-        buttons.add(new MButton("BotonJugar", 0, 0, 100, 100, "Jugar", 20, new Color(0,0,0), new Color(0,0,0), () -> sceneManager.setScene("pantallaPrincipal") ));
+        buttons.add(new MButton("BotonJugar",
+                0, 0, 100, 100,
+                "Jugar", 20,
+                new Color(0,0,0),
+                new Color(0,0,0),
+                (FlatEvent)() -> sceneManager.setScene("pantallaPrincipal") ));
 
         BufferedImage imagenTablero = null;
         try {
@@ -122,14 +134,13 @@ public class SceneImplementer {
     public ArrayList<VisualElement>[] addGameScene(SceneManager sceneManager){
 
         // BUTTONS
-        // ex.: MButton botonJugar = new MButton("BotonJugar", GamePanel.SCREEN_WIDTH - 100 / 2, GamePanel.SCREEN_HEIGHT / 3 * 2, 100, 100, null, "Jugar", 20, new Color(0,0,0), new Color(20,20,20), () -> sceneManager.setScene("pantallaPrincipal") );
         MButton dice = new MButton("dice",
                 gameManager.getDiceCube().getX(), gameManager.getDiceCube().getY(), 100, 100,
                 "dado", 10,
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
-                () -> gameManager.rollDice()); //t coordenadas mal e imagen
-        dice.setUpdate((vgm) -> {
+                (FlatEvent) () -> gameManager.rollDice()); //t coordenadas mal e imagen
+        dice.setUpdate(vgm -> {
                 CuboDados cd = (CuboDados) vgm;
 
                 switch (cd.getResult()[0]){
@@ -138,29 +149,42 @@ public class SceneImplementer {
 
             });
 
-        MButton[] botonesCasillas = new MButton[gameManager.getNumSquares()];
-        Casilla[] casillas = gameManager.getGameboard().getSquares();
+        Gameboard gameboardAux = gameManager.getGameboard();
 
-        /*for (int i = 0; i < casillas.length; i++) {
-            botonesCasillas[i] =
-                    new MButton("casilla" + i,
-                    casillas[i].getX(), casillas[i].getY(), casillas[i].getWidth(), casillas[i].getHeight(),
-                    "casilla " + i, 7,
-                    GameUtilities.getImage("/"),
-                    GameUtilities.getImage("/"),
-                    () -> System.out.println("Funciona creo"));
-        }*/
+        MButton gameboard = new MButton("gameboard",
+                gameboardAux.getX(), gameboardAux.getY(), gameboardAux.getWidth(), gameboardAux.getHeight(),
+                "Tablero", 30,
+                GameUtilities.getImage("/imagenes/tablero.jpg"),
+                GameUtilities.getImage("/imagenes/tablero.jpg"),
+                (ClickEvent) click -> {
+
+                    Casilla[] casillas = gameboardAux.getSquares();
+
+                    for (Casilla casilla : casillas) {
+
+                        if (click.x >= casilla.getX() && click.x <= casilla.getX() + casilla.getWidth()){
+                            if (click.x >= casilla.getX() && click.x <= casilla.getX() + casilla.getWidth()){
+                                casilla.updateObserver(casilla);
+                            }
+                        }
+                    }
+
+                });
+        gameboard.setUpdate((vgm) -> {
+            // no tiene pinta que el tablero se vaya a actualizar
+        });
 
         gameManager.getDiceCube().addObserver(dice); //? son dos tiradas, dos dados diferentes entonces no se si deberia tener dos imagenes o que
 
-
         // IMAGES
-        MImage imagenTablero = new MImage("imagenTablero",
-                (int) (GamePanel.SCREEN_HEIGHT * 0.1),
-                (int) (GamePanel.SCREEN_HEIGHT * 0.1),
-                (int) (GamePanel.SCREEN_HEIGHT * 0.8),
-                (int) (GamePanel.SCREEN_HEIGHT * 0.8), GameUtilities.getImage("/imagenes/tablero.jpg"), null);
+        MImage imagenCalle = new MImage("imagenCalle",
+                700, 20, 300, 550,
+                null);
+        imagenCalle.setUpdate(vge -> {
+            Casilla casilla = (Casilla) vge;
 
+            imagenCalle.setName(casilla.getTitle());
+        });
         // --- //
 
         ArrayList<VisualElement> backgrounds = new ArrayList<>();
@@ -171,11 +195,9 @@ public class SceneImplementer {
         backgrounds.add(null);
 
         buttons.add(dice);
-        /*for (int i = 0; i < botonesCasillas.length; i++) {
-            buttons.add(botonesCasillas[i]);
-        }*/
+        buttons.add(gameboard);
 
-        images.add(imagenTablero);
+        images.add(imagenCalle);
 
         labels.add(null);
 

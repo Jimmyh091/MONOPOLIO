@@ -71,22 +71,22 @@ public class GameManager {
 
 
         if (gameboard.getPositions().get(activePlayer) == 31){
-            int result = getDiceResult(0, 0);
+            int[] result = diceCube.rollDice();
         }else{
-
+            int result = getDiceResult();
         }
     }
     
-    public int getDiceResult(int times, int r){
+    public int getDiceResult(){
         
         int result = 0;
         
-        for (int i = 0; i < 3; i++) {            
+        for (int i = 0; i < 3; i++) {       //? no esta del tod0 bien hecho
             int[] diceResult = diceCube.rollDice();
             result += diceResult[0] + diceResult[1];
             
             if (diceResult[0] == diceResult[1]) {
-                if (i == 3) {
+                if (i == 2) {
 
                     if (GameUtilities.DEBUG) System.out.println("Se va a la carcel");
 

@@ -6,7 +6,6 @@
 package elementosVisuales;
 
 import juego.VisualGameElement;
-import visualesNuevas.GamePanel;
 import visualesNuevas.GameUtilities;
 
 import java.awt.*;
@@ -24,9 +23,9 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
     private Color hoverColor;
     private BufferedImage image;
     private BufferedImage hoverImage;
-    private Event event;
+    private MEvent event;
 
-    public MButton(String id, int x, int y, int width, int height, String nombre, int size, BufferedImage image, BufferedImage hoverImage, Event event){
+    public MButton(String id, int x, int y, int width, int height, String nombre, int size, BufferedImage image, BufferedImage hoverImage, MEvent event){
 
         super(id, x, y, width, height, null);
 
@@ -40,7 +39,7 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
         hover = false;
     }
 
-    public MButton(String id, int x, int y, int width, int height, String text, int size, Color color, Color hoverColor, Event event){ // nunca lo usare si no fuera en debug y para el debug ya tengo el de abajo
+    public MButton(String id, int x, int y, int width, int height, String text, int size, Color color, Color hoverColor, MEvent event){ // nunca lo usare si no fuera en debug y para el debug ya tengo el de abajo
         //t
         super(id, x, y, width, height, null);
 
@@ -54,7 +53,7 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
         hover = false;
     }
 
-    public MButton(String id, int x, int y, int width, int height, String text, int size, Color color, Event event){ //?
+    public MButton(String id, int x, int y, int width, int height, String text, int size, Color color, MEvent event){ //?
         //t
         super(id, x, y, width, height, null);
 
@@ -108,8 +107,14 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
     }
 
     public void executeEvent(){
-        event.executeEvent();
+        FlatEvent flatEvent = (FlatEvent) event;
+        flatEvent.executeEvent();
     }
+    public void executeEvent(Point p){
+        ClickEvent clickEvent = (ClickEvent) event;
+        clickEvent.executeClickEvent(p);
+    }
+
     public void activateHover(){hover = true;}
     public void deactivateHover(){hover = false;}
 

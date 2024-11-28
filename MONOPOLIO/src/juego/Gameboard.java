@@ -28,15 +28,18 @@ public class Gameboard extends VisualGameElement{
 
     private int innerWidth;
     private int innerHeight;
-    
+
+    int numSquares;
     private Casilla[] squares;
     private HashMap<Integer, Integer> positions;
 
     public Gameboard(int x, int y, int w, int h, BufferedImage bi) {
         super(x, y, w, h, bi);
 
+        numSquares = 40;
+        
         asignInnerCoords();
-        squares = new Casilla[40];
+        squares = new Casilla[numSquares];
         squares = crearCasillas();
 
         positions = new HashMap<>();
@@ -135,13 +138,13 @@ public class Gameboard extends VisualGameElement{
     }
     
     public Point[][] asignPoints(){
-        Point[] points = new Point[40];
-        Point[] lengths = new Point[40];
+        Point[] points = new Point[numSquares];
+        Point[] lengths = new Point[numSquares];
         
         // Just a quarter of the total squares in the table
-        int quarterTable = 40 / 4;
+        int quarterTable = numSquares / 4;
                 
-        for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < numSquares; i++) {
 
             int numCorner = 1;
 

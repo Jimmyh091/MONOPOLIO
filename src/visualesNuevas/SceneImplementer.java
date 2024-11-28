@@ -145,8 +145,8 @@ public class SceneImplementer {
         dice.setUpdate(mo -> {
                 CuboDados cd = (CuboDados) mo;
 
-                switch (cd.getResult()[0]){
-                    case 1 -> System.out.println("se cambiaria la foto pero no la tengo");//dice.setImage(GameUtilities.getImage("imagendadotirada"));
+                switch (cd.getResult()[0]){ // esto para un dado y seria otro dice para la otra tirada
+                    case 1 -> dice.setImage(GameUtilities.getImage("imagendadotirada")); //t
                 }
 
             });
@@ -156,8 +156,8 @@ public class SceneImplementer {
 
         int a = gameboardAux.getX() + gameboardAux.getWidth();
         int b = GamePanel.SCREEN_WIDTH;
-        int c = a + b - a;
-        int d = c / 2 +  300 / 2;
+        int c = b - a;
+        int d = a + (c / 2) - (300 / 2);
 
         MImage imagenCalle = new MImage("imagenCalle",
                 d, 300, 300, 550,

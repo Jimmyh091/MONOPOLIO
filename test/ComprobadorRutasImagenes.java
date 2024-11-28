@@ -31,7 +31,7 @@ public class ComprobadorRutasImagenes extends JFrame {
     }
 
     public static void main(String[] args) {
-        new ComprobadorRutasImagenes("/imagenes/test/botonPrueba.png");
+        new ComprobadorRutasImagenes("/imagenes/pantallaJuego/carta.jpg");
 
     }
 

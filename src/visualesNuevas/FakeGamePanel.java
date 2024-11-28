@@ -14,6 +14,7 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -66,10 +67,10 @@ public class FakeGamePanel extends JPanel implements Runnable{ //a ABANDONADA
         gameScreenButtons = new MButton[1];
         screenButtons = new ArrayList<>();
                 
-        titleScreenButtons[0] = new MButton("button", 10, 100, 40, 0, "Hola", 20, Color.WHITE, Color.BLACK, null);
-        titleScreenButtons[1] = new MButton("otherbutton", 120, 100, 40, 0, "Hola", 20, Color.WHITE, Color.BLACK, null);
+        titleScreenButtons[0] = new MButton("button", 10, 100, 40, 0, "Hola", 20, (BufferedImage) null, null, null);
+        titleScreenButtons[1] = new MButton("otherbutton", 120, 100, 40, 0, "Hola", 20, (BufferedImage) null, null, null);
                 
-        gameScreenButtons[0] = new MButton("otherotherbutton", 10, 100, 40, 0, "Tirar", 20, Color.WHITE, Color.BLACK, null);
+        gameScreenButtons[0] = new MButton("otherotherbutton", 10, 100, 40, 0, "Tirar", 20, (BufferedImage) null, null, null);
         
         screenButtons.add(titleScreenButtons);
         screenButtons.add(gameScreenButtons);

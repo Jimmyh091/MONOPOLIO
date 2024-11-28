@@ -5,6 +5,7 @@
  */
 package elementosVisuales;
 
+import juego.MObservable;
 import juego.VisualGameElement;
 
 import java.awt.*;
@@ -20,7 +21,7 @@ public class MLabel extends VisualElement{ //a ABANDONADA
     private Font font;
     private Color background;
 
-    public MLabel(String id, int x, int y, MObserver update, String t, int size){
+    public MLabel(String id, int x, int y, String t, int size, MObserver update){
         super(id, x, y, 0, 0, update);
         text = t;
         font = new Font("Arial", Font.BOLD, size);
@@ -34,12 +35,15 @@ public class MLabel extends VisualElement{ //a ABANDONADA
     }
 
     @Override
-    public void update(VisualGameElement vge){
-        super.update(vge);
+    public void update(MObservable mo){
+        super.update(mo);
     }
 
     public String getText() {
         return text;
+    }
+    public void setText(String text) {
+        this.text = text;
     }
 
     public Font getFont() {

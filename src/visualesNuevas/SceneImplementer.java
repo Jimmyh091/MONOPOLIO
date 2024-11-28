@@ -29,13 +29,13 @@ public class SceneImplementer {
 
         MBackground fondoPrueba = new MBackground("fond", new GradientPaint(0, 0, new Color(100, 255, 100), 0, GamePanel.SCREEN_HEIGHT, new Color(200, 255, 200)));
 
-        MLabel labelPrueba = new MLabel("prueba", 0, 30,null, "SOY UNA PRUEBAAA", 30);
+        MLabel labelPrueba = new MLabel("prueba", 0, 30, "SOY UNA PRUEBAAA", 30,null);
 
         MButton botonPrueba = new MButton("botonPrueba",
                 0, 0, 100, 100,
                 "Prueba", 16,
-                new Color(20,20,200),
-                new Color(0,0,0),
+                (BufferedImage) null,
+                null,
                 (FlatEvent) () -> System.out.println("JAIME FUNCIONA QUE COJONES"));
         MButton botonPrueba2 = new MButton("botonPrueba2",
                 100, 500, 500, 200,
@@ -81,8 +81,8 @@ public class SceneImplementer {
         lista[40] = new MButton("asdf",
                 gameManager.getGameboard().getX(), gameManager.getGameboard().getY(), gameManager.getGameboard().getWidth(), gameManager.getGameboard().getHeight(),
                 "Tablero", 20,
-                new Color(250,250,250),
-                new Color(250,250,250),
+                (BufferedImage) null,
+                null,
                 null);
 
         ArrayList<VisualElement> backgrounds = new ArrayList<>();
@@ -113,8 +113,8 @@ public class SceneImplementer {
         buttons.add(new MButton("BotonJugar",
                 0, 0, 100, 100,
                 "Jugar", 20,
-                new Color(0,0,0),
-                new Color(0,0,0),
+                (BufferedImage) null,
+                null,
                 (FlatEvent)() -> sceneManager.setScene("pantallaPrincipal") ));
 
         BufferedImage imagenTablero = null;
@@ -124,7 +124,9 @@ public class SceneImplementer {
             Logger.getLogger(PantallaJuego.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        images.add(new MImage("ImagenTablero", 0, 0, imagenTablero, null));
+        images.add(new MImage("ImagenTablero",
+                0, 0, 0, 0,
+                imagenTablero, "imagenalskdfjas", 3));
 
         labels.add(null);
 
@@ -140,51 +142,62 @@ public class SceneImplementer {
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
                 (FlatEvent) () -> gameManager.rollDice()); //t coordenadas mal e imagen
-        dice.setUpdate(vgm -> {
-                CuboDados cd = (CuboDados) vgm;
+        dice.setUpdate(mo -> {
+                CuboDados cd = (CuboDados) mo;
 
-                switch (cd.getResult()[0]){
-                    case 1 -> System.out.println("se cambiaria la foto pero no la tengo");//dice.setImage(GameUtilities.getImage("imagendadotirada"));
+                switch (cd.getResult()[0]){ // esto para un dado y seria otro dice para la otra tirada
+                    case 1 -> dice.setImage(GameUtilities.getImage("imagendadotirada")); //t
                 }
 
             });
 
         Gameboard gameboardAux = gameManager.getGameboard();
+        // IMAGES
+
+        int a = gameboardAux.getX() + gameboardAux.getWidth();
+        int b = GamePanel.SCREEN_WIDTH;
+        int c = b - a;
+        int d = a + (c / 2) - (300 / 2);
+
+        MImage imagenCalle = new MImage("imagenCalle",
+                d, 300, 300, 550,
+                GameUtilities.getImage("imagenes/pantallaJuego/carta.jpg"),
+                "imagenCalle", 30);
+        imagenCalle.setUpdate(mo -> {
+            Casilla casilla = (Casilla) mo;
+            imagenCalle.setName(casilla.getTitle());
+        });
+
+        // BUTTONS pero despues porque tengo que inicializar la imagen
 
         MButton gameboard = new MButton("gameboard",
                 gameboardAux.getX(), gameboardAux.getY(), gameboardAux.getWidth(), gameboardAux.getHeight(),
                 "Tablero", 30,
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
-                GameUtilities.getImage("/imagenes/tablero.jpg"),
-                (ClickEvent) click -> {
+                GameUtilities.getImage("/imagenes/tablero.jpg"));
+        gameboard.setEvent((ClickEvent) click -> {
 
-                    Casilla[] casillas = gameboardAux.getSquares();
+            Casilla[] casillas = gameboardAux.getSquares();
 
-                    for (Casilla casilla : casillas) {
+            for (Casilla casilla : casillas) {
 
-                        if (click.x >= casilla.getX() && click.x <= casilla.getX() + casilla.getWidth()){
-                            if (click.x >= casilla.getX() && click.x <= casilla.getX() + casilla.getWidth()){
-                                casilla.updateObserver(casilla);
-                            }
-                        }
+                if (click.x >= casilla.getX() && click.x <= casilla.getX() + casilla.getWidth()){
+                    if (click.y >= casilla.getY() && click.y <= casilla.getY() + casilla.getHeight()){
+                        gameboard.updateObserver(casilla);
                     }
+                }
+            }
 
-                });
-        gameboard.setUpdate((vgm) -> {
+        });
+        gameboard.setUpdate((mo) -> {
             // no tiene pinta que el tablero se vaya a actualizar
         });
 
-        gameManager.getDiceCube().addObserver(dice); //? son dos tiradas, dos dados diferentes entonces no se si deberia tener dos imagenes o que
+        // OBSERVERS //
 
-        // IMAGES
-        MImage imagenCalle = new MImage("imagenCalle",
-                700, 20, 300, 550,
-                null);
-        imagenCalle.setUpdate(vge -> {
-            Casilla casilla = (Casilla) vge;
+        gameManager.getDiceCube().addObserver(dice);
+        gameboard.addObserver(imagenCalle);
 
-            imagenCalle.setName(casilla.getTitle());
-        });
         // --- //
 
         ArrayList<VisualElement> backgrounds = new ArrayList<>();

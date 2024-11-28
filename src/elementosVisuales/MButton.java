@@ -5,6 +5,7 @@
  */
 package elementosVisuales;
 
+import juego.MObservable;
 import juego.VisualGameElement;
 import visualesNuevas.GameUtilities;
 
@@ -25,11 +26,11 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
     private BufferedImage hoverImage;
     private MEvent event;
 
-    public MButton(String id, int x, int y, int width, int height, String nombre, int size, BufferedImage image, BufferedImage hoverImage, MEvent event){
+    public MButton(String id, int x, int y, int width, int height, String text, int size, BufferedImage image, BufferedImage hoverImage, MEvent event){
 
         super(id, x, y, width, height, null);
 
-        this.text = new MLabel("id", x + width / 2 - 18, y + height / 2, null, nombre, size);
+        this.text = new MLabel("id", x + width / 2 - text.length(), y + height / 2, text, size, null);
         this.color = new Color(0, 0, 0);
         this.hoverColor = new Color(0, 0, 0);
         this.image = image;
@@ -39,29 +40,15 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
         hover = false;
     }
 
-    public MButton(String id, int x, int y, int width, int height, String text, int size, Color color, Color hoverColor, MEvent event){ // nunca lo usare si no fuera en debug y para el debug ya tengo el de abajo
-        //t
+    public MButton(String id, int x, int y, int width, int height, String text, int size, BufferedImage image, BufferedImage hoverImage){
+
         super(id, x, y, width, height, null);
 
-        this.text = new MLabel(id, x, y, null, text, size); //t deberia estar en el centro
-        this.color = color;
-        this.hoverColor = hoverColor;
-        this.image = null;
-        this.hoverImage = null;
-        this.event = event;
-
-        hover = false;
-    }
-
-    public MButton(String id, int x, int y, int width, int height, String text, int size, Color color, MEvent event){ //?
-        //t
-        super(id, x, y, width, height, null);
-
-        this.text = new MLabel(id, x + width / 2 - text.length(), y + height / 2 - size / 2, null, text, size); //t deberia estar en el centro
-        this.color = color;
-        this.hoverColor = color;
-        this.image = null;
-        this.hoverImage = null;
+        this.text = new MLabel("id", x + width / 2 - text.length(), y + height / 2, text, size, null);
+        this.color = new Color(0, 0, 0);
+        this.hoverColor = new Color(0, 0, 0);
+        this.image = image;
+        this.hoverImage = hoverImage;
         this.event = event;
 
         hover = false;
@@ -118,10 +105,21 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
     public void activateHover(){hover = true;}
     public void deactivateHover(){hover = false;}
 
-    @Override
-    public void update(VisualGameElement vge){
-        super.update(vge);
+    public void setEvent(MEvent event){
+        this.event = event;
     }
+
+    @Override
+    public void setUpdate(MObserver update){
+        super.setUpdate(update);
+    }
+
+    @Override
+    public void update(MObservable mo){
+        super.update(mo);
+    }
+
+
 
     public Color getColor() {
         return (hover) ? hoverColor : color;
@@ -134,7 +132,7 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
         this.image = image;
     }
 
-    public void setUpdate(MObserver update){
-        super.setUpdate(update);
+    public MEvent getEvent() {
+        return event;
     }
 }

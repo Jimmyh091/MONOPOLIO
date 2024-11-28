@@ -57,6 +57,7 @@ public class SceneManager {
                 ArrayList<VisualElement> elements = visualElementsList[i];
 
                 if (elements != null) elements.forEach(element -> {
+
                     if (element != null) element.draw(g);
                 });
             }
@@ -65,6 +66,7 @@ public class SceneManager {
     }
     
     public void checkClickPosition(Point clickPosition){ //? no solo los botones tendrian eventos
+
         if (scenes.get(actualScene) != null){
 
             if (scenes.get(actualScene)[2].get(0) != null){
@@ -74,7 +76,12 @@ public class SceneManager {
                     MButton button = (MButton) button1;
 
                     if (button.clickIn(clickPosition)) {
-                        button.executeEvent();
+
+                        if (button.getEvent() instanceof ClickEvent){
+                            button.executeEvent(clickPosition);
+                        } else {
+                            button.executeEvent();
+                        }
                     }
                 });
 

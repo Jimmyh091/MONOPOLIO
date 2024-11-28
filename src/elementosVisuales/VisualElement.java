@@ -5,15 +5,17 @@
  */
 package elementosVisuales;
 
+import juego.MObservable;
 import juego.VisualGameElement;
 
 import java.awt.Graphics2D;
+import java.util.Observer;
 
 /**
  *
  * @author Jaime
  */
-public abstract class VisualElement implements Drawable, MObserver{
+public abstract class VisualElement extends MObservable implements Drawable, MObserver{
 
     private String id;
     private int x;
@@ -37,12 +39,22 @@ public abstract class VisualElement implements Drawable, MObserver{
     public abstract void draw(Graphics2D g);
 
     @Override
-    public void update(VisualGameElement vgm){
-        update.update(vgm);
+    public void update(MObservable mo){
+        update.update(mo);
     }
 
     public void setUpdate(MObserver update){
         this.update = update;
+    }
+
+    @Override
+    public void addObserver(VisualElement ve){
+        super.addObserver(ve);
+    }
+
+    @Override
+    public void updateObserver(MObservable mo){
+        super.updateObserver(mo);
     }
 
     public int getX() {

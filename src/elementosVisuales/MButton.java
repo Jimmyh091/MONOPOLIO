@@ -20,8 +20,6 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
 
     private MLabel text;
     private boolean hover;
-    private Color color;
-    private Color hoverColor;
     private BufferedImage image;
     private BufferedImage hoverImage;
     private MEvent event;
@@ -31,8 +29,6 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
         super(id, x, y, width, height, null);
 
         this.text = new MLabel("id", x + width / 2 - text.length(), y + height / 2, text, size, null);
-        this.color = new Color(0, 0, 0);
-        this.hoverColor = new Color(0, 0, 0);
         this.image = image;
         this.hoverImage = hoverImage;
         this.event = event;
@@ -45,13 +41,11 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
         super(id, x, y, width, height, null);
 
         this.text = new MLabel("id", x + width / 2 - text.length(), y + height / 2, text, size, null);
-        this.color = new Color(0, 0, 0);
-        this.hoverColor = new Color(0, 0, 0);
         this.image = image;
         this.hoverImage = hoverImage;
-        this.event = event;
+        this.event = null;
 
-        hover = false;
+        this.hover = false;
     }
 
     @Override
@@ -66,10 +60,9 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
 
         }else{
 
-            if (color != null){
-                g.drawRect(getX(), getY(), getWidth(), getHeight());
-                text.draw(g);
-            }
+            g.drawRect(getX(), getY(), getWidth(), getHeight());
+            text.draw(g);
+
         }
 
     }
@@ -84,7 +77,7 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
         return pointIn(p);
     }
 
-    private boolean pointIn(Point p){
+    public boolean pointIn(Point p){
         int x = getX();
         int y = getY();
         int w = getWidth();
@@ -95,18 +88,27 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
 
     public void executeEvent(){
         FlatEvent flatEvent = (FlatEvent) event;
-        flatEvent.executeEvent();
+        ((FlatEvent) event).executeEvent();
     }
-    public void executeEvent(Point p){
+
+
+    public void executeClickEvent(Point p){
         ClickEvent clickEvent = (ClickEvent) event;
         clickEvent.executeClickEvent(p);
     }
+    public void executeHoverEvent(Point p){
+        HoverEvent hoverEvent = (HoverEvent) event;
+        hoverEvent.executeHoverEvent(p);
+    }
 
-    public void activateHover(){hover = true;}
-    public void deactivateHover(){hover = false;}
+    @Override
+    public void activateHover(){
+        hover = true;
+    }
 
-    public void setEvent(MEvent event){
-        this.event = event;
+    @Override
+    public void deactivateHover(){
+        hover = false;
     }
 
     @Override
@@ -119,10 +121,8 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
         super.update(mo);
     }
 
-
-
-    public Color getColor() {
-        return (hover) ? hoverColor : color;
+    public void setEvent(MEvent event){
+        this.event = event;
     }
 
     public BufferedImage getImage() {

@@ -10,7 +10,10 @@ import java.awt.Point;
  *
  * @author jaime
  */
-@FunctionalInterface
-public interface Hoverable {
+public interface Hoverable extends PositionChecker{
+    @Override
+    public boolean pointIn(Point p);
     public boolean mouseIn(Point p);
+    public void activateHover();
+    public void deactivateHover();
 }

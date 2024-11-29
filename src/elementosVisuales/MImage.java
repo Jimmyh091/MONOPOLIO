@@ -17,10 +17,11 @@ import java.awt.image.BufferedImage;
  *
  * @author Jaime
  */
-public class MImage extends VisualElement implements Hoverable {
+public class MImage extends VisualElement implements Hoverable, HoverEvent {
 
     private final BufferedImage bi;
     private MLabel name;
+    private HoverEvent hoverEvent;
 
     public MImage(String id, int x, int y, int w, int h, BufferedImage b, String text, int size){
         super(id, x, y, w, h, null);
@@ -56,7 +57,27 @@ public class MImage extends VisualElement implements Hoverable {
 
     @Override
     public boolean mouseIn(Point p) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return pointIn(p);
+    }
+
+    @Override
+    public void activateHover() {
+
+    }
+
+    @Override
+    public void deactivateHover() {
+
+    }
+
+    @Override
+    public boolean pointIn(Point p) {
+        int x = getX();
+        int y = getY();
+        int w = getWidth();
+        int h = getHeight();
+
+        return p.x >= x && p.x <= x + w && p.y >= y && p.y <= y + h;
     }
 
     @Override
@@ -69,5 +90,10 @@ public class MImage extends VisualElement implements Hoverable {
     }
     public void setName(String name) {
         this.name.setText(name);
+    }
+
+    @Override
+    public void executeHoverEvent(Point p) {
+
     }
 }

@@ -141,7 +141,7 @@ public class SceneImplementer {
                 "dado", 10,
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
-                (FlatEvent) () -> gameManager.rollDice()); //t coordenadas mal e imagen
+                (ClickEvent) (p) -> gameManager.rollDice());
         dice.setUpdate(mo -> {
                 CuboDados cd = (CuboDados) mo;
 
@@ -152,6 +152,7 @@ public class SceneImplementer {
             });
 
         Gameboard gameboardAux = gameManager.getGameboard();
+
         // IMAGES
 
         int a = gameboardAux.getX() + gameboardAux.getWidth();
@@ -161,7 +162,7 @@ public class SceneImplementer {
 
         MImage imagenCalle = new MImage("imagenCalle",
                 d, 300, 300, 550,
-                GameUtilities.getImage("imagenes/pantallaJuego/carta.jpg"),
+                GameUtilities.getImage("/imagenes/pantallaJuego/carta.jpg"),
                 "imagenCalle", 30);
         imagenCalle.setUpdate(mo -> {
             Casilla casilla = (Casilla) mo;

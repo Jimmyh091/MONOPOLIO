@@ -69,19 +69,20 @@ public class SceneManager {
 
         if (scenes.get(actualScene) != null){
 
-            if (scenes.get(actualScene)[2].get(0) != null){
+            if (scenes.get(actualScene)[2].get(0) != null){ //? seria mejor hacer esta comprobacion dentro del foreach supongo pero tambien me convence asi
 
-                scenes.get(actualScene)[2].forEach(button1 -> {
+                scenes.get(actualScene)[2].forEach(element -> {
 
-                    MButton button = (MButton) button1;
+                    if (element instanceof Clickable){
 
-                    if (button.clickIn(clickPosition)) {
+                        Clickable clickable = (Clickable) element;
 
-                        if (button.getEvent() instanceof ClickEvent){
-                            button.executeEvent(clickPosition);
-                        } else {
-                            button.executeEvent();
+                        if (clickable.clickIn(clickPosition)) {
+
+                            clickable.executeClickEvent(clickPosition);
+
                         }
+
                     }
                 });
 
@@ -95,47 +96,27 @@ public class SceneManager {
 
             for (ArrayList<VisualElement> typeElement : scenes.get(actualScene)) {
 
-                if (typeElement.get(0) instanceof Hoverable) {
-
-                    scenes.get(actualScene)[2].forEach(button1 -> {
-
-                        MButton button = (MButton) button1;
-                        if (button != null){
-
-                            if (button.mouseIn(mousePosition)) {
-                                button.activateHover();
-                            }else{
-                                button.deactivateHover();
-                            }
-
-                        }else{
-                            System.out.println("LOG.ERROR.SceneManager.checkHoverPosition");
-                        }
-                    });
-                }
-
-            }
-
-        }
-    }
-
-    /* //? tendra sentido
-    private void checkInterfacePosition(Class c){
-        for (ArrayList<VisualElement> typeElement : scenes.get(actualScene)) {
-
-            if (c.isInstance(typeElement.getFirst())) {
-
                 typeElement.forEach(element -> {
 
-                    element.
+                    if (element instanceof Hoverable) {
 
-                    if (element.clickIn(p)) {
-                        button.executeEvent();
+                        Hoverable hoverable = (Hoverable) element;
+                        if (hoverable.mouseIn(mousePosition)) {
+                            hoverable.activateHover();
+                        }else{
+                            hoverable.deactivateHover();
+                        }
+
                     }
+                    if (element instanceof HoverEvent) {
+
+                        HoverEvent hoverEvent = (HoverEvent) element;
+                        hoverEvent.executeHoverEvent(mousePosition);
+
+                    }
+
                 });
             }
-
         }
     }
-    */
 }

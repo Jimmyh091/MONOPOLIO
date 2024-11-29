@@ -14,7 +14,7 @@ import java.awt.*;
  *
  * @author Jaime
  */
-public class MLabel extends VisualElement{ //a ABANDONADA
+public class MLabel extends VisualElement { //a ABANDONADA
 
     private String text;
     private Color color;

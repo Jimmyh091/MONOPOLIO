@@ -135,13 +135,15 @@ public class SceneImplementer {
 
     public ArrayList<VisualElement>[] addGameScene(SceneManager sceneManager){
 
+        boolean probarCoordenadasCasillas = true;
+
         // BUTTONS
         MButton dice = new MButton("dice",
                 gameManager.getDiceCube().getX(), gameManager.getDiceCube().getY(), 100, 100,
                 "dado", 10,
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
-                (ClickEvent) (p) -> gameManager.rollDice());
+                (ClickEvent) p -> gameManager.rollDice());
         dice.setUpdate(mo -> {
                 CuboDados cd = (CuboDados) mo;
 
@@ -152,6 +154,32 @@ public class SceneImplementer {
             });
 
         Gameboard gameboardAux = gameManager.getGameboard();
+
+
+        /*Prueba de ver la posicion de los botones*/
+
+        MButton[] lista = new MButton[41];
+
+        Point[][] p = gameManager.getGameboard().asignPoints();
+
+        for (int i = 0; i < gameManager.getNumSquares(); i++) {
+            lista[i] = new MButton("asdf",
+                    p[0][i].x, p[0][i].y, p[1][i].x, p[1][i].y,
+                    "b" + i, 10,
+                    (BufferedImage) null,
+                    null,
+                    null);
+        }
+
+        lista[40] = new MButton("asdf",
+                gameManager.getGameboard().getX(), gameManager.getGameboard().getY(), gameManager.getGameboard().getWidth(), gameManager.getGameboard().getHeight(),
+                "Tablero", 20,
+                (BufferedImage) null,
+                null,
+                null);
+
+        /**/
+
 
         // IMAGES
 
@@ -210,6 +238,10 @@ public class SceneImplementer {
 
         buttons.add(dice);
         buttons.add(gameboard);
+        // borrable
+        if (probarCoordenadasCasillas){
+            buttons.addAll(Arrays.asList(lista));
+        }
 
         images.add(imagenCalle);
 

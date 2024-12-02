@@ -29,7 +29,6 @@ import java.util.logging.Logger;
 public class GameManager {
     
     private Jugador[] players;
-    private Casilla[] squares;
     private Baraja comunityCardDeck;
     private Baraja luckyCardDeck;
     private CuboDados diceCube;
@@ -47,7 +46,6 @@ public class GameManager {
         numSquares = 40;
         
         players = null;
-        squares = null;
         comunityCardDeck = new Baraja(0, 0, 0, 0, null, createCardDeck(true));
         luckyCardDeck = new Baraja(0, 0, 0, 0, null, createCardDeck(false));
         diceCube = new CuboDados(0, 0, 0, 0, null, 6, 2);
@@ -69,11 +67,12 @@ public class GameManager {
 
         if (GameUtilities.DEBUG) System.out.println("Tirar dados : GameManager");
 
-
         if (gameboard.getPositions().get(activePlayer) == 31){
             int[] result = diceCube.rollDice();
         }else{
             int result = getDiceResult();
+
+            gameboard.movePlayer(result, players[activePlayer]);
         }
     }
     
@@ -233,9 +232,6 @@ public class GameManager {
 
     public Jugador[] getPlayers() {
         return players;
-    }
-    public Casilla[] getSquares() {
-        return squares;
     }
 
     public Baraja getComunityCardDeck() {

@@ -58,10 +58,9 @@ public class Gameboard extends VisualGameElement{
     
     public void moveTo(int position, Jugador player){
         squares[position].setJugador(player);
-        squares[position].interact(player);
-
         if (GameUtilities.DEBUG) System.out.println("Jugador " + player.getNombre() + " movido a la casilla " + position);
 
+        squares[position].interact(player);
     }
     
     public void jumpTo(int position, Jugador player){

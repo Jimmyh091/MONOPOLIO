@@ -29,7 +29,7 @@ public class SceneImplementer {
 
         MBackground fondoPrueba = new MBackground("fond", new GradientPaint(0, 0, new Color(100, 255, 100), 0, GamePanel.SCREEN_HEIGHT, new Color(200, 255, 200)));
 
-        MLabel labelPrueba = new MLabel("prueba", 0, 30, "SOY UNA PRUEBAAA", 30,null);
+        MLabel labelPrueba = new MLabel("prueba", 0, 30, "SOY UNA PRUEBAAA", 30);
 
         MButton botonPrueba = new MButton("botonPrueba",
                 0, 0, 100, 100,
@@ -46,10 +46,11 @@ public class SceneImplementer {
 
         // --- //
 
-        ArrayList<VisualElement> backgrounds = new ArrayList<>();
-        ArrayList<VisualElement> buttons = new ArrayList<>();
-        ArrayList<VisualElement> images = new ArrayList<>();
-        ArrayList<VisualElement> labels = new ArrayList<>();
+        ArrayList<MBackground> backgrounds = new ArrayList<>();
+        ArrayList<MButton> buttons = new ArrayList<>();
+        ArrayList<MImage> images = new ArrayList<>();
+        ArrayList<MLabel> labels = new ArrayList<>();
+        ArrayList<MGrouper> groupers = new ArrayList<>();
 
         backgrounds.add(null);
 
@@ -156,7 +157,7 @@ public class SceneImplementer {
         Gameboard gameboardAux = gameManager.getGameboard();
 
 
-        /*Prueba de ver la posicion de los botones*/
+        /*Prueba de ver la posicion de los botones
 
         MButton[] lista = new MButton[41];
 
@@ -188,10 +189,24 @@ public class SceneImplementer {
         int c = b - a;
         int d = a + (c / 2) - (300 / 2);
 
+        MLabel nombreCalle = new MLabel("nombreCalle",
+                d, 330,
+                "", 20);
+        nombreCalle.setUpdate(mo -> {
+            Casilla casilla = (Casilla) mo;
+            nombreCalle.setText(casilla.getTitle());
+        });
+
+        MGrouper imagenCalleMG = new MGrouper("groupImagenCalle",
+                d, 300, 300, 550);
+
         MImage imagenCalle = new MImage("imagenCalle",
-                d, 300, 300, 550,
+                d, 300, 300, 550, //t aqui estaria bien que te pasen las coordenadas relativas, dentro
                 GameUtilities.getImage("/imagenes/pantallaJuego/carta.jpg"),
                 "imagenCalle", 30);
+
+        imagenCalleMG.setElements(imagenCalle);
+
         imagenCalle.setUpdate(mo -> {
             Casilla casilla = (Casilla) mo;
             imagenCalle.setName(casilla.getTitle());
@@ -229,24 +244,29 @@ public class SceneImplementer {
 
         // --- //
 
-        ArrayList<VisualElement> backgrounds = new ArrayList<>();
-        ArrayList<VisualElement> buttons = new ArrayList<>();
-        ArrayList<VisualElement> images = new ArrayList<>();
-        ArrayList<VisualElement> labels = new ArrayList<>();
+        ArrayList<MBackground> backgrounds = new ArrayList<>();
+        ArrayList<MButton> buttons = new ArrayList<>();
+        ArrayList<MImage> images = new ArrayList<>();
+        ArrayList<MLabel> labels = new ArrayList<>();
+        ArrayList<MGrouper> groupers = new ArrayList<>();
 
         backgrounds.add(null);
 
+        groupers.add(imagenCalleMG);
+
+        images.add(imagenCalle);
+
         buttons.add(dice);
         buttons.add(gameboard);
-        // borrable
+        /* borrable
         if (probarCoordenadasCasillas){
             buttons.addAll(Arrays.asList(lista));
         }
 
-        images.add(imagenCalle);
+        /* */
 
         labels.add(null);
 
-        return new ArrayList[]{backgrounds, images, buttons, labels};
+        return new ArrayList[]{backgrounds, groupers, images, buttons, labels};
     }
 }

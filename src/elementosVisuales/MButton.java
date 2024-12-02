@@ -28,7 +28,7 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
 
         super(id, x, y, width, height, null);
 
-        this.text = new MLabel("id", x + width / 2 - text.length(), y + height / 2, text, size, null);
+        this.text = new MLabel("id", x + width / 2 - text.length(), y + height / 2, text, size);
         this.image = image;
         this.hoverImage = hoverImage;
         this.event = event;
@@ -40,7 +40,7 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
 
         super(id, x, y, width, height, null);
 
-        this.text = new MLabel("id", x + width / 2 - text.length(), y + height / 2, text, size, null);
+        this.text = new MLabel("id", x + width / 2 - text.length(), y + height / 2, text, size);
         this.image = image;
         this.hoverImage = hoverImage;
         this.event = null;

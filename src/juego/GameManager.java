@@ -67,8 +67,9 @@ public class GameManager {
 
         if (GameUtilities.DEBUG) System.out.println("Tirar dados : GameManager");
 
-        if (gameboard.getPositions().get(activePlayer) == 31){
+        if (players[activePlayer].isInJail()){
             int[] result = diceCube.rollDice();
+
         }else{
             int result = getDiceResult();
 
@@ -88,7 +89,7 @@ public class GameManager {
                 if (i == 2) {
 
                     if (GameUtilities.DEBUG) System.out.println("Se va a la carcel");
-
+                    players[activePlayer].setInJail(true);
                     return -1; // significa ir a la carcel
                 }   
             }else{

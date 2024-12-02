@@ -18,6 +18,7 @@ public class Jugador extends VisualGameElement{
     private int dinero;
     private int salirCarcel;
     private int tiempoCarcel;
+    private boolean inJail;
     private boolean bancarrota;
     
     private int numHouse;
@@ -31,6 +32,7 @@ public class Jugador extends VisualGameElement{
         dinero = 1500;
         salirCarcel = 0;
         tiempoCarcel = 0;
+        inJail = false;
         bancarrota = false;
     }
 
@@ -65,5 +67,12 @@ public class Jugador extends VisualGameElement{
     }
     public void setNumHotel(int numHotel) {
         this.numHotel = numHotel;
+    }
+
+    public boolean isInJail() {
+        return inJail;
+    }
+    public void setInJail(boolean inJail) {
+        this.inJail = inJail;
     }
 }

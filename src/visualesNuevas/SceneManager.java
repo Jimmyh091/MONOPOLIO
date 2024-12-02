@@ -73,7 +73,7 @@ public class SceneManager {
 
                 scenes.get(actualScene)[2].forEach(element -> {
 
-                    if (element.isActive()){
+                    if (element != null && element.isActive()){
 
                         if (element instanceof Clickable){
 
@@ -98,7 +98,7 @@ public class SceneManager {
 
                 typeElement.forEach(element -> {
 
-                    if (element.isActive()) {
+                    if (element != null && element.isActive()){
 
                         if (element instanceof Hoverable) {
 

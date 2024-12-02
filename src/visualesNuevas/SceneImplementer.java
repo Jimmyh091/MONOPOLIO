@@ -235,8 +235,9 @@ public class SceneImplementer {
                 GameUtilities.getImage("/imagenes/tablero.jpg"));
         gameboard.setEvent((ClickEvent) click -> {
 
-            Casilla[] casillas = gameboardAux.getSquares();
+            imagenCalleMG.activate();
 
+            Casilla[] casillas = gameboardAux.getSquares();
             for (Casilla casilla : casillas) {
 
                 if (click.x >= casilla.getX() && click.x <= casilla.getX() + casilla.getWidth()){

@@ -58,7 +58,7 @@ public class SceneManager {
 
                 if (elements != null) elements.forEach(element -> {
 
-                    if (element != null) element.draw(g);
+                    if (element != null && element.isActive()) element.draw(g);
                 });
             }
 
@@ -73,21 +73,21 @@ public class SceneManager {
 
                 scenes.get(actualScene)[2].forEach(element -> {
 
-                    if (element instanceof Clickable){
+                    if (element.isActive()){
 
-                        Clickable clickable = (Clickable) element;
+                        if (element instanceof Clickable){
 
-                        if (clickable.clickIn(clickPosition)) {
+                            Clickable clickable = (Clickable) element;
 
-                            clickable.executeClickEvent(clickPosition);
+                            if (clickable.clickIn(clickPosition)) {
 
+                                clickable.executeClickEvent(clickPosition);
+
+                            }
                         }
-
                     }
                 });
-
             }
-
         }
     }
 
@@ -98,23 +98,25 @@ public class SceneManager {
 
                 typeElement.forEach(element -> {
 
-                    if (element instanceof Hoverable) {
+                    if (element.isActive()) {
 
-                        Hoverable hoverable = (Hoverable) element;
-                        if (hoverable.mouseIn(mousePosition)) {
-                            hoverable.activateHover();
-                        }else{
-                            hoverable.deactivateHover();
+                        if (element instanceof Hoverable) {
+
+                            Hoverable hoverable = (Hoverable) element;
+                            if (hoverable.mouseIn(mousePosition)) {
+                                hoverable.activateHover();
+                            } else {
+                                hoverable.deactivateHover();
+                            }
+
                         }
+                        if (element instanceof HoverEvent) {
 
+                            HoverEvent hoverEvent = (HoverEvent) element;
+                            hoverEvent.executeHoverEvent(mousePosition);
+
+                        }
                     }
-                    if (element instanceof HoverEvent) {
-
-                        HoverEvent hoverEvent = (HoverEvent) element;
-                        hoverEvent.executeHoverEvent(mousePosition);
-
-                    }
-
                 });
             }
         }

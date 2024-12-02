@@ -26,6 +26,19 @@ public class MGrouper extends VisualElement {
         return visualElementsList;
     }
 
+    public void activate(){
+        super.setActive(true);
+        visualElementsList.forEach(element -> {
+            element.setActive(true);
+        });
+    }
+    public void deactivate(){
+        super.setActive(false);
+        visualElementsList.forEach(element -> {
+            element.setActive(false);
+        });
+    }
+
     @Override
     public void setUpdate(MObserver update){
         super.setUpdate(update);

@@ -190,10 +190,10 @@ public class SceneImplementer {
         BufferedImage cartaImagen = GameUtilities.getImage("/imagenes/pantallaJuego/carta.jpg");
 
         MGrouper imagenCalleMG = new MGrouper("groupImagenCalle",
-                d, 300, cartaImagen.getWidth(), 550, true);
+                d, 300, cartaImagen.getWidth(), 550, false);
 
         MLabel nombreCalle = new MLabel("nombreCalle",
-                d + 30, 345, true,
+                d + 30, 345, false,
                 "", 20);
         nombreCalle.setUpdate(mo -> {
             Casilla casilla = (Casilla) mo;
@@ -202,7 +202,7 @@ public class SceneImplementer {
         });
 
         MLabel precioCalle = new MLabel("precioCalle",
-                d + 30, 400, true,
+                d + 30, 400, false,
                 "", 20);
         precioCalle.setUpdate(mo -> {
             Casilla casilla = (Casilla) mo;
@@ -214,7 +214,7 @@ public class SceneImplementer {
         });
 
         MImage imagenCalle = new MImage("imagenCalle",
-                d, 300, cartaImagen.getWidth(), cartaImagen.getHeight(), true,//t aqui estaria bien que te pasen las coordenadas relativas, dentro
+                d, 300, cartaImagen.getWidth(), cartaImagen.getHeight(), false,//t aqui estaria bien que te pasen las coordenadas relativas, dentro
                 cartaImagen,
                 "imagenCalle", 30);
 

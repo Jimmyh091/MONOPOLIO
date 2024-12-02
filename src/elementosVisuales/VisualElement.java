@@ -22,15 +22,17 @@ public abstract class VisualElement extends MObservable implements Drawable, MOb
     private int y;
     private int width;
     private int height;
+    private boolean active;
 
     private MObserver update;
 
-    public VisualElement(String id, int x, int y, int width, int height, MObserver update) {
+    public VisualElement(String id, int x, int y, int width, int height, boolean active, MObserver update) {
         this.id = id;
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.active = active;
 
         this.update = update; //? esta mal
     }
@@ -92,5 +94,12 @@ public abstract class VisualElement extends MObservable implements Drawable, MOb
     }
     public void setId(String id) {
         this.id = id;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

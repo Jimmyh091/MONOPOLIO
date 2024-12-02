@@ -23,16 +23,16 @@ public class MImage extends VisualElement implements Hoverable, HoverEvent {
     private MLabel name;
     private HoverEvent hoverEvent;
 
-    public MImage(String id, int x, int y, int w, int h, BufferedImage b, String text, int size){
-        super(id, x, y, w, h, null);
+    public MImage(String id, int x, int y, int w, int h, boolean active, BufferedImage b, String text, int size){
+        super(id, x, y, w, h, active, null);
         bi = b;
-        name = new MLabel("debugImageName", x + w / 2 - text.length() * (size / 4), y + h / 2 - size / 2, text, size);
+        name = new MLabel("debugImageName", x + w / 2 - text.length() * (size / 4), y + h / 2 - size / 2, true, text, size);
     }
 
-    public MImage(String id, int x, int y, BufferedImage b, String text, int size) {
-        super(id, x, y, b.getWidth(), b.getHeight(), null);
+    public MImage(String id, int x, int y, boolean active, BufferedImage b, String text, int size) {
+        super(id, x, y, b.getWidth(), b.getHeight(), active, null);
         bi = b;
-        name = new MLabel("debugImageName", x / 2 - text.length(), y - size / 2, text, size);
+        name = new MLabel("debugImageName", x / 2 - text.length(), y - size / 2, true, text, size);
     }
 
     @Override

@@ -27,16 +27,16 @@ public class SceneImplementer {
 
         MBackground fondoPrueba = new MBackground("fond", new GradientPaint(0, 0, new Color(100, 255, 100), 0, GamePanel.SCREEN_HEIGHT, new Color(200, 255, 200)));
 
-        MLabel labelPrueba = new MLabel("prueba", 0, 30, "SOY UNA PRUEBAAA", 30);
+        MLabel labelPrueba = new MLabel("prueba", 0, 30, true, "SOY UNA PRUEBAAA", 30);
 
         MButton botonPrueba = new MButton("botonPrueba",
-                0, 0, 100, 100,
+                0, 0, 100, 100, true,
                 "Prueba", 16,
                 (BufferedImage) null,
                 null,
                 (FlatEvent) () -> System.out.println("JAIME FUNCIONA QUE COJONES"));
         MButton botonPrueba2 = new MButton("botonPrueba2",
-                100, 500, 500, 200,
+                100, 500, 500, 200, true,
                 "BotonPrueba", 16,
                 GameUtilities.getImage("/imagenes/test/botonPrueba.png"),
                 GameUtilities.getImage("/imagenes/test/botonPruebaHover.jpg"),
@@ -70,7 +70,7 @@ public class SceneImplementer {
 
         for (int i = 0; i < gameManager.getNumSquares(); i++) {
             lista[i] = new MButton("asdf",
-                    p[0][i].x, p[0][i].y, p[1][i].x, p[1][i].y,
+                    p[0][i].x, p[0][i].y, p[1][i].x, p[1][i].y, true,
                     "b" + i, 10,
                     (BufferedImage) null,
                     null,
@@ -78,7 +78,7 @@ public class SceneImplementer {
         }
 
         lista[40] = new MButton("asdf",
-                gameManager.getGameboard().getX(), gameManager.getGameboard().getY(), gameManager.getGameboard().getWidth(), gameManager.getGameboard().getHeight(),
+                gameManager.getGameboard().getX(), gameManager.getGameboard().getY(), gameManager.getGameboard().getWidth(), gameManager.getGameboard().getHeight(), true,
                 "Tablero", 20,
                 (BufferedImage) null,
                 null,
@@ -110,7 +110,7 @@ public class SceneImplementer {
         backgrounds.add(null);
 
         buttons.add(new MButton("BotonJugar",
-                0, 0, 100, 100,
+                0, 0, 100, 100, true,
                 "Jugar", 20,
                 (BufferedImage) null,
                 null,
@@ -124,7 +124,7 @@ public class SceneImplementer {
         }
 
         images.add(new MImage("ImagenTablero",
-                0, 0, 0, 0,
+                0, 0, 0, 0, true,
                 imagenTablero, "imagenalskdfjas", 3));
 
         labels.add(null);
@@ -138,7 +138,7 @@ public class SceneImplementer {
 
         // BUTTONS
         MButton dice = new MButton("dice",
-                gameManager.getDiceCube().getX(), gameManager.getDiceCube().getY(), 100, 100,
+                gameManager.getDiceCube().getX(), gameManager.getDiceCube().getY(), 100, 100, true,
                 "dado", 10,
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
@@ -190,10 +190,10 @@ public class SceneImplementer {
         BufferedImage cartaImagen = GameUtilities.getImage("/imagenes/pantallaJuego/carta.jpg");
 
         MGrouper imagenCalleMG = new MGrouper("groupImagenCalle",
-                d, 300, cartaImagen.getWidth(), 550);
+                d, 300, cartaImagen.getWidth(), 550, true);
 
         MLabel nombreCalle = new MLabel("nombreCalle",
-                d + 30, 345,
+                d + 30, 345, true,
                 "", 20);
         nombreCalle.setUpdate(mo -> {
             Casilla casilla = (Casilla) mo;
@@ -202,7 +202,7 @@ public class SceneImplementer {
         });
 
         MLabel precioCalle = new MLabel("precioCalle",
-                d + 30, 400,
+                d + 30, 400, true,
                 "", 20);
         precioCalle.setUpdate(mo -> {
             Casilla casilla = (Casilla) mo;
@@ -214,7 +214,7 @@ public class SceneImplementer {
         });
 
         MImage imagenCalle = new MImage("imagenCalle",
-                d, 300, cartaImagen.getWidth(), cartaImagen.getHeight(), //t aqui estaria bien que te pasen las coordenadas relativas, dentro
+                d, 300, cartaImagen.getWidth(), cartaImagen.getHeight(), true,//t aqui estaria bien que te pasen las coordenadas relativas, dentro
                 cartaImagen,
                 "imagenCalle", 30);
 
@@ -229,7 +229,7 @@ public class SceneImplementer {
         // BUTTONS pero despues porque tengo que inicializar la imagen
 
         MButton gameboard = new MButton("gameboard",
-                gameboardAux.getX(), gameboardAux.getY(), gameboardAux.getWidth(), gameboardAux.getHeight(),
+                gameboardAux.getX(), gameboardAux.getY(), gameboardAux.getWidth(), gameboardAux.getHeight(), true,
                 "Tablero", 30,
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
                 GameUtilities.getImage("/imagenes/tablero.jpg"));

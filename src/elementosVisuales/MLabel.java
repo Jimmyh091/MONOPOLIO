@@ -21,8 +21,8 @@ public class MLabel extends VisualElement { //a ABANDONADA
     private Font font;
     private Color background;
 
-    public MLabel(String id, int x, int y, String t, int size){
-        super(id, x, y, 0, 0, null);
+    public MLabel(String id, int x, int y, boolean active, String t, int size){
+        super(id, x, y, 0, 0, active, null);
         text = t;
         font = new Font("Arial", Font.BOLD, size);
     }
@@ -45,8 +45,6 @@ public class MLabel extends VisualElement { //a ABANDONADA
     public void setText(String text) {
         this.text = text;
     }
-
-
 
     public Font getFont() {
         return font;

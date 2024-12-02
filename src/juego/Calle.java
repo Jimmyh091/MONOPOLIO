@@ -39,4 +39,36 @@ public class Calle extends Casilla{
 
         throw new UnsupportedOperationException("Not supported yet."); //t
     }
+
+    public int getPrice1() {
+        return price1;
+    }
+
+    public void setPrice1(int price1) {
+        this.price1 = price1;
+    }
+
+    public int getPrice2() {
+        return price2;
+    }
+
+    public void setPrice2(int price2) {
+        this.price2 = price2;
+    }
+
+    public int getPrice3() {
+        return price3;
+    }
+
+    public void setPrice3(int price3) {
+        this.price3 = price3;
+    }
+
+    public int getPriceH() {
+        return priceH;
+    }
+
+    public void setPriceH(int priceH) {
+        this.priceH = priceH;
+    }
 }

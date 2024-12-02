@@ -32,7 +32,7 @@ public abstract class VisualElement extends MObservable implements Drawable, MOb
         this.width = width;
         this.height = height;
 
-        this.update = update;
+        this.update = update; //? esta mal
     }
 
     @Override
@@ -40,7 +40,9 @@ public abstract class VisualElement extends MObservable implements Drawable, MOb
 
     @Override
     public void update(MObservable mo){
-        update.update(mo);
+        if (update != null){
+            update.update(mo);
+        }
     }
 
     public void setUpdate(MObserver update){

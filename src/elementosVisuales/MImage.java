@@ -43,7 +43,7 @@ public class MImage extends VisualElement implements Hoverable, HoverEvent {
     @Override
     public void draw(Graphics2D g){
 
-        if (GameUtilities.DEBUG || bi != null){
+        if (GameUtilities.DEBUG || bi == null){
             g.drawRect(getX(), getY(), getWidth(), getHeight());
             name.draw(g);
         }else{

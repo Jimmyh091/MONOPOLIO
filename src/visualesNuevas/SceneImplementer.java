@@ -10,8 +10,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -189,28 +187,44 @@ public class SceneImplementer {
         int c = b - a;
         int d = a + (c / 2) - (300 / 2);
 
+        BufferedImage cartaImagen = GameUtilities.getImage("/imagenes/pantallaJuego/carta.jpg");
+
+        MGrouper imagenCalleMG = new MGrouper("groupImagenCalle",
+                d, 300, cartaImagen.getWidth(), 550);
+
         MLabel nombreCalle = new MLabel("nombreCalle",
-                d, 330,
+                d + 30, 345,
                 "", 20);
         nombreCalle.setUpdate(mo -> {
             Casilla casilla = (Casilla) mo;
             nombreCalle.setText(casilla.getTitle());
+            //nombreCalle.setX(JustifyWidth.getCenter(nombreCalle.getText(), nombreCalle.getFont().getSize(), imagenCalleMG.getX(), imagenCalleMG.getX() + imagenCalleMG.getWidth()));
         });
 
-        MGrouper imagenCalleMG = new MGrouper("groupImagenCalle",
-                d, 300, 300, 550);
+        MLabel precioCalle = new MLabel("precioCalle",
+                d + 30, 400,
+                "", 20);
+        precioCalle.setUpdate(mo -> {
+            Casilla casilla = (Casilla) mo;
+            if (casilla instanceof Calle){
+                Calle calle = (Calle) casilla;
+                precioCalle.setText("Precio: " + calle.getPrice1());
+            }
+            //nombreCalle.setX(JustifyWidth.getCenter(nombreCalle.getText(), nombreCalle.getFont().getSize(), imagenCalleMG.getX(), imagenCalleMG.getX() + imagenCalleMG.getWidth()));
+        });
 
         MImage imagenCalle = new MImage("imagenCalle",
-                d, 300, 300, 550, //t aqui estaria bien que te pasen las coordenadas relativas, dentro
-                GameUtilities.getImage("/imagenes/pantallaJuego/carta.jpg"),
+                d, 300, cartaImagen.getWidth(), cartaImagen.getHeight(), //t aqui estaria bien que te pasen las coordenadas relativas, dentro
+                cartaImagen,
                 "imagenCalle", 30);
 
-        imagenCalleMG.setElements(imagenCalle);
-
-        imagenCalle.setUpdate(mo -> {
-            Casilla casilla = (Casilla) mo;
-            imagenCalle.setName(casilla.getTitle());
+        imagenCalleMG.setUpdate(mo -> {
+            imagenCalleMG.getVisualElementsList().forEach(element -> {
+                element.update(mo);
+            });
         });
+
+        imagenCalleMG.addElements(imagenCalle, nombreCalle, precioCalle);
 
         // BUTTONS pero despues porque tengo que inicializar la imagen
 
@@ -240,7 +254,7 @@ public class SceneImplementer {
         // OBSERVERS //
 
         gameManager.getDiceCube().addObserver(dice);
-        gameboard.addObserver(imagenCalle);
+        gameboard.addObserver(imagenCalleMG);
 
         // --- //
 
@@ -267,6 +281,6 @@ public class SceneImplementer {
 
         labels.add(null);
 
-        return new ArrayList[]{backgrounds, groupers, images, buttons, labels};
+        return new ArrayList[]{backgrounds, images, buttons, groupers,  labels};
     }
 }

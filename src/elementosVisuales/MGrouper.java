@@ -1,28 +1,28 @@
 package elementosVisuales;
 
 import java.awt.*;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class MGrouper extends VisualElement {
 
-    private HashMap<String, VisualElement> visualElementsList;
+    private ArrayList<VisualElement> visualElementsList;
 
     public MGrouper(String id, int x, int y, int w, int h) {
         super(id, x, y, w, h, null);
-        visualElementsList = new HashMap<>();
+        visualElementsList = new ArrayList<>();
     }
 
-    public void setElements(VisualElement... visualElements) {
+    public void addElements(VisualElement... visualElements) {
         for (VisualElement ve : visualElements) {
-            visualElementsList.put(ve.getId(), ve);
+            visualElementsList.add(ve);
         }
     }
 
-    public void addVisualElement(VisualElement ve){
-        visualElementsList.put(ve.getId(), ve);
+    public void addElement(VisualElement ve){
+        visualElementsList.add(ve);
     } //? creo que nunca lo usare
 
-    public HashMap<String, VisualElement> getVisualElementsList() {
+    public ArrayList<VisualElement> getVisualElementsList() {
         return visualElementsList;
     }
 
@@ -33,8 +33,8 @@ public class MGrouper extends VisualElement {
 
     @Override
     public void draw(Graphics2D g) {
-        visualElementsList.forEach((key, value) -> {
-            value.draw(g);
+        visualElementsList.forEach(element -> {
+            element.draw(g);
         });
     }
 }

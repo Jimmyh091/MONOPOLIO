@@ -46,6 +46,8 @@ public class MLabel extends VisualElement { //a ABANDONADA
         this.text = text;
     }
 
+
+
     public Font getFont() {
         return font;
     }

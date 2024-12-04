@@ -134,28 +134,42 @@ public class SceneImplementer {
 
     public ArrayList<VisualElement>[] addGameScene(SceneManager sceneManager){
 
+        // ELEMENTS
+        MButton tablero;
+        MGrouper dados;
+        MGrouper informacionCalle;
+        MButton comprar;
+        MButton pagar;
+        MButton hipotecar;
+        MButton bancarrota;
+        MGrouper perfilJ1;
+        MGrouper perfilJ2;
+        MGrouper perfilJ3;
+        MGrouper perfilJ4;
+        MGrouper carta;
+
+        // --- //
+
+        //
+        ArrayList<MBackground> backgrounds = new ArrayList<>();
+        ArrayList<MButton> buttons = new ArrayList<>();
+        ArrayList<MImage> images = new ArrayList<>();
+        ArrayList<MLabel> labels = new ArrayList<>();
+        ArrayList<MGrouper> groupers = new ArrayList<>();
+
+        //VARIABLES
         boolean probarCoordenadasCasillas = true;
-
-        // BUTTONS
-        MButton dice = new MButton("dice",
-                gameManager.getDiceCube().getX(), gameManager.getDiceCube().getY(), 100, 100,
-                "dado", 10,
-                GameUtilities.getImage("/imagenes/tablero.jpg"),
-                GameUtilities.getImage("/imagenes/tablero.jpg"),
-                (ClickEvent) p -> gameManager.rollDice());
-        dice.setUpdate(mo -> {
-                CuboDados cd = (CuboDados) mo;
-
-                switch (cd.getResult()[0]){ // esto para un dado y seria otro dice para la otra tirada
-                    case 1 -> dice.setImage(GameUtilities.getImage("imagendadotirada")); //t
-                }
-
-            });
-
         Gameboard gameboardAux = gameManager.getGameboard();
+        int a = gameboardAux.getX() + gameboardAux.getWidth();
+        int b = GamePanel.SCREEN_WIDTH;
+        int c = b - a;
+        int d = a + (c / 2) - (300 / 2);
+        BufferedImage cartaImagen = GameUtilities.getImage("/imagenes/pantallaJuego/carta.jpg");
 
+        // --- //
 
-        /*Prueba de ver la posicion de los botones
+        // TEST COORDENADAS
+        /*
 
         MButton[] lista = new MButton[41];
 
@@ -179,15 +193,24 @@ public class SceneImplementer {
 
         /**/
 
+        // BUTTONS
+        MButton dice = new MButton("dice",
+                gameManager.getDiceCube().getX(), gameManager.getDiceCube().getY(), 100, 100,
+                "dado", 10,
+                GameUtilities.getImage("/imagenes/tablero.jpg"),
+                GameUtilities.getImage("/imagenes/tablero.jpg"),
+                (ClickEvent) p -> gameManager.rollDice());
+        dice.setUpdate(mo -> {
+                CuboDados cd = (CuboDados) mo;
+
+                switch (cd.getResult()[0]){ // esto para un dado y seria otro dice para la otra tirada
+                    case 1 -> dice.setImage(GameUtilities.getImage("imagendadotirada")); //t
+                }
+
+            });
 
         // IMAGES
 
-        int a = gameboardAux.getX() + gameboardAux.getWidth();
-        int b = GamePanel.SCREEN_WIDTH;
-        int c = b - a;
-        int d = a + (c / 2) - (300 / 2);
-
-        BufferedImage cartaImagen = GameUtilities.getImage("/imagenes/pantallaJuego/carta.jpg");
 
         MGrouper imagenCalleMG = new MGrouper("groupImagenCalle",
                 d, 300, cartaImagen.getWidth(), 550);
@@ -244,7 +267,7 @@ public class SceneImplementer {
 
                 if (click.x >= casilla.getX() && click.x <= casilla.getX() + casilla.getWidth()){
                     if (click.y >= casilla.getY() && click.y <= casilla.getY() + casilla.getHeight()){
-                        gameboard.updateObserver(casilla, i);
+                        gameboard.updateObserver("", casilla);
                     }
                 }
             }
@@ -256,16 +279,11 @@ public class SceneImplementer {
 
         // OBSERVERS //
 
-        gameManager.getDiceCube().addObserver(dice);
-        gameboard.addObserver(imagenCalleMG);
+        gameManager.getDiceCube().addObserver("dice", dice);
+        gameboard.addObserver("propertyInfo", imagenCalleMG);
 
         // --- //
 
-        ArrayList<MBackground> backgrounds = new ArrayList<>();
-        ArrayList<MButton> buttons = new ArrayList<>();
-        ArrayList<MImage> images = new ArrayList<>();
-        ArrayList<MLabel> labels = new ArrayList<>();
-        ArrayList<MGrouper> groupers = new ArrayList<>();
 
         backgrounds.add(null);
 

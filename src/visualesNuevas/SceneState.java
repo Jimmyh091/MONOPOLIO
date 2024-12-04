@@ -5,7 +5,7 @@ public enum SceneState {
     //
 
     // GAME SCENES //
-    ROLL_DICE(true, true),
+    ROLL_DICE(true, true, true, true, false, false, false, true, true, true, true, true, false),
     BUY_PROPERTY(),
     PAY_DEBT(),
     INTERACT_SPECIAL_SQUARE(),

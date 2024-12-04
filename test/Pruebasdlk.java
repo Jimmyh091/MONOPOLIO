@@ -21,38 +21,38 @@ public class Pruebasdlk {
 
     public Pruebasdlk() {
 
-        boolean comunidad = false;
 
-        String path = "contenido/cartas"; // no se si va no lo probe
-        if (comunidad) path += "Comunidad.txt";
-        else path += "Suerte.txt";
 
-        Path p = null;
-        try {
-            p = Paths.get(getClass().getResource(path).toURI());
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
+    }
+
+    public static class Pr{
+
+        public Pr(){
+
+        }
+
+        public void quienSoy(){
+            System.out.println("SOY PR");
+        }
+    }
+
+    public static class ueba extends Pr{
+
+        public ueba(){
+            super();
+        }
+
+        @Override
+        public void quienSoy(){
+            System.out.println("SOY UEBA");
         }
 
     }
 
     public static void main(String[] args) {
 
-        new Pruebasdlk();
+        ueba ueba = new ueba();
+        ueba.quienSoy();
 
-        /*
-        String rutaArchivo = "/resources/contenido/cartasComunidad.txt";
-        char caracterEspecifico = '#';
-
-        try {
-            List lineas = Files.readAllLines(Paths.get(rutaArchivo));
-            long contador = lineas.stream()
-                .filter(a -> ((String)a).charAt(0) == caracterEspecifico)
-                .count();
-
-            System.out.println("Número de líneas: " + contador);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
     }
 }

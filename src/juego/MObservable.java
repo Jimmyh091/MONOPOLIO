@@ -3,19 +3,21 @@ package juego;
 import elementosVisuales.MObserver;
 import elementosVisuales.VisualElement;
 
+import java.util.HashMap;
+
 public abstract class MObservable {
 
-    VisualElement[] ve;
+    HashMap<String, VisualElement> visualElements;
 
-    public void addObserver(VisualElement... ve) {
-        this.ve = ve;
+    public void addObserver(String name, VisualElement ve) {
+        visualElements.put(name, ve);
     }
 
-    public void updateObserver(MObservable mo, int position){
-        ve[position].update(mo);
+    public void updateObserver(String name, MObservable mo){
+        visualElements.get(name).update(mo);
     }
 
-    public VisualElement getVe(int postition) {
-        return ve[postition];
+    public VisualElement getVe(String name) {
+        return visualElements.get(name);
     }
 }

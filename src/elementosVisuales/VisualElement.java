@@ -49,7 +49,7 @@ public abstract class VisualElement extends MObservable implements Drawable, MOb
         this.update = update;
     }
 
-    public void updateScreenState(SceneState sceneState, int position){
+    public void updateScreenState(int position, SceneState sceneState){
         active = sceneState.getElement(position);
     }
 

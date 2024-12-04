@@ -135,30 +135,29 @@ public class SceneImplementer {
     public ArrayList<VisualElement>[] addGameScene(SceneManager sceneManager){
 
         // ELEMENTS
-        MButton tablero;
-        MGrouper dados;
-        MGrouper informacionCalle;
-        MButton comprar;
-        MButton pagar;
-        MButton hipotecar;
-        MButton bancarrota;
-        MGrouper perfilJ1;
-        MGrouper perfilJ2;
-        MGrouper perfilJ3;
-        MGrouper perfilJ4;
-        MGrouper carta;
+        MButton tablero = null;
+        MGrouper dados = null;
+        MGrouper informacionCalle = null;
+        MButton comprar = null;
+        MButton pagar = null;
+        MButton hipotecar = null;
+        MButton bancarrota = null;
+        MGrouper perfilJ1 = null;
+        MGrouper perfilJ2 = null;
+        MGrouper perfilJ3 = null;
+        MGrouper perfilJ4 = null;
+        MGrouper carta = null;
 
         // --- //
 
-        //
+        // ARRAYLISTS
         ArrayList<MBackground> backgrounds = new ArrayList<>();
         ArrayList<MButton> buttons = new ArrayList<>();
         ArrayList<MImage> images = new ArrayList<>();
         ArrayList<MLabel> labels = new ArrayList<>();
         ArrayList<MGrouper> groupers = new ArrayList<>();
 
-        //VARIABLES
-        boolean probarCoordenadasCasillas = true;
+        // VARIABLES
         Gameboard gameboardAux = gameManager.getGameboard();
         int a = gameboardAux.getX() + gameboardAux.getWidth();
         int b = GamePanel.SCREEN_WIDTH;
@@ -194,6 +193,32 @@ public class SceneImplementer {
         /**/
 
         // BUTTONS
+        MButton gameboard = new MButton("gameboard",
+                gameboardAux.getX(), gameboardAux.getY(), gameboardAux.getWidth(), gameboardAux.getHeight(),
+                "Tablero", 30,
+                GameUtilities.getImage("/imagenes/tablero.jpg"),
+                GameUtilities.getImage("/imagenes/tablero.jpg"));
+        gameboard.setEvent((ClickEvent) click -> {
+
+            informacionCalle.activate();
+
+            Casilla[] casillas = gameboardAux.getSquares();
+            for (int i = 0; i < casillas.length; i++) {
+
+                Casilla casilla = casillas[i];
+
+                if (click.x >= casilla.getX() && click.x <= casilla.getX() + casilla.getWidth()){
+                    if (click.y >= casilla.getY() && click.y <= casilla.getY() + casilla.getHeight()){
+                        gameboard.updateObserver("", casilla); //todo encontrar el nombre que le pondre a esto
+                    }
+                }
+            }
+
+        });
+        gameboard.setUpdate((mo) -> {
+            // no tiene pinta que el tablero se vaya a actualizar
+        });
+
         MButton dice = new MButton("dice",
                 gameManager.getDiceCube().getX(), gameManager.getDiceCube().getY(), 100, 100,
                 "dado", 10,
@@ -204,17 +229,27 @@ public class SceneImplementer {
                 CuboDados cd = (CuboDados) mo;
 
                 switch (cd.getResult()[0]){ // esto para un dado y seria otro dice para la otra tirada
-                    case 1 -> dice.setImage(GameUtilities.getImage("imagendadotirada")); //t
+                    case 1 -> dice.setImage(GameUtilities.getImage("imagendadotirada")); //todo
                 }
 
-            });
+        });
 
         // IMAGES
+        MImage imagenCalle = new MImage("imagenCalle",
+                d, 300, cartaImagen.getWidth(), cartaImagen.getHeight(), //todo aqui estaria bien que te pasen las coordenadas relativas, dentro
+                cartaImagen,
+                "imagenCalle", 30);
+        informacionCalle.setUpdate(mo -> {
+            informacionCalle.getVisualElementsList().forEach(element -> {
+                element.update(mo);
+            });
+        });
 
-
+        // GROUPERS
         MGrouper imagenCalleMG = new MGrouper("groupImagenCalle",
                 d, 300, cartaImagen.getWidth(), 550);
 
+        // LABELS
         MLabel nombreCalle = new MLabel("nombreCalle",
                 d + 30, 345, false,
                 "", 20);
@@ -236,51 +271,17 @@ public class SceneImplementer {
             //nombreCalle.setX(JustifyWidth.getCenter(nombreCalle.getText(), nombreCalle.getFont().getSize(), imagenCalleMG.getX(), imagenCalleMG.getX() + imagenCalleMG.getWidth()));
         });
 
-        MImage imagenCalle = new MImage("imagenCalle",
-                d, 300, cartaImagen.getWidth(), cartaImagen.getHeight(), //todo aqui estaria bien que te pasen las coordenadas relativas, dentro
-                cartaImagen,
-                "imagenCalle", 30);
-
-        imagenCalleMG.setUpdate(mo -> {
-            imagenCalleMG.getVisualElementsList().forEach(element -> {
-                element.update(mo);
-            });
-        });
 
         imagenCalleMG.addElements(imagenCalle, nombreCalle, precioCalle);
 
         // BUTTONS pero despues porque tengo que inicializar la imagen
 
-        MButton gameboard = new MButton("gameboard",
-                gameboardAux.getX(), gameboardAux.getY(), gameboardAux.getWidth(), gameboardAux.getHeight(),
-                "Tablero", 30,
-                GameUtilities.getImage("/imagenes/tablero.jpg"),
-                GameUtilities.getImage("/imagenes/tablero.jpg"));
-        gameboard.setEvent((ClickEvent) click -> {
 
-            imagenCalleMG.activate();
-
-            Casilla[] casillas = gameboardAux.getSquares();
-            for (int i = 0; i < casillas.length; i++) {
-
-                Casilla casilla = casillas[i];
-
-                if (click.x >= casilla.getX() && click.x <= casilla.getX() + casilla.getWidth()){
-                    if (click.y >= casilla.getY() && click.y <= casilla.getY() + casilla.getHeight()){
-                        gameboard.updateObserver("", casilla); //todo encontrar el nombre que le pondre a esto
-                    }
-                }
-            }
-
-        });
-        gameboard.setUpdate((mo) -> {
-            // no tiene pinta que el tablero se vaya a actualizar
-        });
 
         // OBSERVERS //
 
         gameManager.getDiceCube().addObserver("dice", dice);
-        gameboard.addObserver("propertyInfo", imagenCalleMG);
+        tablero.addObserver("propertyInfo", imagenCalleMG);
 
         // --- //
 

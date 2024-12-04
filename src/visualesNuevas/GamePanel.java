@@ -50,7 +50,7 @@ public class GamePanel extends JPanel implements Runnable{
         
         screenState = 0;
         selection = -1; // when hit, set to 0
-        maxSelection = 0; //t
+        maxSelection = 0; //todo
         
     }
 

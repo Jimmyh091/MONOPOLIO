@@ -23,7 +23,7 @@ public abstract class Casilla extends VisualGameElement {
     private String title;
     
     public Casilla(int x, int y, int w, int h, BufferedImage bi, String title) {
-        super(x, y, w, h, bi); //t
+        super(x, y, w, h, bi); //todo
 
         jugador = null;
         this.x = x;

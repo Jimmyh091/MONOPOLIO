@@ -64,7 +64,6 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
             text.draw(g);
 
         }
-
     }
 
     @Override

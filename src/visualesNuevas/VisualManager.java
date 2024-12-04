@@ -10,7 +10,7 @@ public class VisualManager {
 
     public VisualManager(SceneManager sm) {
         this.sm = sm;
-        GameManager gm = new GameManager(null); //t
+        GameManager gm = new GameManager(null); //todo
         si = new SceneImplementer(gm);
         addGameScene();
     }

@@ -42,11 +42,6 @@ public class Pruebasdlk {
             super();
         }
 
-        @Override
-        public void quienSoy(){
-            System.out.println("SOY UEBA");
-        }
-
     }
 
     public static void main(String[] args) {

@@ -9,6 +9,10 @@ public abstract class MObservable {
 
     HashMap<String, VisualElement> visualElements;
 
+    public MObservable() {
+        visualElements = new HashMap<>();
+    }
+
     public void addObserver(String name, VisualElement ve) {
         visualElements.put(name, ve);
     }

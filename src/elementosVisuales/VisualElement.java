@@ -49,16 +49,6 @@ public abstract class VisualElement extends MObservable implements Drawable, MOb
         this.update = update;
     }
 
-    @Override
-    public void addObserver(String name, VisualElement ve){
-        super.addObserver(name, ve);
-    }
-
-    @Override
-    public void updateObserver(String name, MObservable mo){
-        super.updateObserver(name, mo);
-    }
-
     public void updateScreenState(SceneState sceneState, int position){
         active = sceneState.getElement(position);
     }

@@ -114,7 +114,7 @@ public class Gameboard extends VisualGameElement{
                     if (type == 1) {
                         casillas[contador] = new Calle(x, y, width, height, null, name, value, group);
                     } else {
-                        casillas[contador] = new CasillaEspecial(x, y, width, height, null, name, value, null); //t implementar evento
+                        casillas[contador] = new CasillaEspecial(x, y, width, height, null, name, value, null); //todo implementar evento
                     }
 
                     contador++;

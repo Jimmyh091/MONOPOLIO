@@ -237,7 +237,7 @@ public class SceneImplementer {
         });
 
         MImage imagenCalle = new MImage("imagenCalle",
-                d, 300, cartaImagen.getWidth(), cartaImagen.getHeight(), //t aqui estaria bien que te pasen las coordenadas relativas, dentro
+                d, 300, cartaImagen.getWidth(), cartaImagen.getHeight(), //todo aqui estaria bien que te pasen las coordenadas relativas, dentro
                 cartaImagen,
                 "imagenCalle", 30);
 
@@ -267,7 +267,7 @@ public class SceneImplementer {
 
                 if (click.x >= casilla.getX() && click.x <= casilla.getX() + casilla.getWidth()){
                     if (click.y >= casilla.getY() && click.y <= casilla.getY() + casilla.getHeight()){
-                        gameboard.updateObserver("", casilla);
+                        gameboard.updateObserver("", casilla); //todo encontrar el nombre que le pondre a esto
                     }
                 }
             }

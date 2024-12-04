@@ -51,7 +51,7 @@ public class Baraja extends VisualGameElement{
         }
         
         cards[0] = carta;
-        //t update observer
+        //todo update observer
         return carta;
     }
 }

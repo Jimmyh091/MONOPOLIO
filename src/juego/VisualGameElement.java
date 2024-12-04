@@ -17,17 +17,6 @@ public class VisualGameElement extends MObservable {
         this.image = image;
     }
 
-    //? no se porque se le pondria override si hace solo lo que hace el padre
-    @Override
-    public void addObserver(String name, VisualElement visualElement){
-        super.addObserver(name, visualElement);
-    }
-
-    @Override
-    public void updateObserver(String name, MObservable mo) {
-        super.updateObserver(name, mo);
-    }
-
     public int getX() {
         return x;
     }

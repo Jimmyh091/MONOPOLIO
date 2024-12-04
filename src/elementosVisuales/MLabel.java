@@ -40,11 +40,6 @@ public class MLabel extends VisualElement { //a ABANDONADA
         g.drawString(text, getX(), getY());
     }
 
-    @Override
-    public void update(MObservable mo){
-        super.update(mo);
-    }
-
     public String getText() {
         return text;
     }

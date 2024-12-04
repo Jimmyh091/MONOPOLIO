@@ -29,14 +29,14 @@ public class SceneManager {
 
     public SceneManager(String nombre, ArrayList<VisualElement>[] scene){
 
-        scenes = new HashMap<>(); //t convert to hashmap
+        scenes = new HashMap<>(); //todo convert to hashmap
         scenes.put(nombre, scene);
         actualScene = nombre;
 
     }
 
     public void setScene(String nombre){
-        actualScene = nombre; //t comprobar si hay suficientes escenas
+        actualScene = nombre; //todo comprobar si hay suficientes escenas
     }
 
     public void addScene(String nombre, ArrayList<VisualElement>[] scene){

@@ -80,11 +80,6 @@ public class MImage extends VisualElement implements Hoverable, HoverEvent {
         return p.x >= x && p.x <= x + w && p.y >= y && p.y <= y + h;
     }
 
-    @Override
-    public void update(MObservable mo) { //? es igual en todos, no creo que sea asi
-        super.update(mo);
-    }
-
     public String getName() {
         return name.getText();
     }

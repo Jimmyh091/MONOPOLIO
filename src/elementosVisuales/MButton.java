@@ -111,16 +111,6 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
         hover = false;
     }
 
-    @Override
-    public void setUpdate(MObserver update){
-        super.setUpdate(update);
-    }
-
-    @Override
-    public void update(MObservable mo){
-        super.update(mo);
-    }
-
     public void setEvent(MEvent event){
         this.event = event;
     }

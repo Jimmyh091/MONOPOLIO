@@ -24,9 +24,9 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
     private BufferedImage hoverImage;
     private MEvent event;
 
-    public MButton(String id, int x, int y, int width, int height, boolean active, String text, int size, BufferedImage image, BufferedImage hoverImage, MEvent event){
+    public MButton(String id, int x, int y, int width, int height, FlatEvent updateEvent, String text, int size, BufferedImage image, BufferedImage hoverImage, MEvent event){
 
-        super(id, x, y, width, height, active, null);
+        super(id, x, y, width, height, updateEvent);
 
         this.text = new MLabel("id", x + width / 2 - text.length(), y + height / 2, true, text, size);
         this.image = image;
@@ -36,9 +36,9 @@ public class MButton extends VisualElement implements Clickable, Hoverable{
         hover = false;
     }
 
-    public MButton(String id, int x, int y, int width, int height, boolean active, String text, int size, BufferedImage image, BufferedImage hoverImage){
+    public MButton(String id, int x, int y, int width, int height, FlatEvent updateEvent, String text, int size, BufferedImage image, BufferedImage hoverImage){
 
-        super(id, x, y, width, height, active, null);
+        super(id, x, y, width, height, updateEvent);
 
         this.text = new MLabel("id", x + width / 2 - text.length(), y + height / 2, true, text, size);
         this.image = image;

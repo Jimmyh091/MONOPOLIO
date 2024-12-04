@@ -30,7 +30,12 @@ public class SceneImplementer {
         MLabel labelPrueba = new MLabel("prueba", 0, 30, true, "SOY UNA PRUEBAAA", 30);
 
         MButton botonPrueba = new MButton("botonPrueba",
-                0, 0, 100, 100, true,
+                0, 0, 100, 100,
+                (CheckSceenState) gameSceenState -> {
+                    switch(gameSceenStateState){
+
+                    }
+                },
                 "Prueba", 16,
                 (BufferedImage) null,
                 null,

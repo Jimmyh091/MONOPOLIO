@@ -13,17 +13,17 @@ public class MBackground extends VisualElement{
     private BufferedImage image;
 
     public MBackground(String id, Color color) {
-        super(id, 0, 0, GamePanel.SCREEN_WIDTH, GamePanel.SCREEN_HEIGHT, true, null);
+        super(id, 0, 0, GamePanel.SCREEN_WIDTH, GamePanel.SCREEN_HEIGHT, null);
         this.color = color;
     }
 
     public MBackground(String id, GradientPaint gradient) {
-        super(id, 0, 0, GamePanel.SCREEN_WIDTH, GamePanel.SCREEN_HEIGHT, true, null);
+        super(id, 0, 0, GamePanel.SCREEN_WIDTH, GamePanel.SCREEN_HEIGHT, null);
         this.gradient = gradient;
     }
 
     public MBackground(String id, BufferedImage b){
-        super(id, 0, 0, GamePanel.SCREEN_WIDTH, GamePanel.SCREEN_HEIGHT, true, null);
+        super(id, 0, 0, GamePanel.SCREEN_WIDTH, GamePanel.SCREEN_HEIGHT, null);
     }
 
     @Override

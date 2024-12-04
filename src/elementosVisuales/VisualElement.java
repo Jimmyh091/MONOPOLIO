@@ -25,16 +25,27 @@ public abstract class VisualElement extends MObservable implements Drawable, MOb
     private boolean active;
 
     private MObserver update;
+    private FlatEvent updateEvent;
 
-    public VisualElement(String id, int x, int y, int width, int height, boolean active, MObserver update) {
+    public VisualElement(String id, int x, int y, int width, int height, FlatEvent updateState) {
         this.id = id;
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        this.active = active;
 
-        this.update = update; //? esta mal
+        this.updateEvent = updateState;
+    }
+
+    public VisualElement(String id, int x, int y, int width, int height) {
+        this.id = id;
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.active = false;
+
+        this.updateEvent = null;
     }
 
     @Override
@@ -59,6 +70,10 @@ public abstract class VisualElement extends MObservable implements Drawable, MOb
     @Override
     public void updateObserver(MObservable mo){
         super.updateObserver(mo);
+    }
+
+    public void updateState(){
+        updateEvent.executeEvent();
     }
 
     public int getX() {

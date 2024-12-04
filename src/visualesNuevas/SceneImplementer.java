@@ -138,6 +138,7 @@ public class SceneImplementer {
         MButton tablero = null;
         MGrouper dados = null;
         MGrouper informacionCalle = null;
+        MGrouper cartelTurno = null;
         MButton comprar = null;
         MButton pagar = null;
         MButton hipotecar = null;
@@ -151,19 +152,22 @@ public class SceneImplementer {
         // --- //
 
         // ARRAYLISTS
-        ArrayList<MBackground> backgrounds = new ArrayList<>();
-        ArrayList<MButton> buttons = new ArrayList<>();
-        ArrayList<MImage> images = new ArrayList<>();
-        ArrayList<MLabel> labels = new ArrayList<>();
-        ArrayList<MGrouper> groupers = new ArrayList<>();
+        ArrayList<VisualElement> backgrounds = new ArrayList<>(); //todo pensar como voy a almacenar los elementos y su orden y si eso importa y eso
+        ArrayList<VisualElement> buttons = new ArrayList<>();
+        ArrayList<VisualElement> images = new ArrayList<>();
+        ArrayList<VisualElement> labels = new ArrayList<>();
+        ArrayList<VisualElement> groupers = new ArrayList<>();
 
         // VARIABLES
+        BufferedImage cartaImagen = GameUtilities.getImage("/imagenes/pantallaJuego/carta.jpg");
         Gameboard gameboardAux = gameManager.getGameboard();
+        MButton finalTablero = tablero;
+        MGrouper informacionCalleAux = informacionCalle;
+
         int a = gameboardAux.getX() + gameboardAux.getWidth();
         int b = GamePanel.SCREEN_WIDTH;
         int c = b - a;
         int d = a + (c / 2) - (300 / 2);
-        BufferedImage cartaImagen = GameUtilities.getImage("/imagenes/pantallaJuego/carta.jpg");
 
         // --- //
 
@@ -192,15 +196,17 @@ public class SceneImplementer {
 
         /**/
 
-        // BUTTONS
-        MButton gameboard = new MButton("gameboard",
+
+        // -- BUTTONS -- //
+
+        tablero = new MButton("gameboard",
                 gameboardAux.getX(), gameboardAux.getY(), gameboardAux.getWidth(), gameboardAux.getHeight(),
                 "Tablero", 30,
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
                 GameUtilities.getImage("/imagenes/tablero.jpg"));
-        gameboard.setEvent((ClickEvent) click -> {
+        tablero.setEvent((ClickEvent) click -> {
 
-            informacionCalle.activate();
+            informacionCalleAux.activate();
 
             Casilla[] casillas = gameboardAux.getSquares();
             for (int i = 0; i < casillas.length; i++) {
@@ -209,13 +215,13 @@ public class SceneImplementer {
 
                 if (click.x >= casilla.getX() && click.x <= casilla.getX() + casilla.getWidth()){
                     if (click.y >= casilla.getY() && click.y <= casilla.getY() + casilla.getHeight()){
-                        gameboard.updateObserver("", casilla); //todo encontrar el nombre que le pondre a esto
+                        finalTablero.updateObserver("", casilla); //todo encontrar el nombre que le pondre a esto
                     }
                 }
             }
 
         });
-        gameboard.setUpdate((mo) -> {
+        tablero.setUpdate((mo) -> {
             // no tiene pinta que el tablero se vaya a actualizar
         });
 
@@ -234,22 +240,28 @@ public class SceneImplementer {
 
         });
 
-        // IMAGES
+
+        //  -- IMAGES --  //
+
         MImage imagenCalle = new MImage("imagenCalle",
                 d, 300, cartaImagen.getWidth(), cartaImagen.getHeight(), //todo aqui estaria bien que te pasen las coordenadas relativas, dentro
                 cartaImagen,
                 "imagenCalle", 30);
+
+
+        //  -- GROUPERS --  //
+
+        informacionCalle = new MGrouper("groupImagenCalle",
+                d, 300, cartaImagen.getWidth(), 550);
         informacionCalle.setUpdate(mo -> {
-            informacionCalle.getVisualElementsList().forEach(element -> {
+            informacionCalleAux.getVisualElementsList().forEach(element -> {
                 element.update(mo);
             });
         });
 
-        // GROUPERS
-        MGrouper imagenCalleMG = new MGrouper("groupImagenCalle",
-                d, 300, cartaImagen.getWidth(), 550);
 
-        // LABELS
+        //  -- LABELS --  //
+
         MLabel nombreCalle = new MLabel("nombreCalle",
                 d + 30, 345, false,
                 "", 20);
@@ -271,7 +283,6 @@ public class SceneImplementer {
             //nombreCalle.setX(JustifyWidth.getCenter(nombreCalle.getText(), nombreCalle.getFont().getSize(), imagenCalleMG.getX(), imagenCalleMG.getX() + imagenCalleMG.getWidth()));
         });
 
-
         informacionCalle.addElements(imagenCalle, nombreCalle, precioCalle);
 
         // OBSERVERS //
@@ -290,8 +301,20 @@ public class SceneImplementer {
         images.add(imagenCalle);
 
         // BUTTONS //
+        buttons.add(tablero);
         buttons.add(dice);
-        buttons.add(gameboard);
+        buttons.add(informacionCalle);
+        buttons.add(cartelTurno);
+        buttons.add(comprar);
+        buttons.add(pagar);
+        buttons.add(hipotecar);
+        buttons.add(bancarrota);
+        buttons.add(perfilJ1);
+        buttons.add(perfilJ2);
+        buttons.add(perfilJ3);
+        buttons.add(perfilJ4);
+        buttons.add(carta);
+
         /* borrable
         if (probarCoordenadasCasillas){
             buttons.addAll(Arrays.asList(lista));

@@ -33,6 +33,7 @@ public abstract class VisualElement extends MObservable implements Drawable, MOb
         this.y = y;
         this.width = width;
         this.height = height;
+        active = false;
     }
 
     @Override

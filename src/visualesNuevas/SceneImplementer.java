@@ -272,26 +272,24 @@ public class SceneImplementer {
         });
 
 
-        imagenCalleMG.addElements(imagenCalle, nombreCalle, precioCalle);
-
-        // BUTTONS pero despues porque tengo que inicializar la imagen
-
-
+        informacionCalle.addElements(imagenCalle, nombreCalle, precioCalle);
 
         // OBSERVERS //
-
         gameManager.getDiceCube().addObserver("dice", dice);
-        tablero.addObserver("propertyInfo", imagenCalleMG);
+        tablero.addObserver("infoProperty", informacionCalle);
 
-        // --- //
+        // ADD //
 
-
+        // BACKGROUND //
         backgrounds.add(null);
 
-        groupers.add(imagenCalleMG);
+        // GROUPERS //
+        groupers.add(informacionCalle);
 
+        // IMAGES //
         images.add(imagenCalle);
 
+        // BUTTONS //
         buttons.add(dice);
         buttons.add(gameboard);
         /* borrable
@@ -301,6 +299,7 @@ public class SceneImplementer {
 
         /* */
 
+        // LABELS //
         labels.add(null);
 
         return new ArrayList[]{backgrounds, images, buttons, groupers,  labels};

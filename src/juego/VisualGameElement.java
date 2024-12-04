@@ -19,13 +19,13 @@ public class VisualGameElement extends MObservable {
 
     //? no se porque se le pondria override si hace solo lo que hace el padre
     @Override
-    public void addObserver(VisualElement ve){
+    public void addObserver(VisualElement... ve){
         super.addObserver(ve);
     }
 
     @Override
-    public void updateObserver(MObservable mo) {
-        super.updateObserver(mo);
+    public void updateObserver(MObservable mo, int position) {
+        super.updateObserver(mo, position);
     }
 
     public int getX() {

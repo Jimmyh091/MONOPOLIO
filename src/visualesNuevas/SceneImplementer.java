@@ -31,17 +31,12 @@ public class SceneImplementer {
 
         MButton botonPrueba = new MButton("botonPrueba",
                 0, 0, 100, 100,
-                (CheckSceenState) sceenState -> {
-                    switch(sceenState.){
-
-                    }
-                },
                 "Prueba", 16,
                 (BufferedImage) null,
                 null,
                 (FlatEvent) () -> System.out.println("JAIME FUNCIONA QUE COJONES"));
         MButton botonPrueba2 = new MButton("botonPrueba2",
-                100, 500, 500, 200, true,
+                100, 500, 500, 200,
                 "BotonPrueba", 16,
                 GameUtilities.getImage("/imagenes/test/botonPrueba.png"),
                 GameUtilities.getImage("/imagenes/test/botonPruebaHover.jpg"),
@@ -75,7 +70,7 @@ public class SceneImplementer {
 
         for (int i = 0; i < gameManager.getNumSquares(); i++) {
             lista[i] = new MButton("asdf",
-                    p[0][i].x, p[0][i].y, p[1][i].x, p[1][i].y, true,
+                    p[0][i].x, p[0][i].y, p[1][i].x, p[1][i].y,
                     "b" + i, 10,
                     (BufferedImage) null,
                     null,
@@ -83,7 +78,7 @@ public class SceneImplementer {
         }
 
         lista[40] = new MButton("asdf",
-                gameManager.getGameboard().getX(), gameManager.getGameboard().getY(), gameManager.getGameboard().getWidth(), gameManager.getGameboard().getHeight(), true,
+                gameManager.getGameboard().getX(), gameManager.getGameboard().getY(), gameManager.getGameboard().getWidth(), gameManager.getGameboard().getHeight(),
                 "Tablero", 20,
                 (BufferedImage) null,
                 null,
@@ -115,7 +110,7 @@ public class SceneImplementer {
         backgrounds.add(null);
 
         buttons.add(new MButton("BotonJugar",
-                0, 0, 100, 100, true,
+                0, 0, 100, 100,
                 "Jugar", 20,
                 (BufferedImage) null,
                 null,
@@ -129,7 +124,7 @@ public class SceneImplementer {
         }
 
         images.add(new MImage("ImagenTablero",
-                0, 0, 0, 0, true,
+                0, 0, 0, 0,
                 imagenTablero, "imagenalskdfjas", 3));
 
         labels.add(null);
@@ -143,7 +138,7 @@ public class SceneImplementer {
 
         // BUTTONS
         MButton dice = new MButton("dice",
-                gameManager.getDiceCube().getX(), gameManager.getDiceCube().getY(), 100, 100, true,
+                gameManager.getDiceCube().getX(), gameManager.getDiceCube().getY(), 100, 100,
                 "dado", 10,
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
@@ -195,7 +190,7 @@ public class SceneImplementer {
         BufferedImage cartaImagen = GameUtilities.getImage("/imagenes/pantallaJuego/carta.jpg");
 
         MGrouper imagenCalleMG = new MGrouper("groupImagenCalle",
-                d, 300, cartaImagen.getWidth(), 550, false);
+                d, 300, cartaImagen.getWidth(), 550);
 
         MLabel nombreCalle = new MLabel("nombreCalle",
                 d + 30, 345, false,
@@ -219,7 +214,7 @@ public class SceneImplementer {
         });
 
         MImage imagenCalle = new MImage("imagenCalle",
-                d, 300, cartaImagen.getWidth(), cartaImagen.getHeight(), false,//t aqui estaria bien que te pasen las coordenadas relativas, dentro
+                d, 300, cartaImagen.getWidth(), cartaImagen.getHeight(), //t aqui estaria bien que te pasen las coordenadas relativas, dentro
                 cartaImagen,
                 "imagenCalle", 30);
 
@@ -234,7 +229,7 @@ public class SceneImplementer {
         // BUTTONS pero despues porque tengo que inicializar la imagen
 
         MButton gameboard = new MButton("gameboard",
-                gameboardAux.getX(), gameboardAux.getY(), gameboardAux.getWidth(), gameboardAux.getHeight(), true,
+                gameboardAux.getX(), gameboardAux.getY(), gameboardAux.getWidth(), gameboardAux.getHeight(),
                 "Tablero", 30,
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
                 GameUtilities.getImage("/imagenes/tablero.jpg"));
@@ -243,11 +238,13 @@ public class SceneImplementer {
             imagenCalleMG.activate();
 
             Casilla[] casillas = gameboardAux.getSquares();
-            for (Casilla casilla : casillas) {
+            for (int i = 0; i < casillas.length; i++) {
+
+                Casilla casilla = casillas[i];
 
                 if (click.x >= casilla.getX() && click.x <= casilla.getX() + casilla.getWidth()){
                     if (click.y >= casilla.getY() && click.y <= casilla.getY() + casilla.getHeight()){
-                        gameboard.updateObserver(casilla);
+                        gameboard.updateObserver(casilla, i);
                     }
                 }
             }

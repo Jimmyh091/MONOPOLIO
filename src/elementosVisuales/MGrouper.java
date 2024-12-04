@@ -7,8 +7,8 @@ public class MGrouper extends VisualElement {
 
     private ArrayList<VisualElement> visualElementsList;
 
-    public MGrouper(String id, int x, int y, int w, int h, FlatEvent updateEvent) {
-        super(id, x, y, w, h, updateEvent);
+    public MGrouper(String id, int x, int y, int w, int h) {
+        super(id, x, y, w, h);
         visualElementsList = new ArrayList<>();
     }
 

@@ -1,7 +1,11 @@
 package visualesNuevas;
 
 public enum SceneState {
-    ROLL_DICE(),
+
+    //
+
+    // GAME SCENES //
+    ROLL_DICE(true, true),
     BUY_PROPERTY(),
     PAY_DEBT(),
     INTERACT_SPECIAL_SQUARE(),

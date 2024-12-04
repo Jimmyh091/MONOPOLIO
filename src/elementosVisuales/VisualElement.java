@@ -7,6 +7,7 @@ package elementosVisuales;
 
 import juego.MObservable;
 import juego.VisualGameElement;
+import visualesNuevas.SceneState;
 
 import java.awt.Graphics2D;
 import java.util.Observer;
@@ -25,17 +26,6 @@ public abstract class VisualElement extends MObservable implements Drawable, MOb
     private boolean active;
 
     private MObserver update;
-    private FlatEvent updateEvent;
-
-    public VisualElement(String id, int x, int y, int width, int height, FlatEvent updateState) {
-        this.id = id;
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-
-        this.updateEvent = updateState;
-    }
 
     public VisualElement(String id, int x, int y, int width, int height) {
         this.id = id;
@@ -43,9 +33,6 @@ public abstract class VisualElement extends MObservable implements Drawable, MOb
         this.y = y;
         this.width = width;
         this.height = height;
-        this.active = false;
-
-        this.updateEvent = null;
     }
 
     @Override
@@ -63,17 +50,17 @@ public abstract class VisualElement extends MObservable implements Drawable, MOb
     }
 
     @Override
-    public void addObserver(VisualElement ve){
+    public void addObserver(VisualElement... ve){
         super.addObserver(ve);
     }
 
     @Override
-    public void updateObserver(MObservable mo){
-        super.updateObserver(mo);
+    public void updateObserver(MObservable mo, int position){
+        super.updateObserver(mo, position);
     }
 
-    public void updateState(){
-        updateEvent.executeEvent();
+    public void updateScreenState(SceneState sceneState, int position){
+        active = sceneState.getElement(position);
     }
 
     public int getX() {

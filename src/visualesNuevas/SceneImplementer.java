@@ -31,8 +31,8 @@ public class SceneImplementer {
 
         MButton botonPrueba = new MButton("botonPrueba",
                 0, 0, 100, 100,
-                (CheckSceenState) gameSceenState -> {
-                    switch(gameSceenStateState){
+                (CheckSceenState) sceenState -> {
+                    switch(sceenState.){
 
                     }
                 },

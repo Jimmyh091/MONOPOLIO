@@ -3,6 +3,7 @@ package visualesNuevas;
 public enum SceneState {
 
     //
+    START_GAME(true, true),
 
     // GAME SCENES //
     ROLL_DICE(true, true, true, true, false, false, false, true, true, true, true, true, false),

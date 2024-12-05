@@ -28,6 +28,7 @@ public class SceneManager {
         scenes = new HashMap<>();
         actualScene = "";
         currentState = SceneState.ROLL_DICE;
+
     }
 
     public SceneManager(String nombre, ArrayList<VisualElement>[] scene){
@@ -44,6 +45,8 @@ public class SceneManager {
     }
 
     public void updateStateElements(){
+
+        // aqui no se puede utilizar iterateElements porque necesita la posicion
         ArrayList<VisualElement>[] visualElementsList = scenes.get(actualScene);
 
         if (visualElementsList != null){
@@ -56,11 +59,14 @@ public class SceneManager {
 
                 if (elements != null) elements.forEach(element -> {
 
-                    element.updateScreenState(position, currentState);
+                    if (element != null){
+                        element.updateScreenState(position, currentState);
+                    }else{
+                        System.out.println("LOG: ERROR.SceneManager.updateStateElements");
+                    }
 
                 });
             }
-
         }
     }
 
@@ -72,98 +78,52 @@ public class SceneManager {
     }
 
     public void paintScene(Graphics2D g){
-        
-        ArrayList<VisualElement>[] visualElementsList = scenes.get(actualScene); 
 
-        if (visualElementsList != null){
+        iterateElements(element -> {
+            if (element != null && element.isActive()) element.draw(g);
+        });
 
-            for (int i = 0; i < visualElementsList.length; i++){
-
-                ArrayList<VisualElement> elements = visualElementsList[i];
-
-                if (elements != null) elements.forEach(element -> {
-
-                    if (element != null && element.isActive()) element.draw(g);
-                });
-            }
-
-        }
     }
     
     public void checkClickPosition(Point clickPosition){ //? no solo los botones tendrian eventos
 
-        if (scenes.get(actualScene) != null){
+        iterateElements(element -> {
+            if (element instanceof Clickable){
 
-            if (scenes.get(actualScene)[2].get(0) != null){ //? seria mejor hacer esta comprobacion dentro del foreach supongo pero tambien me convence asi
+                Clickable clickable = (Clickable) element;
 
-                scenes.get(actualScene)[2].forEach(element -> {
+                if (clickable.clickIn(clickPosition)) {
 
-                    if (element != null && element.isActive()){
+                    clickable.executeClickEvent(clickPosition);
 
-                        if (element instanceof Clickable){
-
-                            Clickable clickable = (Clickable) element;
-
-                            if (clickable.clickIn(clickPosition)) {
-
-                                clickable.executeClickEvent(clickPosition);
-
-                            }
-                        }
-                    }
-                });
+                }
             }
-        }
+        });
+
     }
 
     void checkHoverPosition(Point mousePosition) { //? puede no ser solo imagenes y botones
 
-        iterateElements(element -> if (element instanceof Hoverable) {
+        iterateElements(element -> {
+            if (element instanceof Hoverable) {
 
-            Hoverable hoverable = (Hoverable) element;
-            if (hoverable.mouseIn(mousePosition)) {
-                hoverable.activateHover();
-            } else {
-                hoverable.deactivateHover();
+                Hoverable hoverable = (Hoverable) element;
+                if (hoverable.mouseIn(mousePosition)) {
+                    hoverable.activateHover();
+                } else {
+                    hoverable.deactivateHover();
+                }
+
             }
 
-        }
-        if (element instanceof HoverEvent) {
+            if (element instanceof HoverEvent) {
 
-            HoverEvent hoverEvent = (HoverEvent) element;
-            hoverEvent.executeHoverEvent(mousePosition);
+                HoverEvent hoverEvent = (HoverEvent) element;
+                hoverEvent.executeHoverEvent(mousePosition);
 
-        }
-        );
-
-        if (scenes.get(actualScene) != null) {
-
-            for (ArrayList<VisualElement> typeElement : scenes.get(actualScene)) {
-
-                typeElement.forEach(element -> {
-
-                    if (element != null && element.isActive()){
-
-                        if (element instanceof Hoverable) {
-
-                            Hoverable hoverable = (Hoverable) element;
-                            if (hoverable.mouseIn(mousePosition)) {
-                                hoverable.activateHover();
-                            } else {
-                                hoverable.deactivateHover();
-                            }
-
-                        }
-                        if (element instanceof HoverEvent) {
-
-                            HoverEvent hoverEvent = (HoverEvent) element;
-                            hoverEvent.executeHoverEvent(mousePosition);
-
-                        }
-                    }
-                });
             }
-        }
+        });
+
     }
 
     private void iterateElements(Iterate iterate){

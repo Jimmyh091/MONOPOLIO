@@ -9,10 +9,13 @@ public class VisualManager {
     GameManager gm;
 
     public VisualManager(SceneManager sm) {
+
         this.sm = sm;
         GameManager gm = new GameManager(null); //todo
         si = new SceneImplementer(gm);
         addGameScene();
+        sm.updateStateElements();
+
     }
 
     public void addTest(){

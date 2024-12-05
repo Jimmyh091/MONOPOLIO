@@ -161,8 +161,6 @@ public class SceneImplementer {
         // VARIABLES
         BufferedImage cartaImagen = GameUtilities.getImage("/imagenes/pantallaJuego/carta.jpg");
         Gameboard gameboardAux = gameManager.getGameboard();
-        MButton finalTablero = tablero;
-        MGrouper informacionCalleAux = informacionCalle;
 
         int a = gameboardAux.getX() + gameboardAux.getWidth();
         int b = GamePanel.SCREEN_WIDTH;
@@ -204,26 +202,9 @@ public class SceneImplementer {
                 "Tablero", 30,
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
                 GameUtilities.getImage("/imagenes/tablero.jpg"));
-        tablero.setEvent((ClickEvent) click -> {
 
-            informacionCalleAux.activate();
+        MButton finalTablero = tablero;
 
-            Casilla[] casillas = gameboardAux.getSquares();
-            for (int i = 0; i < casillas.length; i++) {
-
-                Casilla casilla = casillas[i];
-
-                if (click.x >= casilla.getX() && click.x <= casilla.getX() + casilla.getWidth()){
-                    if (click.y >= casilla.getY() && click.y <= casilla.getY() + casilla.getHeight()){
-                        finalTablero.updateObserver("", casilla); //todo encontrar el nombre que le pondre a esto
-                    }
-                }
-            }
-
-        });
-        tablero.setUpdate((mo) -> {
-            // no tiene pinta que el tablero se vaya a actualizar
-        });
 
         MButton dice = new MButton("dice",
                 gameManager.getDiceCube().getX(), gameManager.getDiceCube().getY(), 100, 100,
@@ -231,14 +212,6 @@ public class SceneImplementer {
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
                 (ClickEvent) p -> gameManager.rollDice());
-        dice.setUpdate(mo -> {
-                CuboDados cd = (CuboDados) mo;
-
-                switch (cd.getResult()[0]){ // esto para un dado y seria otro dice para la otra tirada
-                    case 1 -> dice.setImage(GameUtilities.getImage("imagendadotirada")); //todo
-                }
-
-        });
 
 
         //  -- IMAGES --  //
@@ -253,27 +226,29 @@ public class SceneImplementer {
 
         informacionCalle = new MGrouper("groupImagenCalle",
                 d, 300, cartaImagen.getWidth(), 550);
-        informacionCalle.setUpdate(mo -> {
-            informacionCalleAux.getVisualElementsList().forEach(element -> {
-                element.update(mo);
-            });
-        });
 
+        MGrouper informacionCalleAux = informacionCalle;
 
         //  -- LABELS --  //
 
         MLabel nombreCalle = new MLabel("nombreCalle",
                 d + 30, 345, false,
                 "", 20);
-        nombreCalle.setUpdate(mo -> {
-            Casilla casilla = (Casilla) mo;
-            nombreCalle.setText(casilla.getTitle());
-            //nombreCalle.setX(JustifyWidth.getCenter(nombreCalle.getText(), nombreCalle.getFont().getSize(), imagenCalleMG.getX(), imagenCalleMG.getX() + imagenCalleMG.getWidth()));
-        });
 
         MLabel precioCalle = new MLabel("precioCalle",
                 d + 30, 400, false,
                 "", 20);
+
+
+
+        // UPDATES //
+
+        informacionCalle.setUpdate(mo -> {
+            informacionCalleAux.getVisualElementsList().forEach(element -> {
+                element.update(mo);
+            });
+        });
+
         precioCalle.setUpdate(mo -> {
             Casilla casilla = (Casilla) mo;
             if (casilla instanceof Calle){
@@ -283,13 +258,54 @@ public class SceneImplementer {
             //nombreCalle.setX(JustifyWidth.getCenter(nombreCalle.getText(), nombreCalle.getFont().getSize(), imagenCalleMG.getX(), imagenCalleMG.getX() + imagenCalleMG.getWidth()));
         });
 
-        informacionCalle.addElements(imagenCalle, nombreCalle, precioCalle);
+        dice.setUpdate(mo -> {
+            CuboDados cd = (CuboDados) mo;
+
+            switch (cd.getResult()[0]){ // esto para un dado y seria otro dice para la otra tirada
+                case 1 -> dice.setImage(GameUtilities.getImage("imagendadotirada")); //todo
+            }
+
+        });
+
+        tablero.setUpdate((mo) -> {
+            // no tiene pinta que el tablero se vaya a actualizar
+        });
+
+        nombreCalle.setUpdate(mo -> {
+            Casilla casilla = (Casilla) mo;
+            nombreCalle.setText(casilla.getTitle());
+            //nombreCalle.setX(JustifyWidth.getCenter(nombreCalle.getText(), nombreCalle.getFont().getSize(), imagenCalleMG.getX(), imagenCalleMG.getX() + imagenCalleMG.getWidth()));
+        });
+
+        // EVENTS //
+
+        tablero.setEvent((ClickEvent) click -> {
+
+            if (!informacionCalleAux.isActive()) informacionCalleAux.activate();
+
+            Casilla[] casillas = gameboardAux.getSquares();
+            for (int i = 0; i < casillas.length; i++) {
+
+                Casilla casilla = casillas[i];
+
+                if (click.x >= casilla.getX() && click.x <= casilla.getX() + casilla.getWidth()){
+                    if (click.y >= casilla.getY() && click.y <= casilla.getY() + casilla.getHeight()){
+
+                        finalTablero.updateObserver("infoProperty", casilla);
+
+                    }
+                }
+            }
+
+        });
+
 
         // OBSERVERS //
         gameManager.getDiceCube().addObserver("dice", dice);
         tablero.addObserver("infoProperty", informacionCalle);
 
         // ADD //
+        informacionCalle.addElements(imagenCalle, nombreCalle, precioCalle);
 
         // BACKGROUND //
         backgrounds.add(null);
@@ -314,7 +330,6 @@ public class SceneImplementer {
         buttons.add(perfilJ3);
         buttons.add(perfilJ4);
         buttons.add(carta);
-
         /* borrable
         if (probarCoordenadasCasillas){
             buttons.addAll(Arrays.asList(lista));

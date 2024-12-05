@@ -136,7 +136,8 @@ public class SceneImplementer {
 
         // ELEMENTS
         MButton tablero = null;
-        MGrouper dados = null;
+        MButton dados = null;
+        MGrouper dice = null;
         MGrouper informacionCalle = null;
         MGrouper cartelTurno = null;
         MButton comprar = null;
@@ -206,7 +207,7 @@ public class SceneImplementer {
         MButton finalTablero = tablero;
 
 
-        MButton dice = new MButton("dice",
+        dados = new MButton("dice",
                 gameManager.getDiceCube().getX(), gameManager.getDiceCube().getY(), 100, 100,
                 "dado", 10,
                 GameUtilities.getImage("/imagenes/tablero.jpg"),
@@ -258,11 +259,11 @@ public class SceneImplementer {
             //nombreCalle.setX(JustifyWidth.getCenter(nombreCalle.getText(), nombreCalle.getFont().getSize(), imagenCalleMG.getX(), imagenCalleMG.getX() + imagenCalleMG.getWidth()));
         });
 
-        dice.setUpdate(mo -> {
+        dados.setUpdate(mo -> {
             CuboDados cd = (CuboDados) mo;
 
             switch (cd.getResult()[0]){ // esto para un dado y seria otro dice para la otra tirada
-                case 1 -> dice.setImage(GameUtilities.getImage("imagendadotirada")); //todo
+                case 1 -> System.out.println("se ejecuta bien lo que sea esto"); //todo
             }
 
         });

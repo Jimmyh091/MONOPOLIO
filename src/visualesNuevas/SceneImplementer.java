@@ -25,7 +25,7 @@ public class SceneImplementer {
 
     public ArrayList<VisualElement>[] addTest(SceneManager sceneManager) {
 
-        MBackground fondoPrueba = new MBackground("fond", new GradientPaint(0, 0, new Color(100, 255, 100), 0, GamePanel.SCREEN_HEIGHT, new Color(200, 255, 200)));
+        MBackground fondoPrueba = new MBackground("fondo", new GradientPaint(0, 0, new Color(100, 255, 100), 0, GamePanel.SCREEN_HEIGHT, new Color(200, 255, 200)));
 
         MLabel labelPrueba = new MLabel("prueba", 0, 30, true, "SOY UNA PRUEBAAA", 30);
 
